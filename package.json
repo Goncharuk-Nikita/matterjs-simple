@@ -8,6 +8,7 @@
     "lint:index": "eslint index2.ts --fix"
   },
   "dependencies": {
+    "events": "^3.3.0",
     "matter-js": "^0.19.0",
     "vite": "^5.2.8"
   },

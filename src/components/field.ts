@@ -2,6 +2,7 @@ import Matter, { Composite } from 'matter-js'
 import { Peg } from './peg'
 import { Oppening } from './openning'
 import { Position } from '../utilities/position'
+import { Slot } from './slot'
 
 export interface SetupOptions {
   levels: number
@@ -36,6 +37,7 @@ export class Field {
     const fillStyle = '#F6B23D'
 
     const pegs: Peg[] = []
+    const slots: Slot[] = []
     const bodies: Matter.Body[] = []
     //const slots: Slot[] = []
 
@@ -66,6 +68,31 @@ export class Field {
       }
       spaceBottom += options.spacing * fraction
       //currentRow++
+    }
+
+    //const slotWidth = options.gap * fraction + options.pegRadius * 2
+
+    const slotCosts = Slot.CostsForLevels(options.levels - 8)
+
+    const firstX = pegs[pegs.length - 1 - slotCosts.length].body.position.x
+    const secondX = pegs[pegs.length - 1 - slotCosts.length + 1].body.position.x
+    const slotWidth = secondX - firstX - 0.5
+
+    for (let s = 0; s < slotCosts.length; s++) {
+      const temp_bottom_peg = pegs[pegs.length - 1 - slotCosts.length + s] // taking each bottom peg so its x can be used as a referrence point for each slot
+      const cost = slotCosts[s]
+      //const slotTexture = await Assets.load(`${options.path}/${cost}.png`)
+      const slotX = temp_bottom_peg.body.position.x + slotWidth / 2
+      const slot = new Slot({
+        x: slotX,
+        y: spaceBottom,
+        width: slotWidth,
+        height: 60 - lines,
+        fillStyle: '#00ff00',
+        cost,
+      })
+      slots.push(slot)
+      bodies.push(slot.body)
     }
 
     this._height = spaceBottom + options.pegRadius

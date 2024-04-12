@@ -11,13 +11,13 @@ export interface PlayOptions {
 
 export function startPlay(options: PlayOptions) {
   const composite = Composite.create({ label: 'Play' })
+  Composite.add(options.world, [composite])
   const ball = new Ball({
     x: options.oppeningPosition.x,
     y: options.oppeningPosition.y,
     radius: options.ballRadius,
     fillStyle: '#FF0000',
     isStatic: false,
-  }) //createHeartBall(heartVertices)
-  Composite.add(options.world, [composite])
+  })
   Composite.add(composite, [ball.body])
 }

@@ -9,9 +9,40 @@
     <script type="module" src="src/matter.ts" defer></script>
 </head>
 <body class="w-screen h-screen">
-     <svg id="svg">
-        <path id="path-heart"
-              d="M20.1,37.828 L20.072,37.828 C14.906,37.732 0,24.264 0,11.508 C0,5.38 5.05,0 10.806,0 C15.386,0 18.466,3.16 20.098,5.46 C21.726,3.164 24.806,8.8817842e-16 29.388,8.8817842e-16 C35.148,8.8817842e-16 40.196,5.38 40.196,11.51 C40.196,24.262 25.288,37.73 20.122,37.824 L20.1,37.824 L20.1,37.828 Z"></path>
-      </svg>
+    <div class="fixed top-0 left-0 p-2 settings">
+        <div class="flex flex-col gap-12">
+          <div class="tooltip tooltip-open tooltip-bottom tooltip-secondary" data-tip="gap">
+              <input id="gap-input" rebuild type="number" min="30" max="80" value="50" step="1" class="input input-xs input-secondary text-secondary" /> 	
+          </div>
+          <div class="tooltip tooltip-open tooltip-bottom tooltip-secondary" data-tip="spacing">
+              <input id="spacing-input" rebuild type="number" min="50" max="120" value="90" step="1" class="input input-xs input-secondary text-secondary" /> 	
+          </div>
+          <div class="tooltip tooltip-open tooltip-bottom tooltip-secondary" data-tip="peg-radius">
+              <input id="peg-radius-input" rebuild type="number" min="5" max="20" value="10" step="0.5" class="input input-xs input-secondary text-secondary" /> 	
+          </div>
+          <div class="tooltip tooltip-open tooltip-bottom tooltip-secondary" data-tip="ball-radius">
+              <input id="ball-radius-input" type="number" min="5" max="25" value="18" step="0.5" class="input input-xs input-secondary text-secondary" /> 	
+          </div>
+          <div class="tooltip tooltip-open tooltip-bottom tooltip-secondary text-secondary" data-tip="speed-cof">
+              1 / <input id="speed-cof-input" type="number" min="1" max="10" value="1" step="1" class="input input-xs input-secondary text-secondary" /> 	
+          </div>
+          <div>
+              <button id="play-btn" class="btn btn-primary btn-xs">Play</button>
+          </div>
+        </div>
+        <div class="fixed top-0 right-0 p-2 settings">
+			<div class="join join-vertical">
+				<button data-level="8" class="btn join-item btn-accent">8</button>
+				<button data-level="9" class="btn join-item btn-secondary">9</button>
+				<button data-level="10" class="btn join-item btn-secondary">10</button>
+				<button data-level="11" class="btn join-item btn-secondary">11</button>
+				<button data-level="12" class="btn join-item btn-secondary">12</button>
+				<button data-level="13" class="btn join-item btn-secondary">13</button>
+				<button data-level="14" class="btn join-item btn-secondary">14</button>
+				<button data-level="15" class="btn join-item btn-secondary">15</button>
+				<button data-level="16" class="btn join-item btn-secondary">16</button>
+			</div>
+		</div>
+    </div>    
 </body>
 </html>

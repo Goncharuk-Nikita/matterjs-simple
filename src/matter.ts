@@ -6,33 +6,34 @@ import { Position } from './utilities/position'
 import { PlayOptions } from './process/play'
 
 import { startPlay } from './process/play'
+import { Inputs } from './ui/inputs'
+import { Levels } from './ui/levels'
 
 const { Composite, Engine } = Matter
 
-let levels: number
 let field: Field
 let engine: Matter.Engine
 let world: Matter.World
 let render: Matter.Render
 let element: HTMLElement
 let oppeningPosition: Position
+let inputs: Inputs
+let levels: Levels
 
 function rebuild() {
   resize(render, element)
-  rebuildField(8, world)
+  rebuildField(levels.level, world)
 }
 
 function rebuildField(newLevels: number, world: Matter.World) {
-  levels = newLevels
-
   Composite.clear(world, true, true)
 
   field = new Field(world)
   field.init({
-    levels,
-    gap: 50,
-    pegRadius: 10,
-    spacing: 90,
+    levels: newLevels,
+    gap: inputs.gap,
+    pegRadius: inputs.pegRadius,
+    spacing: inputs.spacing,
   })
 
   const dx = (element.clientWidth - field.width) / 2
@@ -58,6 +59,12 @@ function run() {
   element = document.querySelector('body') as HTMLBodyElement
   render = createRender(engine, element)
 
+  inputs = new Inputs()
+  inputs.dispatcher.addListener('rebuild', rebuild)
+
+  levels = new Levels()
+  levels.dispatcher.addListener('change', rebuild)
+
   window.addEventListener('resize', rebuild)
   window.addEventListener('load', rebuild)
 
@@ -72,8 +79,9 @@ function play() {
   const options = {
     world,
     oppeningPosition,
-    ballRadius: 25,
+    ballRadius: inputs.ballRadius,
   } satisfies PlayOptions
+
   //
   startPlay(options)
 }
