@@ -7,7 +7,7 @@ import { PlayOptions } from './process/play'
 
 import { startPlay } from './process/play'
 import { Inputs } from './ui/inputs'
-import { Levels } from './ui/levels'
+import { Controls } from './ui/controls'
 
 const { Composite, Engine } = Matter
 
@@ -18,11 +18,11 @@ let render: Matter.Render
 let element: HTMLElement
 let oppeningPosition: Position
 let inputs: Inputs
-let levels: Levels
+let controls: Controls
 
 function rebuild() {
   resize(render, element)
-  rebuildField(levels.level, world)
+  rebuildField(controls.level, world)
 }
 
 function rebuildField(newLevels: number, world: Matter.World) {
@@ -33,6 +33,8 @@ function rebuildField(newLevels: number, world: Matter.World) {
     levels: newLevels,
     gap: inputs.gap,
     pegRadius: inputs.pegRadius,
+    pegFriction: inputs.pegFriction,
+    pegRestitution: inputs.pegRestitution,
     spacing: inputs.spacing,
   })
 
@@ -62,8 +64,9 @@ function run() {
   inputs = new Inputs()
   inputs.dispatcher.addListener('rebuild', rebuild)
 
-  levels = new Levels()
-  levels.dispatcher.addListener('change', rebuild)
+  controls = new Controls()
+  controls.dispatcher.addListener('changeLevel', rebuild)
+  controls.dispatcher.addListener('play', play)
 
   window.addEventListener('resize', rebuild)
   window.addEventListener('load', rebuild)
@@ -80,6 +83,9 @@ function play() {
     world,
     oppeningPosition,
     ballRadius: inputs.ballRadius,
+    friction: inputs.ballFriction,
+    restitution: inputs.ballRestitution,
+    density: inputs.ballDensity,
   } satisfies PlayOptions
 
   //

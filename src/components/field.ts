@@ -1,4 +1,4 @@
-import Matter, { Composite } from 'matter-js'
+import Matter, { Composite, IBodyDefinition } from 'matter-js'
 import { Peg } from './peg'
 import { Oppening } from './openning'
 import { Position } from '../utilities/position'
@@ -9,6 +9,8 @@ export interface SetupOptions {
   pegRadius: number
   gap: number
   spacing: number
+  pegFriction: number
+  pegRestitution: number
 }
 
 export class Field {
@@ -44,8 +46,15 @@ export class Field {
     const fraction = 7 / lines
     let spaceBottom = options.spacing
 
-    //const texture = await Assets.load(`${options.path}/${options.pegSource}`)
-    //let currentRow = 0
+    const definition = {
+      isStatic: true,
+    } satisfies IBodyDefinition
+
+    const pegDefinition = {
+      isStatic: true,
+      friction: options.pegFriction,
+      restitution: options.pegRestitution,
+    } satisfies IBodyDefinition
 
     for (let i = 3; i <= lines; i++) {
       let spaceLeft = 0
@@ -59,7 +68,7 @@ export class Field {
           y: spaceBottom,
           radius: options.pegRadius,
           fillStyle,
-          isStatic: true,
+          definition: pegDefinition,
         })
         this._width = spaceLeft + options.pegRadius
         spaceLeft += options.gap * 2 * fraction
@@ -104,7 +113,7 @@ export class Field {
       y: this._oppeningPosition.y,
       radius: 20,
       fillStyle: '#2b2b2b',
-      isStatic: true,
+      definition,
     })
     bodies.push(this._oppening.body)
 

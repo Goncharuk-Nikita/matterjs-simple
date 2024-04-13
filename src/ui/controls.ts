@@ -1,15 +1,17 @@
 import { EventEmitter } from 'events'
 
-export class Levels {
+export class Controls {
   private emitter: EventEmitter
 
   private nodeLevels: NodeListOf<Element>
   private _level: number
+  private _playBtn: HTMLButtonElement
 
   constructor() {
     this.nodeLevels = document.querySelectorAll('.join button[data-level]')
     this._level = 8
 
+    this._playBtn = document.getElementById('play-btn') as HTMLButtonElement
     this.emitter = new EventEmitter()
 
     this.nodeLevels.forEach((btn) => {
@@ -19,9 +21,13 @@ export class Levels {
         btn.classList.add('btn-accent')
         if (btn instanceof HTMLElement) {
           this._level = +(btn.dataset.level || 8)
-          this.dispatcher.emit('change', {})
+          this.dispatcher.emit('changeLevel', {})
         }
       })
+    })
+
+    this._playBtn.addEventListener('click', () => {
+      this.dispatcher.emit('play')
     })
   }
 

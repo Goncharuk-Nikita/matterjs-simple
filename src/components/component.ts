@@ -1,18 +1,18 @@
-import Matter, { Bodies } from 'matter-js'
+import Matter, { Bodies, IBodyDefinition } from 'matter-js'
 
 export interface ComponentOptions {
   x: number
   y: number
   radius: number
   fillStyle?: string
-  isStatic: boolean
+  definition: IBodyDefinition
 }
 
 export class Component {
   protected _body: Matter.Body
 
   constructor(options: ComponentOptions) {
-    const { x, y, radius, fillStyle, isStatic } = options
+    const { x, y, radius, fillStyle, definition } = options
 
     let render = {}
     if (fillStyle) {
@@ -21,8 +21,8 @@ export class Component {
 
     this._body = Bodies.circle(x, y, radius, {
       restitution: 0,
-      isStatic,
       render,
+      ...definition,
     })
   }
 

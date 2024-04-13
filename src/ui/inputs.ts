@@ -3,8 +3,16 @@ import { EventEmitter } from 'events'
 export class Inputs {
   private gapInput: HTMLInputElement
   private spacingInput: HTMLInputElement
+
   private ballRadiusInput: HTMLInputElement
+  private ballFrictionInput: HTMLInputElement
+  private ballRestitutionInput: HTMLInputElement
+  private ballDensityInput: HTMLInputElement
+
   private pegRadiusInput: HTMLInputElement
+  private pegFrictionInput: HTMLInputElement
+  private pegRestitutionInput: HTMLInputElement
+
   private speedCofInput: HTMLInputElement
 
   private emitter: EventEmitter
@@ -14,12 +22,30 @@ export class Inputs {
     this.spacingInput = document.getElementById(
       'spacing-input',
     ) as HTMLInputElement
+
     this.pegRadiusInput = document.getElementById(
       'peg-radius-input',
     ) as HTMLInputElement
+    this.pegFrictionInput = document.getElementById(
+      'peg-friction-input',
+    ) as HTMLInputElement
+    this.pegRestitutionInput = document.getElementById(
+      'peg-restitution-input',
+    ) as HTMLInputElement
+
     this.ballRadiusInput = document.getElementById(
       'ball-radius-input',
     ) as HTMLInputElement
+    this.ballFrictionInput = document.getElementById(
+      'ball-friction-input',
+    ) as HTMLInputElement
+    this.ballRestitutionInput = document.getElementById(
+      'ball-restitution-input',
+    ) as HTMLInputElement
+    this.ballDensityInput = document.getElementById(
+      'ball-density-input',
+    ) as HTMLInputElement
+
     this.speedCofInput = document.getElementById(
       'speed-cof-input',
     ) as HTMLInputElement
@@ -33,9 +59,17 @@ export class Inputs {
     this.spacingInput.addEventListener('change', (e) =>
       this.onChange(e.currentTarget as HTMLInputElement, this.emitter),
     )
+
     this.pegRadiusInput.addEventListener('change', (e) =>
       this.onChange(e.currentTarget as HTMLInputElement, this.emitter),
     )
+    this.pegFrictionInput.addEventListener('change', (e) =>
+      this.onChange(e.currentTarget as HTMLInputElement, this.emitter),
+    )
+    this.pegRestitutionInput.addEventListener('change', (e) =>
+      this.onChange(e.currentTarget as HTMLInputElement, this.emitter),
+    )
+
     this.ballRadiusInput.addEventListener('change', (e) =>
       this.onChange(e.currentTarget as HTMLInputElement, this.emitter),
     )
@@ -63,6 +97,26 @@ export class Inputs {
 
   get ballRadius(): number {
     return +this.ballRadiusInput.value
+  }
+
+  get pegFriction(): number {
+    return +this.pegFrictionInput.value
+  }
+
+  get pegRestitution(): number {
+    return +this.pegRestitutionInput.value
+  }
+
+  get ballFriction(): number {
+    return +this.ballFrictionInput.value
+  }
+
+  get ballRestitution(): number {
+    return +this.ballRestitutionInput.value
+  }
+
+  get ballDensity(): number {
+    return +this.ballDensityInput.value
   }
 
   get pegRadius(): number {
