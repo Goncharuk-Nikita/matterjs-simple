@@ -3,14 +3,15 @@ import { resize } from './utilities/resize'
 import { RenderProxy } from './core/render'
 import { Field } from './components/field'
 import { Position } from './utilities/position'
-import { PlayOptions } from './process/play'
+import { PlayOptions, getBallId, isSlotCollision } from './process/play'
 
-import { startPlay } from './process/play'
+import { Play } from './process/play'
 import { Inputs } from './ui/inputs'
 import { Controls } from './ui/controls'
 
 const { Composite, Engine } = Matter
 
+let play: Play
 let field: Field
 let engine: Matter.Engine
 let world: Matter.World
@@ -93,21 +94,33 @@ function run() {
 
   controls = new Controls()
   controls.dispatcher.addListener('changeLevel', rebuild)
-  controls.dispatcher.addListener('play', play)
+  controls.dispatcher.addListener('play', newPlay)
+
+  play = new Play(world)
 
   window.addEventListener('resize', rebuild)
   window.addEventListener('load', rebuild)
 
   window.addEventListener('keydown', async (e) => {
     if (e.code === 'Space') {
-      play()
+      newPlay()
     }
+  })
+
+  Matter.Events.on(engine, 'collisionStart', (event) => {
+    //console.log(event)
+    event.pairs.forEach((collision) => {
+      if (isSlotCollision(collision)) {
+        /* works but need animation */
+        const ballId = getBallId(collision)
+        play.removeById(ballId)
+      }
+    })
   })
 }
 
-function play() {
+function newPlay() {
   const options = {
-    world,
     oppeningPosition,
     ballRadius: inputs.ballRadius,
     friction: inputs.ballFriction,
@@ -115,8 +128,7 @@ function play() {
     density: inputs.ballDensity,
   } satisfies PlayOptions
 
-  //
-  startPlay(options)
+  play.playOne(options)
 }
 
 run()

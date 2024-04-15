@@ -28,6 +28,7 @@ export class Slot {
       isStatic: true,
       render,
     })
+    this._body.label = 'slot'
   }
 
   get cost(): number {

@@ -4,7 +4,6 @@ import { Position } from '../utilities/position'
 const { Composite } = Matter
 
 export interface PlayOptions {
-  world: Matter.World
   oppeningPosition: Position
   ballRadius: number
   friction: number
@@ -12,23 +11,67 @@ export interface PlayOptions {
   density: number
 }
 
-export function startPlay(options: PlayOptions) {
-  const composite = Composite.create({ label: 'Play' })
-  Composite.add(options.world, [composite])
+export class Play {
+  static composites = new Map()
+  private world: Matter.World
 
-  const definition = {
-    isStatic: false,
-    friction: options.friction,
-    restitution: options.restitution,
-    density: options.density,
-  } satisfies IBodyDefinition
+  constructor(world: Matter.World) {
+    this.world = world
+  }
 
-  const ball = new Ball({
-    x: options.oppeningPosition.x,
-    y: options.oppeningPosition.y,
-    radius: options.ballRadius,
-    fillStyle: '#FF0000',
-    definition,
-  })
-  Composite.add(composite, [ball.body])
+  playOne(options: PlayOptions) {
+    //if (this.composite) {
+    //  Composite.remove(this.world, [this.composite])
+    //}
+    const composite = Composite.create({ label: 'Play_' + Math.random() })
+    Composite.add(this.world, [composite])
+
+    const definition = {
+      isStatic: false,
+      friction: options.friction,
+      restitution: options.restitution,
+      density: options.density,
+    } satisfies IBodyDefinition
+
+    const ball = new Ball({
+      x: options.oppeningPosition.x,
+      y: options.oppeningPosition.y,
+      radius: options.ballRadius,
+      fillStyle: '#FF0000',
+      definition,
+    })
+
+    Play.composites.set(ball.body.id, composite)
+    console.log(ball.body.id)
+
+    Composite.add(composite, [ball.body])
+  }
+
+  removeById(id: number) {
+    const composite = Play.composites.get(id)
+    if (composite) {
+      Composite.remove(this.world, [composite])
+    }
+  }
+}
+
+export function isSlotCollision(collision: any) {
+  const labelA = collision.bodyA.label
+  const labelB = collision.bodyB.label
+
+  if (labelA == 'slot' && labelB == 'ball') {
+    return true
+  }
+  if (labelA == 'ball' && labelB == 'slot') {
+    return true
+  }
+  return false
+}
+
+export function getBallId(collision: any) {
+  const labelA = collision.bodyA.label
+  if (labelA == 'ball') {
+    return collision.bodyA.id
+  }
+  return collision.bodyB.id
 }
