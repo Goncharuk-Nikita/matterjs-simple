@@ -55,6 +55,16 @@ function rebuildField(newLevels: number, world: Matter.World) {
   //field.container.visible = true
 }
 
+function setupWorld() {
+  // console.log('setupWorld')
+  // console.log('gravityScale:' + inputs.gravityScale)
+  // console.log('gravityX:' + inputs.gravityX)
+  // console.log('gravityY:' + inputs.gravityY)
+  engine.gravity.scale = inputs.gravityScale
+  engine.gravity.x = inputs.gravityX
+  engine.gravity.y = inputs.gravityY
+}
+
 function run() {
   engine = Engine.create()
   world = engine.world
@@ -63,6 +73,9 @@ function run() {
 
   inputs = new Inputs()
   inputs.dispatcher.addListener('rebuild', rebuild)
+  inputs.dispatcher.addListener('world', setupWorld)
+
+  setupWorld()
 
   controls = new Controls()
   controls.dispatcher.addListener('changeLevel', rebuild)

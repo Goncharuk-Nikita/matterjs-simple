@@ -15,6 +15,10 @@ export class Inputs {
 
   private speedCofInput: HTMLInputElement
 
+  private gravityScaleInput: HTMLInputElement
+  private gravityXInput: HTMLInputElement
+  private gravityYInput: HTMLInputElement
+
   private emitter: EventEmitter
 
   constructor() {
@@ -50,8 +54,27 @@ export class Inputs {
       'speed-cof-input',
     ) as HTMLInputElement
 
+    this.gravityScaleInput = document.getElementById(
+      'gravity-scale-input',
+    ) as HTMLInputElement
+    this.gravityXInput = document.getElementById(
+      'gravity-x-input',
+    ) as HTMLInputElement
+    this.gravityYInput = document.getElementById(
+      'gravity-y-input',
+    ) as HTMLInputElement
+
     this.emitter = new EventEmitter()
-    console.log(this.emitter)
+
+    this.gravityScaleInput.addEventListener('change', (e) =>
+      this.onChange(e.currentTarget as HTMLInputElement, this.emitter),
+    )
+    this.gravityXInput.addEventListener('change', (e) =>
+      this.onChange(e.currentTarget as HTMLInputElement, this.emitter),
+    )
+    this.gravityYInput.addEventListener('change', (e) =>
+      this.onChange(e.currentTarget as HTMLInputElement, this.emitter),
+    )
 
     this.gapInput.addEventListener('change', (e) =>
       this.onChange(e.currentTarget as HTMLInputElement, this.emitter),
@@ -84,6 +107,9 @@ export class Inputs {
 
     if (input.hasAttribute('rebuild')) {
       dispatcher.emit('rebuild', {})
+    }
+    if (input.hasAttribute('world')) {
+      dispatcher.emit('world', {})
     }
   }
 
@@ -125,5 +151,15 @@ export class Inputs {
 
   get speedCof(): number {
     return +this.speedCofInput.value
+  }
+
+  get gravityScale(): number {
+    return +this.gravityScaleInput.value
+  }
+  get gravityX(): number {
+    return +this.gravityXInput.value
+  }
+  get gravityY(): number {
+    return +this.gravityYInput.value
   }
 }
