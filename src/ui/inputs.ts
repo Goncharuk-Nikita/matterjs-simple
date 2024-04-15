@@ -13,7 +13,7 @@ export class Inputs {
   private pegFrictionInput: HTMLInputElement
   private pegRestitutionInput: HTMLInputElement
 
-  private speedCofInput: HTMLInputElement
+  private timeScaleInput: HTMLInputElement
 
   private gravityScaleInput: HTMLInputElement
   private gravityXInput: HTMLInputElement
@@ -50,8 +50,8 @@ export class Inputs {
       'ball-density-input',
     ) as HTMLInputElement
 
-    this.speedCofInput = document.getElementById(
-      'speed-cof-input',
+    this.timeScaleInput = document.getElementById(
+      'time-scale-input',
     ) as HTMLInputElement
 
     this.gravityScaleInput = document.getElementById(
@@ -73,6 +73,10 @@ export class Inputs {
       this.onChange(e.currentTarget as HTMLInputElement, this.emitter),
     )
     this.gravityYInput.addEventListener('change', (e) =>
+      this.onChange(e.currentTarget as HTMLInputElement, this.emitter),
+    )
+
+    this.timeScaleInput.addEventListener('change', (e) =>
       this.onChange(e.currentTarget as HTMLInputElement, this.emitter),
     )
 
@@ -110,6 +114,9 @@ export class Inputs {
     }
     if (input.hasAttribute('world')) {
       dispatcher.emit('world', {})
+    }
+    if (input.hasAttribute('engine')) {
+      dispatcher.emit('engine', {})
     }
   }
 
@@ -149,8 +156,8 @@ export class Inputs {
     return +this.pegRadiusInput.value
   }
 
-  get speedCof(): number {
-    return +this.speedCofInput.value
+  get timeScale(): number {
+    return +this.timeScaleInput.value
   }
 
   get gravityScale(): number {

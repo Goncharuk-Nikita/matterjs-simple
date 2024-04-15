@@ -1,6 +1,6 @@
 import Matter from 'matter-js'
 import { resize } from './utilities/resize'
-import { createRender } from './core/render'
+import { RenderProxy } from './core/render'
 import { Field } from './components/field'
 import { Position } from './utilities/position'
 import { PlayOptions } from './process/play'
@@ -14,14 +14,15 @@ const { Composite, Engine } = Matter
 let field: Field
 let engine: Matter.Engine
 let world: Matter.World
-let render: Matter.Render
+let renderProxy: RenderProxy
+//let render: Matter.Render
 let element: HTMLElement
 let oppeningPosition: Position
 let inputs: Inputs
 let controls: Controls
 
 function rebuild() {
-  resize(render, element)
+  resize(renderProxy.render, element)
   rebuildField(controls.level, world)
 }
 
@@ -65,16 +66,29 @@ function setupWorld() {
   engine.gravity.y = inputs.gravityY
 }
 
+function setupRender() {
+  //const delta = inputs.speedDelta
+  renderProxy.initRunner(engine, 1000 / 60)
+}
+
+function setupEngine() {
+  engine.timing.timeScale = inputs.timeScale
+}
+
 function run() {
   engine = Engine.create()
   world = engine.world
   element = document.querySelector('body') as HTMLBodyElement
-  render = createRender(engine, element)
 
   inputs = new Inputs()
   inputs.dispatcher.addListener('rebuild', rebuild)
   inputs.dispatcher.addListener('world', setupWorld)
+  inputs.dispatcher.addListener('engine', setupEngine)
 
+  renderProxy = new RenderProxy({ engine, element })
+  renderProxy.run()
+
+  setupRender()
   setupWorld()
 
   controls = new Controls()
