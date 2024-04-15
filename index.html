@@ -12,25 +12,33 @@
     <div class="fixed top-0 left-0 p-2 settings">
         <div class="join join-vertical w-56 text-sm text-primary">
             <div class="collapse collapse-arrow join-item border border-primary">
-                <input type="radio" name="my-accordion-4" checked="checked" /> 
-                <div class="collapse-title font-medium">
-                  Game settings
-                </div>
-                <div class="collapse-content flex flex-col gap-12 pt-4"> 
-                  <div class="tooltip tooltip-open tooltip-top tooltip-secondary text-secondary" data-tip="time-scale">
-                      <input id="time-scale-input" engine type="number" min="0" max="5" value="1" step="0.11" class="input input-xs input-secondary text-secondary" /> 	
-                  </div>
-                  <div class="tooltip tooltip-open tooltip-top tooltip-secondary text-secondary" data-tip="gravity-scale">
-                    <input id="gravity-scale-input" world type="number" min="0" max="1" value="0.001" step="0.001" class="input input-xs input-secondary text-secondary" /> 	
-                  </div>
-                  <div class="tooltip tooltip-open tooltip-top tooltip-secondary text-secondary" data-tip="gravity-x">
-                    <input id="gravity-x-input" world type="number" min="-10" max="10" value="0" step="0.05" class="input input-xs input-secondary text-secondary" /> 	
-                  </div>
-                  <div class="tooltip tooltip-open tooltip-top tooltip-secondary text-secondary" data-tip="gravity-y">
-                    <input id="gravity-y-input" world type="number" min="0" max="10" value="1" step="0.1" class="input input-xs input-secondary text-secondary" /> 	
-                  </div>
+              <input type="radio" name="my-accordion-4" checked="checked" /> 
+              <div class="collapse-title font-medium">
+                Engine settings
+              </div>
+              <div class="collapse-content flex flex-col gap-12 pt-4"> 
+                <div class="tooltip tooltip-open tooltip-top tooltip-secondary text-secondary" data-tip="time-scale">
+                    <input id="time-scale-input" engine type="number" min="0" max="5" value="1" step="0.11" class="input input-xs input-secondary text-secondary" /> 	
                 </div>
               </div>
+            </div>
+            <div class="collapse collapse-arrow join-item border border-primary">
+              <input type="radio" name="my-accordion-4" /> 
+              <div class="collapse-title font-medium">
+                World settings
+              </div>
+              <div class="collapse-content flex flex-col gap-12 pt-4"> 
+                <div class="tooltip tooltip-open tooltip-top tooltip-secondary text-secondary" data-tip="gravity-scale">
+                  <input id="gravity-scale-input" world type="number" min="0" max="1" value="0.001" step="0.001" class="input input-xs input-secondary text-secondary" /> 	
+                </div>
+                <div class="tooltip tooltip-open tooltip-top tooltip-secondary text-secondary" data-tip="gravity-x">
+                  <input id="gravity-x-input" world type="number" min="-10" max="10" value="0" step="0.05" class="input input-xs input-secondary text-secondary" /> 	
+                </div>
+                <div class="tooltip tooltip-open tooltip-top tooltip-secondary text-secondary" data-tip="gravity-y">
+                  <input id="gravity-y-input" world type="number" min="0" max="10" value="1" step="0.1" class="input input-xs input-secondary text-secondary" /> 	
+                </div>
+              </div>
+            </div>
             <div class="collapse collapse-arrow join-item border border-primary">
                 <input type="radio" name="my-accordion-4" checked="checked" /> 
                 <div class="collapse-title font-medium">
