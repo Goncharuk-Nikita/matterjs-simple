@@ -19,6 +19,10 @@ export class Inputs {
   private gravityXInput: HTMLInputElement
   private gravityYInput: HTMLInputElement
 
+  private forceMagnitudeInput: HTMLInputElement
+  private velocityCofInput: HTMLInputElement
+  private angularVelocityCofInput: HTMLInputElement
+
   private emitter: EventEmitter
 
   constructor() {
@@ -64,7 +68,27 @@ export class Inputs {
       'gravity-y-input',
     ) as HTMLInputElement
 
+    this.forceMagnitudeInput = document.getElementById(
+      'force-magnitude-input',
+    ) as HTMLInputElement
+    this.velocityCofInput = document.getElementById(
+      'velocity-cof-input',
+    ) as HTMLInputElement
+    this.angularVelocityCofInput = document.getElementById(
+      'angular-velocity-cof-input',
+    ) as HTMLInputElement
+
     this.emitter = new EventEmitter()
+
+    this.forceMagnitudeInput.addEventListener('change', (e) =>
+      this.onChange(e.currentTarget as HTMLInputElement, this.emitter),
+    )
+    this.velocityCofInput.addEventListener('change', (e) =>
+      this.onChange(e.currentTarget as HTMLInputElement, this.emitter),
+    )
+    this.angularVelocityCofInput.addEventListener('change', (e) =>
+      this.onChange(e.currentTarget as HTMLInputElement, this.emitter),
+    )
 
     this.gravityScaleInput.addEventListener('change', (e) =>
       this.onChange(e.currentTarget as HTMLInputElement, this.emitter),
@@ -168,5 +192,15 @@ export class Inputs {
   }
   get gravityY(): number {
     return +this.gravityYInput.value
+  }
+
+  get forceMagnitude(): number {
+    return +this.forceMagnitudeInput.value
+  }
+  get velocityCof(): number {
+    return +this.velocityCofInput.value
+  }
+  get angularVelocityCof(): number {
+    return +this.angularVelocityCofInput.value
   }
 }

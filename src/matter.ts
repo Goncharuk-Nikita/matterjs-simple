@@ -4,6 +4,7 @@ import { RenderProxy } from './core/render'
 import { Field } from './components/field'
 import { Position } from './utilities/position'
 import {
+  IManipulationOptions,
   PlayOptions,
   getBallById,
   getPegById,
@@ -131,15 +132,33 @@ function run() {
         const peg = getPegById(collision)
         pegAnimation(peg)
         // should be path logic there: !!!
-        const pegLine = field.getPegLine(peg.id)
-        console.log(pegLine)
+        const level = field.getPegLine(peg.id)
+        //console.log(pegLine)
+
+        const ball = getBallById(collision)
+
+        const distance = peg.position.y - ball.position.y
+        const radiuses = inputs.ballRadius + inputs.pegRadius
+
+        //console.log(distance, radiuses)
+        if (distance > radiuses * 0.9) {
+          const options = {
+            id: ball.id,
+            level,
+            velocityCof: inputs.velocityCof,
+            angularVelocityCof: inputs.angularVelocityCof,
+            forceMagnitude: inputs.forceMagnitude,
+          } satisfies IManipulationOptions
+
+          play.applyForce(options)
+        }
       }
     })
   })
 }
 
 function pegAnimation(body: Matter.Body) {
-  console.log('pegAnimation')
+  //console.log('pegAnimation')
   //console.log(body)
   body.render.fillStyle = '#F101C4'
   setTimeout(() => {
@@ -156,12 +175,19 @@ function slotAnimation(body: Matter.Body) {
 }
 
 function newPlay() {
+  const path: boolean[] = Array.from(
+    Array(controls.level),
+    () => Math.random() < 0.5,
+  )
+  console.log(path)
+
   const options = {
     oppeningPosition,
     ballRadius: inputs.ballRadius,
     friction: inputs.ballFriction,
     restitution: inputs.ballRestitution,
     density: inputs.ballDensity,
+    path,
   } satisfies PlayOptions
 
   play.playOne(options)

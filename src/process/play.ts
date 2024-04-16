@@ -9,16 +9,24 @@ interface PlayRoundOptions {
   path?: boolean[]
 }
 
+export interface IManipulationOptions {
+  id: number
+  level: number
+  velocityCof: number
+  angularVelocityCof: number
+  forceMagnitude: number
+}
+
 class PlayRound {
   private ball: Ball
   public composite: Matter.Composite
-  private level: number
-  private path?: boolean[]
+  //private level: number
+  public path?: boolean[]
 
   constructor(options: PlayRoundOptions) {
     this.ball = options.ball
     this.composite = options.composite
-    this.level = 0
+    //this.level = 0
     this.path = options.path
   }
 
@@ -33,6 +41,7 @@ export interface PlayOptions {
   friction: number
   restitution: number
   density: number
+  path: boolean[]
 }
 export class Play {
   static rounds = new Map()
@@ -61,10 +70,8 @@ export class Play {
       definition,
     })
 
-    const round = new PlayRound({ ball, composite })
-
+    const round = new PlayRound({ ball, composite, path: options.path })
     Play.rounds.set(ball.body.id, round)
-    console.log(ball.body.id)
 
     Composite.add(composite, [ball.body])
   }
@@ -77,6 +84,30 @@ export class Play {
     if (composite) {
       Composite.remove(this.world, [composite])
     }
+  }
+
+  applyForce(options: IManipulationOptions) {
+    const { id, level, velocityCof, angularVelocityCof } = options
+    let { forceMagnitude } = options
+
+    const round = Play.rounds.get(id)
+    const body = round.ball.body
+    const right = round.path[level]
+    if (!right) {
+      forceMagnitude *= -1
+    }
+
+    setTimeout(() => {
+      Matter.Body.setVelocity(body, {
+        x: body.velocity.x * velocityCof,
+        y: body.velocity.y * velocityCof,
+      })
+      Matter.Body.setAngularVelocity(
+        body,
+        body.angularVelocity * angularVelocityCof,
+      )
+      Matter.Body.applyForce(body, body.position, { x: forceMagnitude, y: 0 })
+    }, 1)
   }
 }
 
