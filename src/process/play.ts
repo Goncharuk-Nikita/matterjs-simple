@@ -43,9 +43,6 @@ export class Play {
   }
 
   playOne(options: PlayOptions) {
-    //if (this.composite) {
-    //  Composite.remove(this.world, [this.composite])
-    //}
     const composite = Composite.create()
     Composite.add(this.world, [composite])
 
