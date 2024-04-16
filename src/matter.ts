@@ -3,7 +3,14 @@ import { resize } from './utilities/resize'
 import { RenderProxy } from './core/render'
 import { Field } from './components/field'
 import { Position } from './utilities/position'
-import { PlayOptions, getBallId, isSlotCollision } from './process/play'
+import {
+  PlayOptions,
+  getBallById,
+  getPegById,
+  getSlotById,
+  isPegCollision,
+  isSlotCollision,
+} from './process/play'
 
 import { Play } from './process/play'
 import { Inputs } from './ui/inputs'
@@ -110,13 +117,42 @@ function run() {
   Matter.Events.on(engine, 'collisionStart', (event) => {
     //console.log(event)
     event.pairs.forEach((collision) => {
+      //
       if (isSlotCollision(collision)) {
         /* works but need animation */
-        const ballId = getBallId(collision)
-        play.removeById(ballId)
+        const ball = getBallById(collision)
+        play.removeById(ball.id)
+
+        const slot = getSlotById(collision)
+        slotAnimation(slot)
+      }
+      //
+      if (isPegCollision(collision)) {
+        /* works but need animation */
+        //const ball = getBallById(collision)
+
+        const peg = getPegById(collision)
+        pegAnimation(peg)
       }
     })
   })
+}
+
+function pegAnimation(body: Matter.Body) {
+  console.log('pegAnimation')
+  //console.log(body)
+  body.render.fillStyle = '#F101C4'
+  setTimeout(() => {
+    body.render.fillStyle = '#F6B23D'
+  }, 100)
+}
+
+function slotAnimation(body: Matter.Body) {
+  console.log('slotAnimation')
+  Matter.Body.translate(body, { x: 0, y: 10 })
+  setTimeout(() => {
+    Matter.Body.translate(body, { x: 0, y: -10 })
+  }, 50)
 }
 
 function newPlay() {

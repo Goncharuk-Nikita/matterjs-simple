@@ -3,6 +3,30 @@ import { Ball } from '../components/ball'
 import { Position } from '../utilities/position'
 const { Composite } = Matter
 
+interface PlayRoundOptions {
+  ball: Ball
+  composite: Matter.Composite
+  path?: boolean[]
+}
+
+class PlayRound {
+  private ball: Ball
+  public composite: Matter.Composite
+  private level: number
+  private path?: boolean[]
+
+  constructor(options: PlayRoundOptions) {
+    this.ball = options.ball
+    this.composite = options.composite
+    this.level = 0
+    this.path = options.path
+  }
+
+  get body(): Matter.Body {
+    return this.ball.body
+  }
+}
+
 export interface PlayOptions {
   oppeningPosition: Position
   ballRadius: number
@@ -10,9 +34,8 @@ export interface PlayOptions {
   restitution: number
   density: number
 }
-
 export class Play {
-  static composites = new Map()
+  static rounds = new Map()
   private world: Matter.World
 
   constructor(world: Matter.World) {
@@ -23,7 +46,7 @@ export class Play {
     //if (this.composite) {
     //  Composite.remove(this.world, [this.composite])
     //}
-    const composite = Composite.create({ label: 'Play_' + Math.random() })
+    const composite = Composite.create()
     Composite.add(this.world, [composite])
 
     const definition = {
@@ -41,14 +64,19 @@ export class Play {
       definition,
     })
 
-    Play.composites.set(ball.body.id, composite)
+    const round = new PlayRound({ ball, composite })
+
+    Play.rounds.set(ball.body.id, round)
     console.log(ball.body.id)
 
     Composite.add(composite, [ball.body])
   }
 
   removeById(id: number) {
-    const composite = Play.composites.get(id)
+    const round = Play.rounds.get(id)
+    Play.rounds.delete(id)
+
+    const composite = round.composite
     if (composite) {
       Composite.remove(this.world, [composite])
     }
@@ -68,10 +96,39 @@ export function isSlotCollision(collision: any) {
   return false
 }
 
-export function getBallId(collision: any) {
+export function isPegCollision(collision: any) {
+  const labelA = collision.bodyA.label
+  const labelB = collision.bodyB.label
+
+  if (labelA == 'peg' && labelB == 'ball') {
+    return true
+  }
+  if (labelA == 'ball' && labelB == 'peg') {
+    return true
+  }
+  return false
+}
+
+export function getBallById(collision: any) {
   const labelA = collision.bodyA.label
   if (labelA == 'ball') {
-    return collision.bodyA.id
+    return collision.bodyA
   }
-  return collision.bodyB.id
+  return collision.bodyB
+}
+
+export function getSlotById(collision: any) {
+  const labelA = collision.bodyA.label
+  if (labelA == 'slot') {
+    return collision.bodyA
+  }
+  return collision.bodyB
+}
+
+export function getPegById(collision: any) {
+  const labelA = collision.bodyA.label
+  if (labelA == 'peg') {
+    return collision.bodyA
+  }
+  return collision.bodyB
 }
