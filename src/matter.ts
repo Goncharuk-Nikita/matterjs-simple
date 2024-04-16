@@ -128,11 +128,11 @@ function run() {
       }
       //
       if (isPegCollision(collision)) {
-        /* works but need animation */
-        //const ball = getBallById(collision)
-
         const peg = getPegById(collision)
         pegAnimation(peg)
+        // should be path logic there: !!!
+        const pegLine = field.getPegLine(peg.id)
+        console.log(pegLine)
       }
     })
   })

@@ -21,6 +21,8 @@ export class Field {
   private _oppening?: Oppening
   private _oppeningPosition: Position
 
+  static pegs = new Map()
+
   constructor(world: Matter.World) {
     this.world = world
     this._width = 0
@@ -31,10 +33,9 @@ export class Field {
   }
 
   init(options: SetupOptions) {
-    const lines = 2 + options.levels
+    Field.pegs.clear()
 
-    //const slotCosts = Slot.CostsForLevels(options.levels - 8)
-    //console.log(slotCosts)
+    const lines = 2 + options.levels
 
     const fillStyle = '#F6B23D'
 
@@ -56,6 +57,8 @@ export class Field {
       restitution: options.pegRestitution,
     } satisfies IBodyDefinition
 
+    let currentLine = 0
+
     for (let i = 3; i <= lines; i++) {
       let spaceLeft = 0
       for (let space = 1; space <= lines - i; space++) {
@@ -74,9 +77,10 @@ export class Field {
         spaceLeft += options.gap * 2 * fraction
         pegs.push(peg)
         bodies.push(peg.body)
+        Field.pegs.set(peg.body.id, currentLine)
       }
       spaceBottom += options.spacing * fraction
-      //currentRow++
+      currentLine++
     }
 
     //const slotWidth = options.gap * fraction + options.pegRadius * 2
@@ -134,5 +138,9 @@ export class Field {
 
   get oppeningPosition() {
     return this._oppeningPosition
+  }
+
+  getPegLine(id: number) {
+    return Field.pegs.get(id)
   }
 }
