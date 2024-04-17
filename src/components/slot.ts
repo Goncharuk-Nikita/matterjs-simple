@@ -27,6 +27,11 @@ export class Slot {
       restitution: 0,
       isStatic: true,
       render,
+      collisionFilter: {
+        //group: 2, // any number that is different from the balls
+        category: 0x0002, // any category that is different from the balls
+        mask: 0x0001, // any mask that allows collision with the balls
+      },
     })
     this._body.label = 'slot'
   }
