@@ -16,6 +16,7 @@ import {
 import { Play } from './process/play'
 import { Inputs } from './ui/inputs'
 import { Controls } from './ui/controls'
+import { Store, createStore } from './store/store'
 
 const { Composite, Engine } = Matter
 
@@ -29,6 +30,8 @@ let element: HTMLElement
 let oppeningPosition: Position
 let inputs: Inputs
 let controls: Controls
+
+let store: Store
 
 function rebuild() {
   resize(renderProxy.render, element)
@@ -84,6 +87,11 @@ function setupEngine() {
   engine.timing.timeScale = inputs.timeScale
 }
 
+function saveSettings() {
+  store.save(inputs.settings)
+  console.log('saveSettings')
+}
+
 function run() {
   engine = Engine.create()
   world = engine.world
@@ -94,6 +102,9 @@ function run() {
   inputs.dispatcher.addListener('world', setupWorld)
   inputs.dispatcher.addListener('engine', setupEngine)
 
+  store = createStore()
+  inputs.setSettings(store.settings)
+
   renderProxy = new RenderProxy({ engine, element })
   renderProxy.run()
 
@@ -103,6 +114,7 @@ function run() {
   controls = new Controls()
   controls.dispatcher.addListener('changeLevel', rebuild)
   controls.dispatcher.addListener('play', newPlay)
+  controls.dispatcher.addListener('save', saveSettings)
 
   play = new Play(world)
 
@@ -145,8 +157,8 @@ function run() {
           const options = {
             id: ball.id,
             level,
-            velocityCof: inputs.velocityCof,
-            angularVelocityCof: inputs.angularVelocityCof,
+            velocityCof: inputs.velocity,
+            angularVelocityCof: inputs.angularVelocity,
             forceMagnitude: inputs.forceMagnitude,
           } satisfies IManipulationOptions
 

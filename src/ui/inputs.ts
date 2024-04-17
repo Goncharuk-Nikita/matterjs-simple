@@ -1,4 +1,5 @@
 import { EventEmitter } from 'events'
+import { ISettings } from '../types/settings'
 
 export class Inputs {
   private gapInput: HTMLInputElement
@@ -20,8 +21,8 @@ export class Inputs {
   private gravityYInput: HTMLInputElement
 
   private forceMagnitudeInput: HTMLInputElement
-  private velocityCofInput: HTMLInputElement
-  private angularVelocityCofInput: HTMLInputElement
+  private velocityInput: HTMLInputElement
+  private angularVelocityInput: HTMLInputElement
 
   private emitter: EventEmitter
 
@@ -71,11 +72,11 @@ export class Inputs {
     this.forceMagnitudeInput = document.getElementById(
       'force-magnitude-input',
     ) as HTMLInputElement
-    this.velocityCofInput = document.getElementById(
-      'velocity-cof-input',
+    this.velocityInput = document.getElementById(
+      'velocity-input',
     ) as HTMLInputElement
-    this.angularVelocityCofInput = document.getElementById(
-      'angular-velocity-cof-input',
+    this.angularVelocityInput = document.getElementById(
+      'angular-velocity-input',
     ) as HTMLInputElement
 
     this.emitter = new EventEmitter()
@@ -83,10 +84,10 @@ export class Inputs {
     this.forceMagnitudeInput.addEventListener('change', (e) =>
       this.onChange(e.currentTarget as HTMLInputElement, this.emitter),
     )
-    this.velocityCofInput.addEventListener('change', (e) =>
+    this.velocityInput.addEventListener('change', (e) =>
       this.onChange(e.currentTarget as HTMLInputElement, this.emitter),
     )
-    this.angularVelocityCofInput.addEventListener('change', (e) =>
+    this.angularVelocityInput.addEventListener('change', (e) =>
       this.onChange(e.currentTarget as HTMLInputElement, this.emitter),
     )
 
@@ -197,10 +198,55 @@ export class Inputs {
   get forceMagnitude(): number {
     return +this.forceMagnitudeInput.value
   }
-  get velocityCof(): number {
-    return +this.velocityCofInput.value
+  get velocity(): number {
+    return +this.velocityInput.value
   }
-  get angularVelocityCof(): number {
-    return +this.angularVelocityCofInput.value
+  get angularVelocity(): number {
+    return +this.angularVelocityInput.value
+  }
+
+  setSettings(settings: ISettings) {
+    /* engine */
+    this.timeScaleInput.value = settings.timeScale.toString()
+    /* world */
+    this.gravityScaleInput.value = settings.gravityScale.toString()
+    this.gravityXInput.value = settings.gravityX.toString()
+    this.gravityYInput.value = settings.gravityY.toString()
+    /* field settings */
+    this.gapInput.value = settings.gap.toString()
+    this.spacingInput.value = settings.spacing.toString()
+    this.pegRadiusInput.value = settings.pegRadius.toString()
+    this.pegFrictionInput.value = settings.pegFriction.toString()
+    this.pegRestitutionInput.value = settings.pegRestitution.toString()
+    /* ball settings */
+    this.ballRadiusInput.value = settings.ballRadius.toString()
+    this.ballFrictionInput.value = settings.ballFriction.toString()
+    this.ballRestitutionInput.value = settings.ballRestitution.toString()
+    this.ballDensityInput.value = settings.ballDensity.toString()
+    /* hit manipulation settings */
+    this.forceMagnitudeInput.value = settings.forceMagnitude.toString()
+    this.velocityInput.value = settings.velocity.toString()
+    this.angularVelocityInput.value = settings.angularVelocity.toString()
+  }
+
+  get settings(): ISettings {
+    return {
+      gravityScale: this.gravityScale,
+      gravityX: this.gravityX,
+      gravityY: this.gravityY,
+      forceMagnitude: this.forceMagnitude,
+      velocity: this.velocity,
+      angularVelocity: this.angularVelocity,
+      timeScale: this.timeScale,
+      gap: this.gap,
+      spacing: this.spacing,
+      pegRadius: this.pegRadius,
+      pegFriction: this.pegFriction,
+      pegRestitution: this.pegRestitution,
+      ballRadius: this.ballRadius,
+      ballFriction: this.ballFriction,
+      ballRestitution: this.ballRestitution,
+      ballDensity: this.ballDensity,
+    } satisfies ISettings
   }
 }

@@ -99,33 +99,36 @@
                   <div class="tooltip tooltip-open tooltip-top tooltip-secondary" data-tip="force-magnitude">
                       <input id="force-magnitude-input" type="number" min="0" max="1" value="0.001" step="0.001" class="input input-xs input-secondary text-secondary" /> 	
                   </div>
-                  <div class="tooltip tooltip-open tooltip-top tooltip-secondary" data-tip="velocity-cof">
-                    <input id="velocity-cof-input" type="number" min="0" max="1" value="0.05" step="0.01" class="input input-xs input-secondary text-secondary" /> 	
+                  <div class="tooltip tooltip-open tooltip-top tooltip-secondary" data-tip="velocity">
+                    <input id="velocity-input" type="number" min="0" max="1" value="0.05" step="0.01" class="input input-xs input-secondary text-secondary" /> 	
                   </div>
-                  <div class="tooltip tooltip-open tooltip-top tooltip-secondary" data-tip="angular-velocity-cof">
-                    <input id="angular-velocity-cof-input" type="number" min="0" max="1" value="0.05" step="0.01" class="input input-xs input-secondary text-secondary" /> 	
+                  <div class="tooltip tooltip-open tooltip-top tooltip-secondary" data-tip="angular-velocity">
+                    <input id="angular-velocity-input" type="number" min="0" max="1" value="0.05" step="0.01" class="input input-xs input-secondary text-secondary" /> 	
                   </div>
               </div>
           </div>
-            <div class="flex flex-row items-center justify-center w-56 h-24">
-                <button id="play-btn" class="btn btn-primary btn-md">Play</button>
-            </div>
         </div>  
     </div>
 
-        <div class="fixed top-0 right-0 p-2">
-			<div class="join join-vertical">
-				<button data-level="8" class="btn join-item btn-accent">8</button>
-				<button data-level="9" class="btn join-item btn-secondary">9</button>
-				<button data-level="10" class="btn join-item btn-secondary">10</button>
-				<button data-level="11" class="btn join-item btn-secondary">11</button>
-				<button data-level="12" class="btn join-item btn-secondary">12</button>
-				<button data-level="13" class="btn join-item btn-secondary">13</button>
-				<button data-level="14" class="btn join-item btn-secondary">14</button>
-				<button data-level="15" class="btn join-item btn-secondary">15</button>
-				<button data-level="16" class="btn join-item btn-secondary">16</button>
-			</div>
-		</div>
+      <div class="fixed top-0 right-0 p-2">
+        <div class="join join-vertical w-16">
+          <button data-level="8" class="btn join-item btn-accent">8</button>
+          <button data-level="9" class="btn join-item btn-secondary">9</button>
+          <button data-level="10" class="btn join-item btn-secondary">10</button>
+          <button data-level="11" class="btn join-item btn-secondary">11</button>
+          <button data-level="12" class="btn join-item btn-secondary">12</button>
+          <button data-level="13" class="btn join-item btn-secondary">13</button>
+          <button data-level="14" class="btn join-item btn-secondary">14</button>
+          <button data-level="15" class="btn join-item btn-secondary">15</button>
+          <button data-level="16" class="btn join-item btn-secondary">16</button>
+        </div>
+        <div class="pt-4">
+          <button id="play-btn" class="btn btn-primary btn-md">Play</button>
+        </div>
+        <div class="pt-4">
+          <button id="save-btn" class="btn btn-info btn-md">Save</button>
+        </div>
+		  </div>
     </div>    
 </body>
 </html>
