@@ -17,6 +17,8 @@ export class Store {
     /* ball defaults */
     ballRadius: 23.5,
     ballFriction: 0.0,
+    ballFrictionAir: 0.06,
+    ballSlop: 0,
     ballRestitution: 0.5,
     ballDensity: 0.01,
     /* hit manipulation defaults */
@@ -32,6 +34,8 @@ export class Store {
   private _pegRestitution: number
   private _ballFriction: number
   private _ballRestitution: number
+  private _ballFrictionAir: number
+  private _ballSlop: number
   private _ballDensity: number
   private _pegRadius: number
   private _timeScale: number
@@ -70,6 +74,11 @@ export class Store {
       'ballRestitution',
       Store.Defaults.ballRestitution,
     )
+    this._ballFrictionAir = Store.getItem(
+      'ballFrictionAir',
+      Store.Defaults.ballFrictionAir,
+    )
+    this._ballSlop = Store.getItem('ballSlop', Store.Defaults.ballSlop)
     this._ballDensity = Store.getItem('ballDensity', Store.Defaults.ballDensity)
     /* hit manipulation settings */
     this._forceMagnitude = Store.getItem(
@@ -115,6 +124,14 @@ export class Store {
 
   get ballFriction(): number {
     return this._ballFriction
+  }
+
+  get ballFrictionAir(): number {
+    return this._ballFrictionAir
+  }
+
+  get ballSlop(): number {
+    return this._ballSlop
   }
 
   get ballRestitution(): number {
@@ -168,6 +185,8 @@ export class Store {
       ballFriction: this._ballFriction,
       ballRestitution: this._ballRestitution,
       ballDensity: this._ballDensity,
+      ballFrictionAir: this._ballFrictionAir,
+      ballSlop: this._ballSlop,
       forceMagnitude: this._forceMagnitude,
       velocity: this._velocity,
       angularVelocity: this._angularVelocity,

@@ -1,4 +1,5 @@
 import Matter, { Bodies } from 'matter-js'
+import { Sprite } from './component'
 
 export interface SlotOptions {
   x: number
@@ -7,6 +8,7 @@ export interface SlotOptions {
   height: number
   cost: number
   fillStyle?: string
+  sprite?: Sprite
 }
 
 export class Slot {
@@ -14,13 +16,17 @@ export class Slot {
   private _cost: number
 
   constructor(options: SlotOptions) {
-    const { x, y, width, height, cost, fillStyle } = options
+    const { x, y, width, height, cost, fillStyle, sprite } = options
 
     this._cost = cost
 
     let render = {}
     if (fillStyle) {
       render = { fillStyle }
+    }
+
+    if (sprite) {
+      render = { sprite }
     }
 
     this._body = Bodies.rectangle(x, y, width, height, {

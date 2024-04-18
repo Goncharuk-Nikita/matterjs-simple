@@ -9,6 +9,8 @@ export class Inputs {
   private ballFrictionInput: HTMLInputElement
   private ballRestitutionInput: HTMLInputElement
   private ballDensityInput: HTMLInputElement
+  private ballFrictionAirInput: HTMLInputElement
+  private ballSlopInput: HTMLInputElement
 
   private pegRadiusInput: HTMLInputElement
   private pegFrictionInput: HTMLInputElement
@@ -53,6 +55,12 @@ export class Inputs {
     ) as HTMLInputElement
     this.ballDensityInput = document.getElementById(
       'ball-density-input',
+    ) as HTMLInputElement
+    this.ballFrictionAirInput = document.getElementById(
+      'ball-friction-air-input',
+    ) as HTMLInputElement
+    this.ballSlopInput = document.getElementById(
+      'ball-slop-input',
     ) as HTMLInputElement
 
     this.timeScaleInput = document.getElementById(
@@ -173,6 +181,14 @@ export class Inputs {
     return +this.ballRestitutionInput.value
   }
 
+  get ballFrictionAir(): number {
+    return +this.ballFrictionAirInput.value
+  }
+
+  get ballSlop(): number {
+    return +this.ballSlopInput.value
+  }
+
   get ballDensity(): number {
     return +this.ballDensityInput.value
   }
@@ -223,6 +239,9 @@ export class Inputs {
     this.ballFrictionInput.value = settings.ballFriction.toString()
     this.ballRestitutionInput.value = settings.ballRestitution.toString()
     this.ballDensityInput.value = settings.ballDensity.toString()
+
+    this.ballFrictionAirInput.value = settings.ballFrictionAir.toString()
+    this.ballSlopInput.value = settings.ballSlop.toString()
     /* hit manipulation settings */
     this.forceMagnitudeInput.value = settings.forceMagnitude.toString()
     this.velocityInput.value = settings.velocity.toString()
@@ -247,6 +266,8 @@ export class Inputs {
       ballFriction: this.ballFriction,
       ballRestitution: this.ballRestitution,
       ballDensity: this.ballDensity,
+      ballFrictionAir: this.ballFrictionAir,
+      ballSlop: this.ballSlop,
     } satisfies ISettings
   }
 }

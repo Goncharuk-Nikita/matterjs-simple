@@ -16,6 +16,8 @@ export interface ISettings {
   ballFriction: number
   ballRestitution: number
   ballDensity: number
+  ballFrictionAir: number
+  ballSlop: number
   /* hit manipulation defaults */
   forceMagnitude: number
   velocity: number

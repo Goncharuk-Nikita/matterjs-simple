@@ -62,11 +62,19 @@ export class Play {
       density: options.density,
     } satisfies IBodyDefinition
 
+    const xScale = (2 * options.ballRadius) / 100
+    const yScale = (2 * options.ballRadius) / 100
+
     const ball = new Ball({
       x: options.oppeningPosition.x,
       y: options.oppeningPosition.y,
       radius: options.ballRadius,
-      fillStyle: '#FF0000',
+      //fillStyle: '#FF0000',
+      sprite: {
+        xScale,
+        yScale,
+        texture: './public/images/pink_ball.png',
+      },
       definition,
     })
 

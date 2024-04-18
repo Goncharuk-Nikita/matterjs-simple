@@ -39,6 +39,15 @@ export class Field {
 
     const fillStyle = '#F6B23D'
 
+    // const xScale = (2 * options.pegRadius) / 158
+    // const yScale = (2 * options.pegRadius) / 169
+
+    // const sprite = {
+    //   texture: 'images/circle.png',
+    //   xScale,
+    //   yScale,
+    // }
+
     const pegs: Peg[] = []
     const slots: Slot[] = []
     const bodies: Matter.Body[] = []
@@ -70,6 +79,7 @@ export class Field {
           x: spaceLeft,
           y: spaceBottom,
           radius: options.pegRadius,
+          //sprite,
           fillStyle,
           definition: pegDefinition,
         })
@@ -96,12 +106,23 @@ export class Field {
       const cost = slotCosts[s]
       //const slotTexture = await Assets.load(`${options.path}/${cost}.png`)
       const slotX = temp_bottom_peg.body.position.x + slotWidth / 2
+
+      const texture = `images/${cost}.png`
+      const xScale = (slotWidth / 200) * 0.99
+      const yScale = xScale
+      const sprite = {
+        texture,
+        xScale,
+        yScale,
+      }
+
       const slot = new Slot({
         x: slotX,
         y: spaceBottom,
         width: slotWidth,
         height: 60 - lines,
-        fillStyle: '#00ff00',
+        //fillStyle: '#00ff00',
+        sprite,
         cost,
       })
       slots.push(slot)
