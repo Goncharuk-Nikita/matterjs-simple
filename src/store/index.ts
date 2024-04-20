@@ -1,5 +1,6 @@
 import { ISettings } from '../types/settings'
 import { Settings } from '../settings'
+import { saveAs } from 'file-saver'
 
 declare let Map: MapConstructor
 
@@ -41,6 +42,13 @@ export class Store {
   public toJSON(): string {
     return JSON.stringify([...this._settings])
     //return JSON.stringify(Array.from(this._settings.entries()))
+  }
+
+  public export() {
+    const json = this.toJSON()
+    const blob = new Blob([json], { type: 'text/plain' })
+    saveAs(blob, 'settings.json')
+    //navigator.clipboard.writeText(json)
   }
 
   private initSettings(

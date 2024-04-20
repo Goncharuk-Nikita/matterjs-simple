@@ -9,10 +9,12 @@
   },
   "dependencies": {
     "events": "^3.3.0",
+    "file-saver": "^2.0.5",
     "matter-js": "^0.19.0",
     "vite": "^5.2.8"
   },
   "devDependencies": {
+    "@types/file-saver": "^2.0.7",
     "@types/matter-js": "^0.19.6",
     "@types/node": "^20.11.30",
     "@types/pino": "^7.0.5",

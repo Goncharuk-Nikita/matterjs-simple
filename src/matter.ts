@@ -90,8 +90,9 @@ function saveSettings() {
 }
 
 function exportSettings() {
-  console.log('exportSettings')
+  //console.log('exportSettings')
   console.log(store.toJSON())
+  store.export()
 }
 
 function run() {
