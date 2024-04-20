@@ -16,7 +16,7 @@ import {
 import { Play } from './process/play'
 import { Inputs } from './ui/inputs'
 import { Controls } from './ui/controls'
-import { Store, createStore } from './store/store'
+import { Store, createStore } from './store'
 
 const { Composite, Engine } = Matter
 
@@ -34,6 +34,7 @@ let controls: Controls
 let store: Store
 
 function rebuild() {
+  inputs.setSettings(store.getSettings(controls.level))
   resize(renderProxy.render, element)
   rebuildField(controls.level, world)
 }
@@ -69,10 +70,6 @@ function rebuildField(newLevels: number, world: Matter.World) {
 }
 
 function setupWorld() {
-  // console.log('setupWorld')
-  // console.log('gravityScale:' + inputs.gravityScale)
-  // console.log('gravityX:' + inputs.gravityX)
-  // console.log('gravityY:' + inputs.gravityY)
   engine.gravity.scale = inputs.gravityScale
   engine.gravity.x = inputs.gravityX
   engine.gravity.y = inputs.gravityY
@@ -88,8 +85,8 @@ function setupEngine() {
 }
 
 function saveSettings() {
-  store.save(inputs.settings)
-  console.log('saveSettings')
+  store.saveSettings(controls.level, inputs.settings)
+  //console.log('saveSettings')
 }
 
 function run() {
@@ -103,7 +100,7 @@ function run() {
   inputs.dispatcher.addListener('engine', setupEngine)
 
   store = createStore()
-  inputs.setSettings(store.settings)
+  //inputs.setSettings(store.getSettings(controls.level))
 
   renderProxy = new RenderProxy({ engine, element })
   renderProxy.run()
