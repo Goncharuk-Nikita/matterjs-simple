@@ -89,6 +89,11 @@ function saveSettings() {
   //console.log('saveSettings')
 }
 
+function exportSettings() {
+  console.log('exportSettings')
+  console.log(store.toJSON())
+}
+
 function run() {
   engine = Engine.create()
   world = engine.world
@@ -112,6 +117,7 @@ function run() {
   controls.dispatcher.addListener('changeLevel', rebuild)
   controls.dispatcher.addListener('play', newPlay)
   controls.dispatcher.addListener('save', saveSettings)
+  controls.dispatcher.addListener('export', exportSettings)
 
   play = new Play(world)
 

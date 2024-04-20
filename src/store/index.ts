@@ -38,6 +38,11 @@ export class Store {
     Store.setItem(`${level}_angularVelocity`, settings.angularVelocity)
   }
 
+  public toJSON(): string {
+    return JSON.stringify([...this._settings])
+    //return JSON.stringify(Array.from(this._settings.entries()))
+  }
+
   private initSettings(
     defaults: Map<number, ISettings>,
   ): Map<number, ISettings> {

@@ -7,6 +7,7 @@ export class Controls {
   private _level: number
   private _playBtn: HTMLButtonElement
   private _saveBtn: HTMLButtonElement
+  private _exportBtn: HTMLButtonElement
 
   constructor() {
     this.nodeLevels = document.querySelectorAll('.join button[data-level]')
@@ -14,6 +15,7 @@ export class Controls {
 
     this._playBtn = document.getElementById('play-btn') as HTMLButtonElement
     this._saveBtn = document.getElementById('save-btn') as HTMLButtonElement
+    this._exportBtn = document.getElementById('export-btn') as HTMLButtonElement
     this.emitter = new EventEmitter()
 
     this.nodeLevels.forEach((btn) => {
@@ -33,6 +35,9 @@ export class Controls {
     })
     this._saveBtn.addEventListener('click', () => {
       this.dispatcher.emit('save')
+    })
+    this._exportBtn.addEventListener('click', () => {
+      this.dispatcher.emit('export')
     })
   }
 
