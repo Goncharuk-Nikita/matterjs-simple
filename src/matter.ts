@@ -34,7 +34,6 @@ let controls: Controls
 let store: Store
 
 function rebuild() {
-  inputs.setSettings(store.getSettings(controls.level))
   resize(renderProxy.render, element)
   rebuildField(controls.level, world)
 }
@@ -95,6 +94,11 @@ function exportSettings() {
   store.export()
 }
 
+function changeLevel() {
+  inputs.setSettings(store.getSettings(controls.level))
+  rebuild()
+}
+
 function run() {
   engine = Engine.create()
   world = engine.world
@@ -106,7 +110,6 @@ function run() {
   inputs.dispatcher.addListener('engine', setupEngine)
 
   store = createStore()
-  //inputs.setSettings(store.getSettings(controls.level))
 
   renderProxy = new RenderProxy({ engine, element })
   renderProxy.run()
@@ -115,10 +118,12 @@ function run() {
   setupWorld()
 
   controls = new Controls()
-  controls.dispatcher.addListener('changeLevel', rebuild)
+  controls.dispatcher.addListener('changeLevel', changeLevel)
   controls.dispatcher.addListener('play', newPlay)
   controls.dispatcher.addListener('save', saveSettings)
   controls.dispatcher.addListener('export', exportSettings)
+
+  inputs.setSettings(store.getSettings(controls.level))
 
   play = new Play(world)
 
