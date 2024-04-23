@@ -5,9 +5,10 @@
     },
     "extends": [
         "eslint:recommended",
-        "plugin:@typescript-eslint/recommended", 
+        "plugin:@typescript-eslint/recommended",
         "plugin:prettier/recommended",
-        "prettier"
+        "prettier",
+        "plugin:storybook/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -18,14 +19,22 @@
         "@typescript-eslint",
         "prettier"
     ],
-    "ignorePatterns": [".eslintrc.js", "next.config.js", "tailwind.config.js", "pathseg.js"],
+    "ignorePatterns": [
+        ".eslintrc.js",
+        "next.config.js",
+        "tailwind.config.js",
+        "pathseg.js"
+    ],
     "rules": {
         "@typescript-eslint/interface-name-prefix": "off",
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "@typescript-eslint/no-explicit-any": "off",
-        "prettier/prettier": ["error",{
-          "endOfLine": "auto"}
+        "prettier/prettier": [
+            "error",
+            {
+                "endOfLine": "auto"
+            }
         ]
     }
 }
