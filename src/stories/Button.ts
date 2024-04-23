@@ -12,7 +12,7 @@ export interface ButtonProps {
   /**
    * How large should the button be?
    */
-  size?: 'small' | 'medium' | 'large'
+  size?: 'sm' | 'md' | 'lg'
   /**
    * Button contents
    */
@@ -28,7 +28,7 @@ export interface ButtonProps {
  */
 export const createButton = ({
   primary = false,
-  size = 'medium',
+  size = 'md',
   backgroundColor,
   label,
   onClick,
@@ -40,12 +40,8 @@ export const createButton = ({
     btn.addEventListener('click', onClick)
   }
 
-  const mode = primary
-    ? 'storybook-button--primary'
-    : 'storybook-button--secondary'
-  btn.className = ['storybook-button', `storybook-button--${size}`, mode].join(
-    ' ',
-  )
+  const mode = primary ? 'btn-primary' : 'btn-secondary'
+  btn.className = ['btn', `btn-${size}`, mode].join(' ')
 
   if (backgroundColor) {
     btn.style.backgroundColor = backgroundColor
