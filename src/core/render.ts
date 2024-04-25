@@ -15,8 +15,6 @@ export class RenderProxy {
       engine,
       element,
       options: {
-        width: element.clientWidth,
-        height: element.clientHeight,
         wireframes: false,
         background: 'transparent',
         pixelRatio: window.devicePixelRatio, // here
