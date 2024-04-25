@@ -1,0 +1,27 @@
+<svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_i_90_5536)">
+<rect width="38" height="38" rx="19" fill="url(#paint0_linear_90_5536)"/>
+<rect x="1" y="1" width="36" height="36" rx="18" stroke="#727272" stroke-opacity="0.4" stroke-width="2"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M8 19C8 12.9249 12.9249 8 19 8C25.0751 8 30 12.9249 30 19C30 25.0751 25.0751 30 19 30C12.9249 30 8 25.0751 8 19ZM17.3027 20.3942C17.2316 20.7147 17.5038 21 17.8479 21H20.0406C20.2979 21 20.5151 20.8351 20.6064 20.6061C20.697 20.3789 21.0117 19.9674 21.254 19.7518C21.4827 19.5112 21.7213 19.2848 21.9563 19.0618C22.8824 18.183 23.754 17.356 23.754 15.9105C23.754 13.403 21.582 12 19.2707 12C17.5038 12 15.0642 12.806 14.584 15.5036C14.4872 16.0474 14.9477 16.5 15.5 16.5H16.9123C17.4388 16.5 17.8312 16.0764 18.0121 15.582C18.1863 15.106 18.5379 14.7551 19.2707 14.7551C20.6066 14.7551 20.6064 16.2237 19.8346 17.1843C19.5434 17.5467 19.2023 17.8677 18.8648 18.1853C18.1798 18.8298 17.5098 19.4602 17.3027 20.3942ZM20.9999 24C20.9999 25.1046 20.1045 26 18.9999 26C17.8954 26 16.9999 25.1046 16.9999 24C16.9999 22.8954 17.8954 22 18.9999 22C20.1045 22 20.9999 22.8954 20.9999 24Z" fill="url(#paint1_linear_90_5536)"/>
+</g>
+<defs>
+<filter id="filter0_i_90_5536" x="0" y="0" width="38" height="38" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset/>
+<feGaussianBlur stdDeviation="5.05"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.763537 0 0 0 0 0.33245 0 0 0 0 0.915 0 0 0 1 0"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow_90_5536"/>
+</filter>
+<linearGradient id="paint0_linear_90_5536" x1="21.0483" y1="6.05628e-07" x2="21.0483" y2="38" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="#E2E9EC"/>
+</linearGradient>
+<linearGradient id="paint1_linear_90_5536" x1="9.41584" y1="11.0938" x2="30.5215" y2="12.8112" gradientUnits="userSpaceOnUse">
+<stop stop-color="#C100AD"/>
+<stop offset="1" stop-color="#4DC1C8"/>
+</linearGradient>
+</defs>
+</svg>

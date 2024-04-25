@@ -1,13 +1,19 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Questrial&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
     background-color: #01496c;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 svg { display: none }
@@ -22,4 +28,95 @@ svg { display: none }
 
     border: 2px solid rgba(255, 255, 255, 0);
     backdrop-filter: blur(15px);
+}
+
+.bg-gradient {
+    background: radial-gradient(#00475E, #11134F, #020E1C);
+}
+
+.frame-gradient {
+    background: linear-gradient(#3BD0FF, #FF40CA);
+}
+
+.right-bg-gradient {
+    background: linear-gradient(0.25turn, #FF40CA, #3BD0FF);
+}
+
+.brand-btn-gradient {
+    background: -webkit-linear-gradient(#C100AD, #4DC1C8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 30.6px;
+    text-align: center;
+}
+
+.brand-btn {
+    background: linear-gradient(180deg, #FFFFFF 0%, #E2E9EC 100%);
+    box-shadow: 0px 0px 31px 0px #C355E9 inset;
+    border-radius: 30px;
+    color: #000;
+}
+
+.brand-btn-secondary {
+    background: linear-gradient(94.65deg, #C100AD 7.01%, #4DC1C8 96.31%);
+    box-shadow: 0px 0px 20px 0px #260371 inset;
+    border-radius: 30px;
+    color: #fff;
+    font-family: "Roboto", sans-serif;
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 15.3px;
+    text-align: center;
+}
+
+.brand-btn-secondary:active:hover,
+.brand-btn-secondary:active:focus {
+    animation: button-pop 3s ease-out;
+} 
+
+.round-brand-btn {
+    border: 2px solid #72727266;
+    border-radius: 100px;
+    box-shadow: 0px 0px 10.1px 0px #C355E9 inset;
+    background: linear-gradient(180deg, #FFFFFF 0%, #E2E9EC 100%);
+}
+
+.round-brand-btn:active:hover,
+.round-brand-btn:active:focus {
+    animation: button-pop 3s ease-out;
+}
+
+.round-btn-lg {
+    width: 36px;
+    height: 36px;
+}
+
+.brand-btn-lg {
+    width: 167px;
+    height: 64px;
+}
+
+.brand-btn-md {
+    width: 174px;
+    height: 38px;
+    gap: 10px;
+}
+
+.balance {
+    font-family: "Roboto", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 12.09px;
+    text-align: left;
+}
+
+.balance label {
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 11.6px;
+    text-align: left;
 }
