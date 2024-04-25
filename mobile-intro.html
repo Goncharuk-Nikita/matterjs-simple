@@ -23,16 +23,18 @@
       </div>
 
       <div class="absolute w-full bottom-36 flex justify-center">
-        <button class="btn brand-btn brand-btn-lg">
+        <button id="playBtn" class="btn brand-btn brand-btn-lg">
           <span class="brand-btn-gradient uppercase">
             Play
           </span>
         </button>
       </div>
 
-      <div class="absolute w-full bottom-[76px] flex flex-row gap-2 items-end justify-start px-10 balance">
-        <label>Balance</label>
-        1000 FUN
+      <div class="absolute w-full bottom-[76px] px-10">
+        <button class="balance flex flex-row items-center justify-start gap-2">
+          <label>Balance</label>
+          100000 FUN
+        </button>
       </div>
 
       <div class="absolute bottom-8 w-full">
@@ -54,4 +56,11 @@
 
 </div>
 </body>
+<script>
+  const playBtn = document.getElementById('playBtn')
+  console.log(playBtn)
+  playBtn.addEventListener('click', () => {
+    window.location.href = 'mobile-game.html'
+  })
+</script>  
 </html>
