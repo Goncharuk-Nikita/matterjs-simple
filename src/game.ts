@@ -77,7 +77,7 @@ function setupWorld() {
 }
 
 function rebuild() {
-  resizeElement(renderProxy.render, 277, 310)
+  resizeElement(renderProxy.render, 375, 310)
   rebuildField(8, world)
 }
 
@@ -104,9 +104,9 @@ function rebuildField(newLevels: number, world: Matter.World) {
   console.log('rebuildField')
   console.log(field)
 
-  //const dx = 0 //(277 - field.width) / 2
-  //const dy = 0 //(310 - field.height) / 2
-  //Matter.Composite.translate(field.container, { x: dx, y: dy })
+  const dx = (375 - field.width) / 2
+  const dy = (310 - field.height) / 2
+  Matter.Composite.translate(field.container, { x: dx, y: dy })
 
   //oppeningPosition = new Position(dx, dy)
   //oppeningPosition.x += field.oppeningPosition.x
@@ -119,9 +119,9 @@ function run() {
     gravityScale: 0.001,
     gravityX: 0,
     gravityY: 1,
-    gap: 50,
-    spacing: 20,
-    pegRadius: 5,
+    gap: 19,
+    spacing: 42,
+    pegRadius: 3,
     pegFriction: 0.0,
     pegRestitution: 0.3,
     ballRadius: 5.5,

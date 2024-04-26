@@ -37,7 +37,7 @@ export class Field {
 
     const lines = 2 + options.levels
 
-    const fillStyle = '#F6B23D'
+    //const fillStyle = '#F6B23D'
 
     // const xScale = (2 * options.pegRadius) / 158
     // const yScale = (2 * options.pegRadius) / 169
@@ -68,6 +68,16 @@ export class Field {
 
     let currentLine = 0
 
+    const texture = `assets/png/peg/peg.png`
+    const xScale = (options.pegRadius * 2) / 12
+    const yScale = (options.pegRadius * 2) / 12
+
+    const sprite = {
+      texture,
+      xScale,
+      yScale,
+    }
+
     for (let i = 3; i <= lines; i++) {
       let spaceLeft = 0
       for (let space = 1; space <= lines - i; space++) {
@@ -79,8 +89,8 @@ export class Field {
           x: spaceLeft,
           y: spaceBottom,
           radius: options.pegRadius,
-          //sprite,
-          fillStyle,
+          sprite,
+          //fillStyle,
           definition: pegDefinition,
         })
         this._width = spaceLeft + options.pegRadius
@@ -107,9 +117,11 @@ export class Field {
       //const slotTexture = await Assets.load(`${options.path}/${cost}.png`)
       const slotX = temp_bottom_peg.body.position.x + slotWidth / 2
 
-      const texture = `images/${cost}.png`
-      const xScale = (slotWidth / 200) * 0.99
-      const yScale = xScale
+      console.log(cost)
+
+      const texture = `assets/png/slots/${options.levels}/${cost}.png`
+      const xScale = 1 //(slotWidth / 200) * 0.99
+      const yScale = 1 //xScale
       const sprite = {
         texture,
         xScale,
@@ -131,13 +143,18 @@ export class Field {
 
     this._height = spaceBottom + options.pegRadius
 
-    this._oppeningPosition = new Position(pegs[1].body.position.x, 0)
+    this._oppeningPosition = new Position(pegs[1].body.position.x, 2)
 
     this._oppening = new Oppening({
       x: this._oppeningPosition.x,
       y: this._oppeningPosition.y,
       radius: 20,
-      fillStyle: '#2b2b2b',
+      //fillStyle: '#2b2b2b',
+      sprite: {
+        texture: 'assets/png/oppening.png',
+        xScale: 1,
+        yScale: 1,
+      },
       definition,
     })
     bodies.push(this._oppening.body)
