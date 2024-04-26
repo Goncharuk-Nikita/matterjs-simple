@@ -108,11 +108,18 @@ export class Play {
     const round = Play.rounds.get(id)
     const body = round.ball.body
     const right = round.path[level]
+    let shiftX = 1
     if (!right) {
       forceMagnitude *= -1
+      shiftX *= -1
     }
 
     setTimeout(() => {
+      Matter.Body.translate(body, { x: shiftX, y: -1 })
+
+      //if (body) {
+      //}
+      //
       Matter.Body.setVelocity(body, {
         x: body.velocity.x * velocityCof,
         y: body.velocity.y * velocityCof,
@@ -122,7 +129,7 @@ export class Play {
         body.angularVelocity * angularVelocityCof,
       )
       Matter.Body.applyForce(body, body.position, { x: forceMagnitude, y: 0 })
-    }, 1)
+    }, 2)
   }
 }
 
