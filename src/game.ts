@@ -130,19 +130,19 @@ function run() {
     gravityX: 0,
     gravityY: 1,
     gap: 20,
-    spacing: 42,
+    spacing: 43,
     pegRadius: 3,
     pegFriction: 0.0,
     pegRestitution: 0.3,
     ballRadius: 10,
     ballFriction: 0.0,
-    ballFrictionAir: 0.03,
-    ballSlop: 0.1,
+    ballFrictionAir: 0.01,
+    ballSlop: 0.0,
     ballRestitution: 0.5,
-    ballDensity: 0.05,
-    forceMagnitude: 0.03,
+    ballDensity: 0.03,
+    forceMagnitude: 0.04,
     velocity: 0.03,
-    angularVelocity: 0.01,
+    angularVelocity: 0.03,
   })
 
   engine = Engine.create()
@@ -206,21 +206,21 @@ function run() {
 
         const ball = getBallById(collision)
 
-        const distance = peg.position.y - ball.position.y
-        const radiuses = gameSettings.ballRadius + gameSettings.pegRadius
+        //const distance = peg.position.y - ball.position.y
+        //const radiuses = gameSettings.ballRadius + gameSettings.pegRadius
 
         //console.log(distance, radiuses)
-        if (distance > radiuses * 0.9) {
-          const options = {
-            id: ball.id,
-            level,
-            velocityCof: gameSettings.velocity,
-            angularVelocityCof: gameSettings.angularVelocity,
-            forceMagnitude: gameSettings.forceMagnitude,
-          } satisfies IManipulationOptions
+        //if (distance > radiuses) {
+        const options = {
+          id: ball.id,
+          level,
+          velocityCof: gameSettings.velocity,
+          angularVelocityCof: gameSettings.angularVelocity,
+          forceMagnitude: gameSettings.forceMagnitude,
+        } satisfies IManipulationOptions
 
-          play.applyForce(options)
-        }
+        play.applyForce(options)
+        //}
       }
     })
   })

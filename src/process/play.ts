@@ -108,6 +108,8 @@ export class Play {
     const round = Play.rounds.get(id)
     const body = round.ball.body
     const right = round.path[level]
+    //console.log(level)
+
     let shiftX = 1
     if (!right) {
       forceMagnitude *= -1
