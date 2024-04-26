@@ -62,18 +62,25 @@ export class Play {
       density: options.density,
     } satisfies IBodyDefinition
 
-    const xScale = (2 * options.ballRadius) / 100
-    const yScale = (2 * options.ballRadius) / 100
+    const xScale = (2 * options.ballRadius) / 16
+    const yScale = (2 * options.ballRadius) / 16
+
+    let xValue = options.oppeningPosition.x
+    if (options.path[0]) {
+      xValue += 1
+    } else {
+      xValue -= 1
+    }
 
     const ball = new Ball({
-      x: options.oppeningPosition.x,
+      x: xValue,
       y: options.oppeningPosition.y,
       radius: options.ballRadius,
       //fillStyle: '#FF0000',
       sprite: {
         xScale,
         yScale,
-        texture: './public/images/pink_ball.png',
+        texture: './public/assets/png/ball.png',
       },
       definition,
     })
@@ -88,7 +95,7 @@ export class Play {
     const round = Play.rounds.get(id)
     Play.rounds.delete(id)
 
-    const composite = round.composite
+    const composite = round?.composite
     if (composite) {
       Composite.remove(this.world, [composite])
     }

@@ -131,8 +131,8 @@ export class Field {
       const slot = new Slot({
         x: slotX,
         y: spaceBottom,
-        width: slotWidth,
-        height: 60 - lines,
+        width: 5,
+        height: 10,
         //fillStyle: '#00ff00',
         sprite,
         cost,

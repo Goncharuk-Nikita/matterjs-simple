@@ -4,9 +4,20 @@ const { Engine } = Matter
 import { RenderProxy } from './core/render'
 import { ISettings } from './types/settings'
 import { Settings } from './settings'
+import { Position } from './utilities/position'
 
 import { resizeElement } from './utilities/resize'
 import { Field } from './components/field'
+import {
+  Play,
+  PlayOptions,
+  isSlotCollision,
+  getBallById,
+  getPegById,
+  getSlotById,
+  isPegCollision,
+  IManipulationOptions,
+} from './process/play'
 
 let engine: Matter.Engine
 let world: Matter.World
@@ -16,10 +27,11 @@ let renderProxy: RenderProxy
 let gameSettings: ISettings
 
 let field: Field
+let play: Play
+let oppeningPosition: Position
 
 /*
 
-import { Position } from './utilities/position'
 import {
   IManipulationOptions,
   PlayOptions,
@@ -36,10 +48,8 @@ import { Controls } from './ui/controls'
 import { Store, createStore } from './store'
 
 
-let play: Play
 
 //let render: Matter.Render
-let oppeningPosition: Position
 let inputs: Inputs
 let controls: Controls
 
@@ -108,8 +118,8 @@ function rebuildField(newLevels: number, world: Matter.World) {
   const dy = (310 - field.height) / 2
   Matter.Composite.translate(field.container, { x: dx, y: dy })
 
-  //oppeningPosition = new Position(dx, dy)
-  //oppeningPosition.x += field.oppeningPosition.x
+  oppeningPosition = new Position(dx, dy)
+  oppeningPosition.x += field.oppeningPosition.x
 }
 
 function run() {
@@ -124,14 +134,14 @@ function run() {
     pegRadius: 3,
     pegFriction: 0.0,
     pegRestitution: 0.3,
-    ballRadius: 5.5,
+    ballRadius: 10,
     ballFriction: 0.0,
-    ballFrictionAir: 0.06,
+    ballFrictionAir: 0.02,
     ballSlop: 0,
-    ballRestitution: 0.5,
+    ballRestitution: 0.4,
     ballDensity: 0.01,
-    forceMagnitude: 0.3,
-    velocity: 0.003,
+    forceMagnitude: 0.003,
+    velocity: 0.01,
     angularVelocity: 0.1,
   })
 
@@ -160,23 +170,26 @@ function run() {
 
   //inputs.setSettings(store.getSettings(controls.level))
 
-  //play = new Play(world)
+  play = new Play(world)
 
   window.addEventListener('resize', rebuild)
   window.addEventListener('load', rebuild)
 
-  //window.addEventListener('keydown', async (e) => {
-  //  if (e.code === 'Space') {
-  //    newPlay()
-  //  }
-  //})
-  /*
+  const playBtn = document.getElementById('playBtn')
+  playBtn?.addEventListener('click', newPlay)
+
+  window.addEventListener('keydown', async (e) => {
+    if (e.code === 'Space') {
+      newPlay()
+    }
+  })
+
   Matter.Events.on(engine, 'collisionStart', (event) => {
     //console.log(event)
     event.pairs.forEach((collision) => {
       //
       if (isSlotCollision(collision)) {
-        // works but need animation 
+        // works but need animation
         const ball = getBallById(collision)
         play.removeById(ball.id)
 
@@ -186,7 +199,7 @@ function run() {
       //
       if (isPegCollision(collision)) {
         const peg = getPegById(collision)
-        pegAnimation(peg)
+        //pegAnimation(peg)
         // should be path logic there: !!!
         const level = field.getPegLine(peg.id)
         //console.log(pegLine)
@@ -194,16 +207,16 @@ function run() {
         const ball = getBallById(collision)
 
         const distance = peg.position.y - ball.position.y
-        const radiuses = inputs.ballRadius + inputs.pegRadius
+        const radiuses = gameSettings.ballRadius + gameSettings.pegRadius
 
         //console.log(distance, radiuses)
         if (distance > radiuses * 0.9) {
           const options = {
             id: ball.id,
             level,
-            velocityCof: inputs.velocity,
-            angularVelocityCof: inputs.angularVelocity,
-            forceMagnitude: inputs.forceMagnitude,
+            velocityCof: gameSettings.velocity,
+            angularVelocityCof: gameSettings.angularVelocity,
+            forceMagnitude: gameSettings.forceMagnitude,
           } satisfies IManipulationOptions
 
           play.applyForce(options)
@@ -211,22 +224,21 @@ function run() {
       }
     })
   })
-  */
 }
 run()
 
-/*
-function pegAnimation(body: Matter.Body) {
-  //console.log('pegAnimation')
-  //console.log(body)
-  body.render.fillStyle = '#F101C4'
-  setTimeout(() => {
-    body.render.fillStyle = '#F6B23D'
-  }, 100)
-}
+//function pegAnimation(body: Matter.Body) {
+//console.log('pegAnimation')
+//console.log(body)
+//body.render.fillStyle = '#F101C4'
+//setTimeout(() => {
+//  body.render.fillStyle = '#F6B23D'
+//}, 100)
+//}
 
 function slotAnimation(body: Matter.Body) {
-  console.log('slotAnimation')
+  //console.log('slotAnimation')
+  //console.log(body)
   Matter.Body.translate(body, { x: 0, y: 10 })
   setTimeout(() => {
     Matter.Body.translate(body, { x: 0, y: -10 })
@@ -234,23 +246,17 @@ function slotAnimation(body: Matter.Body) {
 }
 
 function newPlay() {
-  const path: boolean[] = Array.from(
-    Array(controls.level),
-    () => Math.random() < 0.5,
-  )
+  const path: boolean[] = Array.from(Array(8), () => Math.random() < 0.5)
   console.log(path)
 
   const options = {
     oppeningPosition,
-    ballRadius: inputs.ballRadius,
-    friction: inputs.ballFriction,
-    restitution: inputs.ballRestitution,
-    density: inputs.ballDensity,
+    ballRadius: gameSettings.ballRadius,
+    friction: gameSettings.ballFriction,
+    restitution: gameSettings.ballRestitution,
+    density: gameSettings.ballDensity,
     path,
   } satisfies PlayOptions
 
   play.playOne(options)
 }
-
-run()
-*/
