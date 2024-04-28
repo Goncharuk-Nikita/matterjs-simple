@@ -129,7 +129,7 @@ function run() {
     gravityScale: 0.001,
     gravityX: 0,
     gravityY: 1,
-    gap: 20,
+    gap: 19,
     spacing: 43,
     pegRadius: 3,
     pegFriction: 0.0,

@@ -128,7 +128,9 @@ svg { display: none }
 
 .functional-btn {
     border-radius: 14px;
-    background: radial-gradient(72.66% 72.66% at 60.94% 27.34%, #1C254A 0%, #0F1426 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    /* background: transparent; */
+    background: radial-gradient(72.66% 72.66% at 60.94% 27.34%, #1C254A 0%, #0F1426 100%)
+     /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
     box-shadow: 0px 1px 0px 0px #000000A6;
 
     font-family: "Roboto", sans-serif;
@@ -136,7 +138,10 @@ svg { display: none }
     font-weight: 600;
     line-height: 8px;
     text-align: center;
+
+    position: relative;
 }
+
 
 .functional-btn:active:hover,
 .functional-btn:active:focus {
@@ -189,6 +194,78 @@ svg { display: none }
     text-align: center;
 }
 
+/* .functional-btn:active {
+    border-width: 1px;
+    border-style: solid;
+    border-image: linear-gradient(94.65deg, #C100AD 7.01%, #4DC1C8 96.31%);
+    border-image-slice: 0.5; 
+    border-radius: 14px;
+} */
+
+.functional-btn-selected {
+    border-radius: 14px;
+    /* background: transparent; */
+    background: radial-gradient(72.66% 72.66% at 60.94% 27.34%, #1C254A 0%, #0F1426 100%)
+     /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    box-shadow: 0px 1px 0px 0px #000000A6;
+
+    font-family: "Roboto", sans-serif;
+    font-size: 8px;
+    font-weight: 600;
+    line-height: 8px;
+    text-align: center;
+    
+    transform: scale(0.95);
+
+    position: relative;
+}
+
+.functional-btn-selected label {
+    font-family: "Roboto", sans-serif;
+    font-size: 6px;
+    font-weight: 400;
+    line-height: 6px;
+    text-align: center;
+}
+
+.functional-btn-selected .value {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 14px;
+    text-align: center;
+}
+
+.functional-btn-selected::before, 
+.functional-btn-selected::after {
+  content: ' ';
+  position: absolute;
+  border-radius: 14px;
+}
+
+.functional-btn-selected::before {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -2;
+    background: -moz-linear-gradient(94.65deg, #C100AD 7.01%, #4DC1C8 96.31%);
+    background: -bg-webkit-gradient(94.65deg, #C100AD 7.01%, #4DC1C8 96.31%);
+    background: -webkit-linear-gradient(94.65deg, #C100AD 7.01%, #4DC1C8 96.31%);
+    background: -o-linear-gradient(94.65deg, #C100AD 7.01%, #4DC1C8 96.31%);
+    background: -ms-linear-gradient(94.65deg, #C100AD 7.01%, #4DC1C8 96.31%);
+    background: linear-gradient(94.65deg, #C100AD 7.01%, #4DC1C8 96.31%);
+  }
+  
+  .functional-btn-selected::after {
+    top: 2px; 
+    bottom: 2px;
+    left: 2px;
+    right: 2px;
+    background: radial-gradient(72.66% 72.66% at 60.94% 27.34%, #1C254A 0%, #0F1426 100%);
+    z-index: -1;
+    transition: all 0.6s ease-in-out;
+  }
+  
 .win {
     font-family: "Roboto", sans-serif;
     font-size: 20px;
@@ -198,3 +275,12 @@ svg { display: none }
     color: #FFF;
     padding-top: 8px;
 }
+
+.dropdown-wrapper {
+    background: #122237;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    width: 84px;
+    gap: 10px;
+    border-radius: 20px;
+}
+
