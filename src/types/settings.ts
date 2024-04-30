@@ -22,6 +22,7 @@ export interface ISettings {
   forceMagnitude: number
   velocity: number
   angularVelocity: number
+  oppeningScale: number
 }
 
 export enum CanvasMode {
@@ -30,4 +31,5 @@ export enum CanvasMode {
   MD = 'md',
   LG = 'lg',
   XL = 'xl',
+  XXL = 'xxl',
 }

@@ -11,6 +11,7 @@ export interface SetupOptions {
   spacing: number
   pegFriction: number
   pegRestitution: number
+  oppeningScale: number
 }
 
 export class Field {
@@ -143,7 +144,7 @@ export class Field {
 
     this._height = spaceBottom + options.pegRadius
 
-    this._oppeningPosition = new Position(pegs[1].body.position.x, 2)
+    this._oppeningPosition = new Position(pegs[1].body.position.x, 5)
 
     this._oppening = new Oppening({
       x: this._oppeningPosition.x,
@@ -152,8 +153,8 @@ export class Field {
       //fillStyle: '#2b2b2b',
       sprite: {
         texture: 'assets/png/oppening.png',
-        xScale: 1,
-        yScale: 1,
+        xScale: options.oppeningScale,
+        yScale: options.oppeningScale,
       },
       definition,
     })

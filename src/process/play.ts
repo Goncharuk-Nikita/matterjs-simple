@@ -12,8 +12,8 @@ interface PlayRoundOptions {
 export interface IManipulationOptions {
   id: number
   level: number
-  velocityCof: number
-  angularVelocityCof: number
+  velocity: number
+  angularVelocity: number
   forceMagnitude: number
 }
 
@@ -102,7 +102,7 @@ export class Play {
   }
 
   applyForce(options: IManipulationOptions) {
-    const { id, level, velocityCof, angularVelocityCof } = options
+    const { id, level, velocity, angularVelocity } = options
     let { forceMagnitude } = options
 
     const round = Play.rounds.get(id)
@@ -123,12 +123,12 @@ export class Play {
       //}
       //
       Matter.Body.setVelocity(body, {
-        x: body.velocity.x * velocityCof,
-        y: body.velocity.y * velocityCof,
+        x: body.velocity.x * velocity,
+        y: body.velocity.y * velocity,
       })
       Matter.Body.setAngularVelocity(
         body,
-        body.angularVelocity * angularVelocityCof,
+        body.angularVelocity * angularVelocity,
       )
       Matter.Body.applyForce(body, body.position, { x: forceMagnitude, y: 0 })
     }, 2)

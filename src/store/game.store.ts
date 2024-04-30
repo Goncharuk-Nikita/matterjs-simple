@@ -13,7 +13,10 @@ export class Store {
     //this._settings = this.initSettings('./game.config.json')
   }
 
-  public getSettings(mode: CanvasMode, level: number): ISettings | undefined {
+  public getSettings(
+    mode: CanvasMode,
+    level: number,
+  ): ISettings | null | undefined {
     return this._settings && this._settings[mode][level]
   }
 

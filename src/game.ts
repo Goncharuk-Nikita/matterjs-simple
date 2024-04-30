@@ -3,7 +3,7 @@ const { Engine } = Matter
 
 import { RenderProxy } from './core/render'
 import { ISettings, CanvasMode } from './types/settings'
-import { Settings } from './settings'
+//import { Settings } from './settings'
 import { Position } from './utilities/position'
 
 import { resizeElement } from './utilities/resize'
@@ -26,7 +26,7 @@ let world: Matter.World
 let element: HTMLElement
 
 let renderProxy: RenderProxy
-let gameSettings: ISettings
+let gameSettings: ISettings | null | undefined
 
 let field: Field
 let play: Play
@@ -39,7 +39,8 @@ let store: Store
 
 function changeLevel() {
   //inputs.setSettings(store.getSettings(controls.level))
-  console.log(controls.level)
+  //console.log(controls.level)
+  gameSettings = store.getSettings(CanvasMode.XS, controls.level)
   rebuild()
 }
 
@@ -48,9 +49,9 @@ function setupRender() {
 }
 
 function setupWorld() {
-  engine.gravity.scale = gameSettings.gravityScale
-  engine.gravity.x = gameSettings.gravityX
-  engine.gravity.y = gameSettings.gravityY
+  engine.gravity.scale = gameSettings?.gravityScale || 0.001
+  engine.gravity.x = gameSettings?.gravityX || 0
+  engine.gravity.y = gameSettings?.gravityY || 1
 }
 
 function rebuild() {
@@ -64,11 +65,12 @@ function rebuildField(newLevels: number, world: Matter.World) {
   field = new Field(world)
   field.init({
     levels: newLevels,
-    gap: gameSettings.gap,
-    pegRadius: gameSettings.pegRadius,
-    pegFriction: gameSettings.pegFriction,
-    pegRestitution: gameSettings.pegRestitution,
-    spacing: gameSettings.spacing,
+    gap: gameSettings?.gap || 19,
+    pegRadius: gameSettings?.pegRadius || 3,
+    pegFriction: gameSettings?.pegFriction || 0.0,
+    pegRestitution: gameSettings?.pegRestitution || 0.3,
+    spacing: gameSettings?.spacing || 43,
+    oppeningScale: gameSettings?.oppeningScale || 1.0,
   })
 
   Matter.Bodies.circle(100, 100, 500, {
@@ -78,15 +80,13 @@ function rebuildField(newLevels: number, world: Matter.World) {
     },
   })
 
-  console.log('rebuildField')
-  console.log(field)
-
   const dx = (375 - field.width) / 2
   const dy = (310 - field.height) / 2
   Matter.Composite.translate(field.container, { x: dx, y: dy })
 
   oppeningPosition = new Position(dx, dy)
   oppeningPosition.x += field.oppeningPosition.x
+  oppeningPosition.y += 5
 }
 
 async function run() {
@@ -97,28 +97,28 @@ async function run() {
 
   store = new Store()
   await store.initSettings('./game.config.json')
-  console.log(store.getSettings(CanvasMode.XS, 8))
+  gameSettings = store.getSettings(CanvasMode.XS, controls.level)
 
-  gameSettings = new Settings({
-    timeScale: 1,
-    gravityScale: 0.001,
-    gravityX: 0,
-    gravityY: 1,
-    gap: 19,
-    spacing: 43,
-    pegRadius: 3,
-    pegFriction: 0.0,
-    pegRestitution: 0.3,
-    ballRadius: 10,
-    ballFriction: 0.0,
-    ballFrictionAir: 0.01,
-    ballSlop: 0.0,
-    ballRestitution: 0.5,
-    ballDensity: 0.03,
-    forceMagnitude: 0.04,
-    velocity: 0.03,
-    angularVelocity: 0.03,
-  })
+  // gameSettings = new Settings({
+  //   timeScale: 1,
+  //   gravityScale: 0.001,
+  //   gravityX: 0,
+  //   gravityY: 1,
+  //   gap: 19,
+  //   spacing: 43,
+  //   pegRadius: 3,
+  //   pegFriction: 0.0,
+  //   pegRestitution: 0.3,
+  //   ballRadius: 10,
+  //   ballFriction: 0.0,
+  //   ballFrictionAir: 0.01,
+  //   ballSlop: 0.0,
+  //   ballRestitution: 0.5,
+  //   ballDensity: 0.03,
+  //   forceMagnitude: 0.04,
+  //   velocity: 0.03,
+  //   angularVelocity: 0.03,
+  // })
 
   engine = Engine.create()
   world = engine.world
@@ -204,9 +204,9 @@ async function run() {
         const options = {
           id: ball.id,
           level,
-          velocityCof: gameSettings.velocity,
-          angularVelocityCof: gameSettings.angularVelocity,
-          forceMagnitude: gameSettings.forceMagnitude,
+          velocity: gameSettings?.velocity || 0.03,
+          angularVelocity: gameSettings?.angularVelocity || 0.03,
+          forceMagnitude: gameSettings?.forceMagnitude || 0.04,
         } satisfies IManipulationOptions
 
         play.applyForce(options)
@@ -241,10 +241,10 @@ function newPlay() {
 
   const options = {
     oppeningPosition,
-    ballRadius: gameSettings.ballRadius,
-    friction: gameSettings.ballFriction,
-    restitution: gameSettings.ballRestitution,
-    density: gameSettings.ballDensity,
+    ballRadius: gameSettings?.ballRadius || 10,
+    friction: gameSettings?.ballFriction || 0.01,
+    restitution: gameSettings?.ballRestitution || 0.5,
+    density: gameSettings?.ballDensity || 0.03,
     path,
   } satisfies PlayOptions
 
