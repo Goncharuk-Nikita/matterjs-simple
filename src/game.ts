@@ -2,7 +2,7 @@ import Matter from 'matter-js'
 const { Engine } = Matter
 
 import { RenderProxy } from './core/render'
-import { ISettings } from './types/settings'
+import { ISettings, CanvasMode } from './types/settings'
 import { Settings } from './settings'
 import { Position } from './utilities/position'
 
@@ -18,6 +18,8 @@ import {
   isPegCollision,
   IManipulationOptions,
 } from './process/play'
+import { GameControls } from './ui/controls.game'
+import { Store } from './store/game.store'
 
 let engine: Matter.Engine
 let world: Matter.World
@@ -30,51 +32,16 @@ let field: Field
 let play: Play
 let oppeningPosition: Position
 
-/*
+//let levelBtns: NodeListOf<Element>
 
-import {
-  IManipulationOptions,
-  PlayOptions,
-  getBallById,
-  getPegById,
-  getSlotById,
-  isPegCollision,
-  isSlotCollision,
-} from './process/play'
-
-import { Play } from './process/play'
-import { Inputs } from './ui/inputs'
-import { Controls } from './ui/controls'
-import { Store, createStore } from './store'
-
-
-
-//let render: Matter.Render
-let inputs: Inputs
-let controls: Controls
-
+let controls: GameControls
 let store: Store
 
-function setupEngine() {
-  engine.timing.timeScale = inputs.timeScale
-}
-
-function saveSettings() {
-  store.saveSettings(controls.level, inputs.settings)
-  //console.log('saveSettings')
-}
-
-function exportSettings() {
-  //console.log('exportSettings')
-  console.log(store.toJSON())
-  store.export()
-}
-
 function changeLevel() {
-  inputs.setSettings(store.getSettings(controls.level))
+  //inputs.setSettings(store.getSettings(controls.level))
+  console.log(controls.level)
   rebuild()
 }
-*/
 
 function setupRender() {
   renderProxy.initRunner(engine, 1000 / 60)
@@ -88,7 +55,7 @@ function setupWorld() {
 
 function rebuild() {
   resizeElement(renderProxy.render, 375, 310)
-  rebuildField(8, world)
+  rebuildField(controls.level, world)
 }
 
 function rebuildField(newLevels: number, world: Matter.World) {
@@ -122,8 +89,16 @@ function rebuildField(newLevels: number, world: Matter.World) {
   oppeningPosition.x += field.oppeningPosition.x
 }
 
-function run() {
+async function run() {
   //console.log('running')
+  controls = new GameControls()
+  controls.dispatcher.addListener('play', newPlay)
+  controls.dispatcher.addListener('changeLevel', changeLevel)
+
+  store = new Store()
+  await store.initSettings('./game.config.json')
+  console.log(store.getSettings(CanvasMode.XS, 8))
+
   gameSettings = new Settings({
     timeScale: 1,
     gravityScale: 0.001,
@@ -175,14 +150,29 @@ function run() {
   window.addEventListener('resize', rebuild)
   window.addEventListener('load', rebuild)
 
-  const playBtn = document.getElementById('playBtn')
-  playBtn?.addEventListener('click', newPlay)
+  //const playBtn = document.getElementById('playBtn')
+  //playBtn?.addEventListener('click', newPlay)
 
   window.addEventListener('keydown', async (e) => {
     if (e.code === 'Space') {
       newPlay()
     }
   })
+
+  /*
+  levelBtns = document.querySelectorAll('button[data-level]')
+  levelBtns.forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      removeAccent()
+      btn.classList.remove('functional-btn')
+      btn.classList.add('functional-btn-selected')
+      //if (btn instanceof HTMLElement) {
+      //this._level = +(btn.dataset.level || 8)
+      //this.dispatcher.emit('changeLevel', {})
+      //}
+    })
+  })
+  */
 
   Matter.Events.on(engine, 'collisionStart', (event) => {
     //console.log(event)
@@ -225,7 +215,7 @@ function run() {
     })
   })
 }
-run()
+await run()
 
 //function pegAnimation(body: Matter.Body) {
 //console.log('pegAnimation')

@@ -23,3 +23,11 @@ export interface ISettings {
   velocity: number
   angularVelocity: number
 }
+
+export enum CanvasMode {
+  XS = 'xs',
+  SM = 'sm',
+  MD = 'md',
+  LG = 'lg',
+  XL = 'xl',
+}

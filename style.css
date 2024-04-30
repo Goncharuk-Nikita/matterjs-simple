@@ -202,7 +202,7 @@ svg { display: none }
     border-radius: 14px;
 } */
 
-.functional-btn-selected {
+.functional-btn-active {
     border-radius: 14px;
     /* background: transparent; */
     background: radial-gradient(72.66% 72.66% at 60.94% 27.34%, #1C254A 0%, #0F1426 100%)
@@ -220,7 +220,7 @@ svg { display: none }
     position: relative;
 }
 
-.functional-btn-selected label {
+.functional-btn-active label {
     font-family: "Roboto", sans-serif;
     font-size: 6px;
     font-weight: 400;
@@ -228,21 +228,21 @@ svg { display: none }
     text-align: center;
 }
 
-.functional-btn-selected .value {
+.functional-btn-active .value {
     font-size: 14px;
     font-weight: 700;
     line-height: 14px;
     text-align: center;
 }
 
-.functional-btn-selected::before, 
-.functional-btn-selected::after {
+.functional-btn-active::before, 
+.functional-btn-active::after {
   content: ' ';
   position: absolute;
   border-radius: 14px;
 }
 
-.functional-btn-selected::before {
+.functional-btn-active::before {
     top: 0;
     left: 0;
     bottom: 0;
@@ -256,7 +256,7 @@ svg { display: none }
     background: linear-gradient(94.65deg, #C100AD 7.01%, #4DC1C8 96.31%);
   }
   
-  .functional-btn-selected::after {
+  .functional-btn-active::after {
     top: 2px; 
     bottom: 2px;
     left: 2px;
