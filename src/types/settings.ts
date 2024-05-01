@@ -33,3 +33,9 @@ export enum CanvasMode {
   XL = 'xl',
   XXL = 'xxl',
 }
+
+export enum RiskMode {
+  LOW = 'low',
+  MEDIUM = 'medium',
+  HARD = 'hard',
+}
