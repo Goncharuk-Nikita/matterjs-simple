@@ -43,7 +43,7 @@
             <button class="brand-btn-secondary brand-btn-md uppercase">Play for money</button>
           </div>
           <div class="flex flex-row gap-2">
-            <button class="round-brand-btn round-btn-lg flex items-center justify-center">
+            <button id="rules-btn" class="round-brand-btn round-btn-lg flex items-center justify-center">
               <img src="assets/png/question-circle-solid.png" />
             </button>
 
@@ -61,6 +61,11 @@
   console.log(playBtn)
   playBtn.addEventListener('click', () => {
     window.location.href = 'mobile-game.html'
+  })
+  const rulesBtn = document.getElementById('rules-btn')
+  //console.log(homeBtn)
+  rulesBtn.addEventListener('click', () => {
+    window.location.href = 'game-rules.html'
   })
 </script>  
 </html>

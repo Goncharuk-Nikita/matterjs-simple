@@ -13,7 +13,7 @@ export class Peg extends Component {
         },
       },
     }
-    console.log(pegOptions)
+    //console.log(pegOptions)
     super(pegOptions)
     this._body.label = 'peg'
   }

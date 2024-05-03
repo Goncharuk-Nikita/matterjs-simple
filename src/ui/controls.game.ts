@@ -6,6 +6,8 @@ export class GameControls {
 
   private nodeLevels: NodeListOf<Element> | undefined
   private nodeRisks: NodeListOf<Element> | undefined
+  private nodeAuto: NodeListOf<Element> | undefined
+  private nodeSpeed: NodeListOf<Element> | undefined
 
   private _level: number
   private _playBtn: HTMLButtonElement
@@ -19,6 +21,14 @@ export class GameControls {
   private _riskBtnValue?: HTMLSpanElement
   private _riskBtnImg?: HTMLImageElement
 
+  private _autoDropdown: HTMLDivElement | undefined
+  private _autoDropdownBtn: HTMLButtonElement | undefined
+
+  private _speedDropdown: HTMLDivElement | undefined
+  private _speedDropdownBtn: HTMLButtonElement | undefined
+  private _speedBtnValue?: HTMLSpanElement | undefined
+  private _speed: number = 1
+
   constructor() {
     this._level = 8
     this.emitter = new EventEmitter()
@@ -30,6 +40,126 @@ export class GameControls {
 
     this.initLevelControls()
     this.initRiskControls()
+    this.initAuto()
+    this.initSpeed()
+  }
+
+  private initSpeed() {
+    this._speedDropdown = document.getElementById(
+      'speed-dropdown',
+    ) as HTMLDivElement
+
+    this._speedDropdownBtn = document.getElementById(
+      'speed-btn',
+    ) as HTMLButtonElement
+
+    this._speedBtnValue = document.querySelector(
+      '#speed-btn span',
+    ) as HTMLSpanElement
+
+    this._speedDropdownBtn.addEventListener('click', () => {
+      //this.dispatcher.emit('changeLevel', {})
+      this._speedDropdownBtn?.classList.remove('functional-btn')
+      this._speedDropdownBtn?.classList.add('functional-btn-active')
+      this._speedDropdown?.classList.add('flex')
+      this._speedDropdown?.classList.remove('hidden')
+    })
+
+    this.nodeSpeed = document.querySelectorAll('button[data-speed]')
+    this.nodeSpeed.forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        this.removeSpeedAccent()
+        btn.classList.remove('functional-btn')
+        btn.classList.add('functional-btn-active')
+        if (btn instanceof HTMLElement) {
+          this._speed = +(btn.dataset.speed || 1)
+          if (this._speedBtnValue) {
+            this._speedBtnValue.textContent = this._speed.toString()
+          }
+          this.dispatcher.emit('changeSpeed')
+        }
+
+        this._speedDropdownBtn?.classList.add('functional-btn')
+        this._speedDropdownBtn?.classList.remove('functional-btn-active')
+        this._speedDropdown?.classList.remove('flex')
+        this._speedDropdown?.classList.add('hidden')
+      })
+    })
+  }
+
+  private initAuto() {
+    //console.log(this.nodeAuto)
+    this._autoDropdown = document.getElementById(
+      'auto-dropdown',
+    ) as HTMLDivElement
+
+    this._autoDropdownBtn = document.getElementById(
+      'auto-btn',
+    ) as HTMLButtonElement
+
+    this._autoDropdownBtn.addEventListener('click', () => {
+      //this.dispatcher.emit('changeLevel', {})
+      this._autoDropdownBtn?.classList.remove('functional-btn')
+      this._autoDropdownBtn?.classList.add('functional-btn-active')
+      this._autoDropdown?.classList.add('flex')
+      this._autoDropdown?.classList.remove('hidden')
+    })
+
+    this.nodeAuto = document.querySelectorAll('button[data-auto]')
+    this.nodeAuto.forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        this.removeAutoAccent()
+        btn.classList.remove('functional-btn')
+        btn.classList.add('functional-btn-active')
+
+        while (this._autoDropdownBtn?.firstChild) {
+          this._autoDropdownBtn.removeChild(this._autoDropdownBtn.firstChild)
+        }
+
+        if (btn instanceof HTMLElement) {
+          //this._autoDropdownBtn.re
+
+          const autoLabel = document.createElement('label')
+          autoLabel.textContent = 'Mode'
+          this._autoDropdownBtn?.appendChild(autoLabel)
+
+          const auto = +(btn.dataset.auto || '0')
+
+          if (auto) {
+            const autoValue = document.createElement('div')
+            autoValue.textContent = auto.toString()
+            autoValue.classList.add('flex', 'flex-col', 'moves')
+            this._autoDropdownBtn?.appendChild(autoValue)
+            const autoValueSpan = document.createElement('span')
+            autoValueSpan.textContent = 'moves'
+            autoValue.appendChild(autoValueSpan)
+
+            const autoSpan = document.createElement('span')
+            autoSpan.textContent = 'auto'
+            autoSpan.classList.add('auto')
+            this._autoDropdownBtn?.appendChild(autoSpan)
+          } else {
+            const autoImg = document.createElement('img')
+            autoImg.src = 'assets/png/thumbs-up-solid.png'
+            this._autoDropdownBtn?.appendChild(autoImg)
+
+            const autoSpan = document.createElement('span')
+            autoSpan.textContent = 'Manual'
+            this._autoDropdownBtn?.appendChild(autoSpan)
+          }
+        }
+
+        this._autoDropdownBtn?.classList.add('functional-btn')
+        this._autoDropdownBtn?.classList.remove('functional-btn-active')
+        this._autoDropdown?.classList.remove('flex')
+        this._autoDropdown?.classList.add('hidden')
+      })
+      //
+    })
+
+    //autoBtn.addEventListener('click', () => {
+    //  this.dispatcher.emit('auto')
+    //})
   }
 
   private initLevelControls() {
@@ -149,6 +279,10 @@ export class GameControls {
     return this._level
   }
 
+  get speed(): number {
+    return this._speed
+  }
+
   get dispatcher() {
     return this.emitter
   }
@@ -161,6 +295,18 @@ export class GameControls {
   }
   private removeRiskAccent = () => {
     this.nodeRisks?.forEach((btn: Element) => {
+      btn.classList.remove('functional-btn-active')
+      btn.classList.add('functional-btn')
+    })
+  }
+  private removeAutoAccent = () => {
+    this.nodeAuto?.forEach((btn: Element) => {
+      btn.classList.remove('functional-btn-active')
+      btn.classList.add('functional-btn')
+    })
+  }
+  private removeSpeedAccent = () => {
+    this.nodeSpeed?.forEach((btn: Element) => {
       btn.classList.remove('functional-btn-active')
       btn.classList.add('functional-btn')
     })

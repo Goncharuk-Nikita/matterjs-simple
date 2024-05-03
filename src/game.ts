@@ -89,11 +89,19 @@ function rebuildField(newLevels: number, world: Matter.World) {
   oppeningPosition.y += 5
 }
 
+function changeSpeed() {
+  if (gameSettings) {
+    gameSettings.timeScale = controls?.speed || 1
+  }
+  engine.timing.timeScale = gameSettings?.timeScale || 1
+}
+
 async function run() {
   //console.log('running')
   controls = new GameControls()
   controls.dispatcher.addListener('play', newPlay)
   controls.dispatcher.addListener('changeLevel', changeLevel)
+  controls.dispatcher.addListener('changeSpeed', changeSpeed)
 
   store = new Store()
   await store.initSettings('./game.config.json')

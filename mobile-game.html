@@ -84,7 +84,7 @@
             Play
           </span>
         </button>
-        <button class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
+        <button id="auto-btn" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
           <label>Mode</label>
           <img src="assets/png/thumbs-up-solid.png" />
           Manual
@@ -106,7 +106,7 @@
         <button class="functional-btn functional-btn-sm flex flex-col justify-center items-center gap-2">
           <img src="assets/png/plus-solid.png" />
         </button>
-        <button class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+        <button id="speed-btn" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
           speed
           <span class="value">1</span>
         </button>
@@ -126,7 +126,7 @@
             <button class="brand-btn-secondary brand-btn-md uppercase">Play for money</button>
           </div>
           <div class="flex flex-row gap-2">
-            <button class="round-brand-btn round-btn-lg flex items-center justify-center">
+            <button id="rules-btn" class="round-brand-btn round-btn-lg flex items-center justify-center">
               <img src="assets/png/question-circle-solid.png" />
             </button>
 
@@ -189,6 +189,62 @@
         </div>
       </div>
 
+      <div id="auto-dropdown" class="absolute bottom-52 right-0 px-[1.45rem] hidden">
+        <div class="dropdown-wrapper flex flex-col items-center py-3">
+          <button data-auto="50" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
+            <label>Mode</label>
+            <div class="flex flex-col moves">
+              50
+              <span>moves</span>
+            </div>
+            <span class="auto">Auto</span>
+          </button>
+          <button data-auto="25" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
+            <label>Mode</label>
+            <div class="flex flex-col moves">
+              25
+              <span>moves</span>
+            </div>
+            <span class="auto">Auto</span>
+          </button>
+          <button data-auto="10" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
+            <label>Mode</label>
+            <div class="flex flex-col moves">
+              10
+              <span>moves</span>
+            </div>
+            <span class="auto">Auto</span>
+          </button>
+          <button data-auto="5" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
+            <label>Mode</label>
+            <div class="flex flex-col moves">
+              5
+              <span>moves</span>
+            </div>
+            <span class="auto">Auto</span>
+          </button>
+          <button  data-auto="0" class="functional-btn-active functional-btn-lg flex flex-col justify-center items-center gap-2">
+            <label>Mode</label>
+            <img src="assets/png/thumbs-up-solid.png" />
+            Manual
+          </button>
+        </div>
+      </div>
+
+      <div id="speed-dropdown" class="absolute bottom-[8.6rem] right-0 px-[1.45rem] hidden">
+        <div class="dropdown-wrapper flex flex-col items-center py-3">
+          <button data-speed="3" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+            <span class="value">3</span>
+          </button>
+          <button data-speed="2" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+            <span class="value">2</span>
+          </button>
+          <button data-speed="1" class="functional-btn-active functional-btn-md flex flex-col justify-center items-center gap-2">
+            <span class="value">1</span>
+          </button>
+        </div>
+      </div>
+
 </div>
 </body>
 <script>
@@ -196,6 +252,12 @@
   //console.log(homeBtn)
   homeBtn.addEventListener('click', () => {
     window.location.href = 'mobile-intro.html'
+  })
+
+  const rulesBtn = document.getElementById('rules-btn')
+  //console.log(homeBtn)
+  rulesBtn.addEventListener('click', () => {
+    window.location.href = 'game-rules.html'
   })
 
   const canvas = document.querySelector('canvas')
