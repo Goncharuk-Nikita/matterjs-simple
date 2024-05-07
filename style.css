@@ -337,4 +337,100 @@ svg { display: none }
     text-align: left;
 }
 
+.game-settings h3 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    font-weight: 900;
+    line-height: 20.4px;
+    text-align: center;
+}
 
+.game-settings h5 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 14.32px;
+    text-align: center;
+}
+
+.devider {
+    border: 1px solid #FFFFFF26;
+}
+
+
+.language-btn-active {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 14px;
+
+    background: linear-gradient(94.65deg, #C100AD 7.01%, #4DC1C8 96.31%);
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 15.3px;
+    text-align: center;
+
+    color: #FFF;
+}
+
+.language-btn {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 14px;
+    
+    background: linear-gradient(94.65deg, #252525 7.01%, #383838 95.78%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    font-weight: 900;
+    line-height: 15.3px;
+    text-align: center;
+
+    color: #FFF;
+}
+
+.language-btn-active:active:hover,
+.language-btn-active:active:focus {
+    animation: button-pop 3s ease-out;
+}
+
+.language-btn:active:hover,
+.language-btn:active:focus {
+    animation: button-pop 3s ease-out;
+}
+
+.effects-btn-active {
+    width: 24px;
+    height: 38px;
+    border-radius: 8px;
+
+    background: linear-gradient(180deg, #FFE458 0%, #F4BB26 100%);
+    border: 1px solid #FFFFFF0D;
+}
+
+.effects-btn {
+    width: 24px;
+    height: 38px;
+    border-radius: 8px;
+    background: #FFFFFF26;
+    border: 1px solid #FFFFFF0D;
+}
+
+.effects-btn-active:active:hover,
+.effects-btn-active:active:focus {
+    animation: button-pop 3s ease-out;
+}
+
+.effects-btn:active:hover,
+.effects-btn:active:focus {
+    animation: button-pop 3s ease-out;
+}
+
+.interface-btn:active:hover,
+.interface-btn:active:focus {
+    animation: button-pop 3s ease-out;
+}

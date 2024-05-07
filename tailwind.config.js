@@ -6,6 +6,7 @@ export default {
     './mobile-intro.html', 
     './mobile-game.html', 
     './game-rules.html',
+    './game-settings.html',
     './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {},

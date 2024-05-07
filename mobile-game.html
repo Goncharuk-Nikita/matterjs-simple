@@ -130,7 +130,7 @@
               <img src="assets/png/question-circle-solid.png" />
             </button>
 
-            <button class="round-brand-btn round-btn-lg flex items-center justify-center">
+            <button id="settings-btn" class="round-brand-btn round-btn-lg flex items-center justify-center">
               <img src="assets/png/gear-solid.png" />
             </button>
           </div>
@@ -258,6 +258,12 @@
   //console.log(homeBtn)
   rulesBtn.addEventListener('click', () => {
     window.location.href = 'game-rules.html'
+  })
+
+  const settingsBtn = document.getElementById('settings-btn')
+  //console.log(homeBtn)
+  settingsBtn.addEventListener('click', () => {
+    window.location.href = 'game-settings.html'
   })
 
   const canvas = document.querySelector('canvas')

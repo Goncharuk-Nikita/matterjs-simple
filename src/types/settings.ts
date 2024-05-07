@@ -39,3 +39,13 @@ export enum RiskMode {
   MEDIUM = 'medium',
   HARD = 'hard',
 }
+
+export enum Language {
+  RU = 'ru',
+  EN = 'en',
+}
+
+export enum InterfaceSide {
+  LEFT = 'left',
+  RIGHT = 'right',
+}
