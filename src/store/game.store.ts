@@ -1,4 +1,4 @@
-import { ISettings, CanvasMode } from '../types/settings'
+import { ISettings, CanvasMode, Language } from '../types/settings'
 
 //declare let Map: MapConstructor
 
@@ -31,6 +31,11 @@ export class Store {
       // Handle any errors
       console.error('Error:', error)
     }
+  }
+
+  get language() {
+    const tag = localStorage.getItem('language')
+    return tag === 'ru' ? Language.RU : Language.EN
   }
 }
 

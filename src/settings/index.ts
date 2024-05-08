@@ -19,6 +19,7 @@ export class Settings implements ISettings {
   forceMagnitude = 0.3
   velocity = 0.003
   angularVelocity = 0.1
+  oppeningScale = 1
 
   constructor(settings: ISettings) {
     Object.assign(this, settings)

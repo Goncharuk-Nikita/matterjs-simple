@@ -15,17 +15,17 @@
       </div>  -->
       
       <div class="absolute flex flex-col pt-[84px] px-8 w-full items-center game-settings">
-        <h3 class="uppercase">Settings</h3>
+        <h3 id="settings-heading" class="uppercase">Settings</h3>
         <div class="devider w-full mt-4"></div>
         <div class="w-full text-center pt-3">
-          <h5>Language</h5>
+          <h5 id="language-heading">Language</h5>
           <div class="flex flex-row justify-center gap-4 pt-4">
-            <button id="ru-btn" class="language-btn-active">RU</button>
-            <button id="en-btn" class="language-btn">ENG</button>
+            <button id="ru-btn" class="language-btn">RU</button>
+            <button id="en-btn" class="language-btn-active">ENG</button>
           </div>
         </div>
         <div class="w-full text-center py-3">
-          <h5>Sound effects</h5>
+          <h5 id="sound-effect-heading">Sound effects</h5>
           <div class="flex flex-row justify-start gap-1 pt-4 w-full">
             <span class="pt-2 mr-1">
               <img src="assets/png/Volume-up.png" />
@@ -58,7 +58,7 @@
           </div>  
         </div>
         <div class="w-full text-center py-2">
-          <h5>Interface</h5>
+          <h5 id="interface-heading">Interface</h5>
           <div class="flex flex-row justify-center gap-10 pt-3 w-full">
             <button id="left-interface-btn" class="interface-btn"><img src="assets/png/LeftHand.png" />
             </button>
@@ -80,7 +80,7 @@
 
       <div class="absolute w-full bottom-[76px] px-10">
         <button class="balance flex flex-row items-center justify-start gap-2">
-          <label>Balance</label>
+          <label id="balance-label">Balance</label>
           100000 FUN
         </button>
       </div>
@@ -88,7 +88,7 @@
       <div class="absolute bottom-8 w-full">
         <div class="flex justify-between px-8">
           <div>
-            <button class="brand-btn-secondary brand-btn-md uppercase">Play for money</button>
+            <button id="play-for-money-btn" class="brand-btn-secondary brand-btn-md uppercase">Play for money</button>
           </div>
           <div class="flex flex-row gap-2">
             <button id="rules-btn" class="round-brand-btn round-btn-lg flex items-center justify-center">

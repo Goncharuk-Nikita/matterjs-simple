@@ -75,19 +75,17 @@
 
       <div class="absolute w-full bottom-36 flex justify-between px-8">
         <button id="risk-btn" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
-          <label>Risk level</label>
+          <label class="risk-label">Risk level</label>
           <img src="assets/png/flame-solid-low.png" />
           <span>Low</span>
         </button>
         <button id="play-btn" class="btn brand-btn brand-btn-lg">
-          <span class="brand-btn-gradient uppercase">
-            Play
-          </span>
+          <span class="brand-btn-gradient uppercase">Play</span>
         </button>
         <button id="auto-btn" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
           <label>Mode</label>
           <img src="assets/png/thumbs-up-solid.png" />
-          Manual
+          <span>Manual</span>
         </button>
       </div>
 
@@ -115,7 +113,7 @@
 
       <div class="absolute w-full bottom-[76px] px-10">
         <button class="balance flex flex-row items-center justify-start gap-2">
-          <label>Balance</label>
+          <label id="balance-label">Balance</label>
           100000 FUN
         </button>
       </div>
@@ -123,7 +121,7 @@
       <div class="absolute bottom-8 w-full">
         <div class="flex justify-between px-8">
           <div>
-            <button class="brand-btn-secondary brand-btn-md uppercase">Play for money</button>
+            <button id="play-for-money-btn" class="brand-btn-secondary brand-btn-md uppercase">Play for money</button>
           </div>
           <div class="flex flex-row gap-2">
             <button id="rules-btn" class="round-brand-btn round-btn-lg flex items-center justify-center">
@@ -172,26 +170,26 @@
       <div id="risk-dropdown" class="absolute bottom-52 w-full justify-start px-[1.45rem] hidden">
         <div class="dropdown-wrapper flex flex-col items-center py-3">
           <button data-risk="low" class="functional-btn-active functional-btn-lg flex flex-col justify-center items-center gap-2">
-            <label>Risk level</label>
+            <label class="risk-label">Risk level</label>
             <img src="assets/png/flame-solid-low.png" />
-            <span>Low</span>
+            <span id="risk-low-span">Low</span>
           </button>
           <button data-risk="medium" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
-            <label>Risk level</label>
+            <label class="risk-label">Risk level</label>
             <img src="assets/png/flame-solid-medium.png" />
-            <span>Medium</span>
+            <span id="risk-medium-span">Medium</span>
           </button>
-          <button data-risk="hard" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
-            <label>Risk level</label>
+          <button data-risk="high" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
+            <label class="risk-label">Risk level</label>
             <img src="assets/png/flame-solid-hard.png" />
-            <span>Hard</span>
+            <span id="risk-high-span">High</span>
           </button>
         </div>
       </div>
 
       <div id="auto-dropdown" class="absolute bottom-52 right-0 px-[1.45rem] hidden">
         <div class="dropdown-wrapper flex flex-col items-center py-3">
-          <button data-auto="50" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
+          <button data-auto="50" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2 auto-btn">
             <label>Mode</label>
             <div class="flex flex-col moves">
               50
@@ -199,7 +197,7 @@
             </div>
             <span class="auto">Auto</span>
           </button>
-          <button data-auto="25" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
+          <button data-auto="25" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2 auto-btn">
             <label>Mode</label>
             <div class="flex flex-col moves">
               25
@@ -207,7 +205,7 @@
             </div>
             <span class="auto">Auto</span>
           </button>
-          <button data-auto="10" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
+          <button data-auto="10" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2 auto-btn">
             <label>Mode</label>
             <div class="flex flex-col moves">
               10
@@ -215,7 +213,7 @@
             </div>
             <span class="auto">Auto</span>
           </button>
-          <button data-auto="5" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
+          <button data-auto="5" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2 auto-btn">
             <label>Mode</label>
             <div class="flex flex-col moves">
               5
@@ -223,10 +221,10 @@
             </div>
             <span class="auto">Auto</span>
           </button>
-          <button  data-auto="0" class="functional-btn-active functional-btn-lg flex flex-col justify-center items-center gap-2">
+          <button data-auto="0" class="functional-btn-active functional-btn-lg flex flex-col justify-center items-center gap-2 auto-btn">
             <label>Mode</label>
             <img src="assets/png/thumbs-up-solid.png" />
-            Manual
+            <span id="auto-btn-span">Manual</span>
           </button>
         </div>
       </div>

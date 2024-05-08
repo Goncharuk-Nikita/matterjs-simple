@@ -20,6 +20,7 @@ import {
 } from './process/play'
 import { GameControls } from './ui/controls.game'
 import { Store } from './store/game.store'
+import { GameLocale } from './locale/locale.game'
 
 let engine: Matter.Engine
 let world: Matter.World
@@ -36,6 +37,8 @@ let oppeningPosition: Position
 
 let controls: GameControls
 let store: Store
+
+let locale: GameLocale
 
 function changeLevel() {
   //inputs.setSettings(store.getSettings(controls.level))
@@ -107,37 +110,9 @@ async function run() {
   await store.initSettings('./game.config.json')
   gameSettings = store.getSettings(CanvasMode.XS, controls.level)
 
-  // gameSettings = new Settings({
-  //   timeScale: 1,
-  //   gravityScale: 0.001,
-  //   gravityX: 0,
-  //   gravityY: 1,
-  //   gap: 19,
-  //   spacing: 43,
-  //   pegRadius: 3,
-  //   pegFriction: 0.0,
-  //   pegRestitution: 0.3,
-  //   ballRadius: 10,
-  //   ballFriction: 0.0,
-  //   ballFrictionAir: 0.01,
-  //   ballSlop: 0.0,
-  //   ballRestitution: 0.5,
-  //   ballDensity: 0.03,
-  //   forceMagnitude: 0.04,
-  //   velocity: 0.03,
-  //   angularVelocity: 0.03,
-  // })
-
   engine = Engine.create()
   world = engine.world
   element = document.getElementById('canvasBody') as HTMLElement
-
-  //inputs = new Inputs()
-  //inputs.dispatcher.addListener('rebuild', rebuild)
-  //inputs.dispatcher.addListener('world', setupWorld)
-  //inputs.dispatcher.addListener('engine', setupEngine)
-
-  //store = createStore()
 
   renderProxy = new RenderProxy({ engine, element })
   renderProxy.run()
@@ -145,42 +120,19 @@ async function run() {
   setupRender()
   setupWorld()
 
-  //controls = new Controls()
-  //controls.dispatcher.addListener('changeLevel', changeLevel)
-  //controls.dispatcher.addListener('play', newPlay)
-  //controls.dispatcher.addListener('save', saveSettings)
-  //controls.dispatcher.addListener('export', exportSettings)
-
-  //inputs.setSettings(store.getSettings(controls.level))
-
   play = new Play(world)
+
+  locale = new GameLocale()
+  locale.setLanguage(store.language)
 
   window.addEventListener('resize', rebuild)
   window.addEventListener('load', rebuild)
-
-  //const playBtn = document.getElementById('playBtn')
-  //playBtn?.addEventListener('click', newPlay)
 
   window.addEventListener('keydown', async (e) => {
     if (e.code === 'Space') {
       newPlay()
     }
   })
-
-  /*
-  levelBtns = document.querySelectorAll('button[data-level]')
-  levelBtns.forEach((btn) => {
-    btn.addEventListener('click', async () => {
-      removeAccent()
-      btn.classList.remove('functional-btn')
-      btn.classList.add('functional-btn-selected')
-      //if (btn instanceof HTMLElement) {
-      //this._level = +(btn.dataset.level || 8)
-      //this.dispatcher.emit('changeLevel', {})
-      //}
-    })
-  })
-  */
 
   Matter.Events.on(engine, 'collisionStart', (event) => {
     //console.log(event)

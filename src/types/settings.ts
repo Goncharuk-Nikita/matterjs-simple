@@ -37,7 +37,7 @@ export enum CanvasMode {
 export enum RiskMode {
   LOW = 'low',
   MEDIUM = 'medium',
-  HARD = 'hard',
+  HIGH = 'high',
 }
 
 export enum Language {

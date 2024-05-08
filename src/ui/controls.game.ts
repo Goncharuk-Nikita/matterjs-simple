@@ -1,5 +1,6 @@
 import { EventEmitter } from 'events'
-import { RiskMode } from '../types/settings'
+import { Language, RiskMode } from '../types/settings'
+import { ControlsStore } from '../store/controls.store'
 
 export class GameControls {
   private emitter: EventEmitter
@@ -29,7 +30,11 @@ export class GameControls {
   private _speedBtnValue?: HTMLSpanElement | undefined
   private _speed: number = 1
 
+  private store: ControlsStore
+
   constructor() {
+    this.store = new ControlsStore()
+
     this._level = 8
     this.emitter = new EventEmitter()
 
@@ -120,7 +125,8 @@ export class GameControls {
           //this._autoDropdownBtn.re
 
           const autoLabel = document.createElement('label')
-          autoLabel.textContent = 'Mode'
+          autoLabel.textContent =
+            this.store.language === Language.RU ? 'Режим' : 'Mode'
           this._autoDropdownBtn?.appendChild(autoLabel)
 
           const auto = +(btn.dataset.auto || '0')
@@ -131,11 +137,13 @@ export class GameControls {
             autoValue.classList.add('flex', 'flex-col', 'moves')
             this._autoDropdownBtn?.appendChild(autoValue)
             const autoValueSpan = document.createElement('span')
-            autoValueSpan.textContent = 'moves'
+            autoValueSpan.textContent =
+              this.store.language === Language.RU ? 'Броски' : 'Moves'
             autoValue.appendChild(autoValueSpan)
 
             const autoSpan = document.createElement('span')
-            autoSpan.textContent = 'auto'
+            autoSpan.textContent =
+              this.store.language === Language.RU ? 'Авто' : 'Auto'
             autoSpan.classList.add('auto')
             this._autoDropdownBtn?.appendChild(autoSpan)
           } else {
@@ -144,7 +152,8 @@ export class GameControls {
             this._autoDropdownBtn?.appendChild(autoImg)
 
             const autoSpan = document.createElement('span')
-            autoSpan.textContent = 'Manual'
+            autoSpan.textContent =
+              this.store.language === Language.RU ? 'В ручную' : 'Manual'
             this._autoDropdownBtn?.appendChild(autoSpan)
           }
         }
@@ -244,15 +253,15 @@ export class GameControls {
                 this._riskBtnImg.src = 'assets/png/flame-solid-medium.png'
               }
               break
-            case 'hard':
-              this._riskMode = RiskMode.HARD
+            case 'high':
+              this._riskMode = RiskMode.HIGH
               if (this._riskBtnImg) {
                 this._riskBtnImg.src = 'assets/png/flame-solid-hard.png'
               }
               break
           }
           if (this._riskBtnValue) {
-            this._riskBtnValue.textContent = risk?.toUpperCase() || 'LOW'
+            this._riskBtnValue.textContent = this.getRiskLabel(risk || 'low')
           }
           this.dispatcher.emit('changeRisk', { risk: this._riskMode })
         }
@@ -273,6 +282,20 @@ export class GameControls {
     this._riskBtnImg = document.querySelector(
       '#risk-btn img',
     ) as HTMLImageElement
+  }
+
+  private getRiskLabel(risk: string): string {
+    switch (risk) {
+      case 'low':
+        return this.store.language === Language.RU ? 'Низкий' : 'Low'
+      case 'medium':
+        return this.store.language === Language.RU ? 'Средний' : 'Medium'
+      case 'high':
+        return this.store.language === Language.RU ? 'Высокий' : 'High'
+      default:
+        return this.store.language === Language.RU ? 'Низкий' : 'Low'
+    }
+    return ''
   }
 
   get level(): number {
