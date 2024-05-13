@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="src/game.ts" defer></script>
+
+</head>
+<body class="w-screen h-screen flex items-center justify-center">
+    <div class="w-[375px] h-[667px] relative bg-gradient">
+      <img src="assets/png/Group 176.png" class="absolute top-0 right-0" />
+      <img src="assets/png/Group 175.png" class="absolute top-0 left-0" />
+      <!-- line 8-->
+      <!-- <div class="absolute opacity-10">
+      </div> -->
+      <!-- line 9 -->
+      <!-- <div class="absolute opacity-10">
+      </div> -->
+      <!-- line 10 -->
+      <!-- <div class="absolute opacity-10">
+      </div> -->
+      <!-- line 11 -->
+      <!-- <div class="absolute opacity-10">
+      </div>  -->
+      <!-- line 12 -->
+      <!-- <div class="absolute opacity-10">
+      </div>   -->
+      <!-- line 13 -->
+      <!-- <div class="absolute opacity-10">
+      </div> -->
+      <!-- line 14 -->
+      <!-- <div class="absolute opacity-10">
+      </div> -->
+      <!-- line 15 -->
+      <!-- <div class="absolute opacity-10">
+      </div> -->
+      <!-- line 16 -->
+      <!-- <div class="absolute opacity-10">
+      </div> -->
+
+      <div class="absolute top-8 w-full flex justify-center">
+        <img src="assets/png/LogotypeSmall.png" />
+      </div>
+
+      <div class="absolute top-8 right-8">
+        <button id="homeBtn" class="round-brand-btn round-btn-lg flex items-center justify-center">
+            <img src="assets/png/house-solid.png" />
+        </button>
+      </div>
+
+      <div class="absolute bottom-[277px] w-full h-[312px]">
+        <div id="canvasBody" class="w-full h-full"></div> 
+      </div>
+
+      <div class="absolute bottom-0">
+        <img src="assets/png/footer-bg.png" />
+      </div>
+
+      <div class="absolute bottom-[260px] w-full win">
+        <img class="absolute left-7" src="assets/png/win-bg-2.png" />
+        <img class="absolute left-7" src="assets/png/win-bg.png" />
+        <div class="absolute w-full win">100000 FUN</div>
+      </div>
+
+      <div class="absolute w-full bottom-36 flex justify-between px-8">
+        <button id="risk-btn" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
+          <label class="risk-label">Risk level</label>
+          <img src="assets/png/flame-solid-low.png" />
+          <span>Low</span>
+        </button>
+        <button id="play-btn" class="btn brand-btn brand-btn-lg">
+          <span class="brand-btn-gradient uppercase">Play</span>
+        </button>
+        <button id="auto-btn" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
+          <label>Mode</label>
+          <img src="assets/png/thumbs-up-solid.png" />
+          <span>Manual</span>
+        </button>
+      </div>
+
+      <div class="absolute w-full bottom-[98px] flex justify-center items-center px-4 gap-2">
+        <button id="level-btn" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+          lines
+          <span class="value">8</span>
+        </button>
+        <button class="functional-btn functional-btn-sm flex flex-col justify-center items-center gap-2">
+          <img src="assets/png/minus-solid.png" />
+        </button>
+        <div class="current-balance flex flex-col items-center justify-center gap-1">
+          <label>Bid</label>
+          100000 FUN 
+        </div>
+        <button class="functional-btn functional-btn-sm flex flex-col justify-center items-center gap-2">
+          <img src="assets/png/plus-solid.png" />
+        </button>
+        <button id="speed-btn" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+          speed
+          <span class="value">1</span>
+        </button>
+      </div>
+
+
+      <div class="absolute w-full bottom-[76px] px-10">
+        <button class="balance flex flex-row items-center justify-start gap-2">
+          <label id="balance-label">Balance</label>
+          100000 FUN
+        </button>
+      </div>
+
+      <div class="absolute bottom-8 w-full">
+        <div class="flex justify-between px-8">
+          <div>
+            <button id="play-for-money-btn" class="brand-btn-secondary brand-btn-md uppercase">Play for money</button>
+          </div>
+          <div class="flex flex-row gap-2">
+            <button id="rules-btn" class="round-brand-btn round-btn-lg flex items-center justify-center">
+              <img src="assets/png/question-circle-solid.png" />
+            </button>
+
+            <button id="settings-btn" class="round-brand-btn round-btn-lg flex items-center justify-center">
+              <img src="assets/png/gear-solid.png" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="levels-dropdown" class="absolute bottom-36 w-full justify-start px-[1.45rem] hidden">
+        <div class="dropdown-wrapper flex flex-col items-center py-3">
+          <button data-level="16" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+            <span class="value">16</span>
+          </button>
+          <button data-level="15" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+            <span class="value">15</span>
+          </button>
+          <button data-level="14" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+            <span class="value">14</span>
+          </button>
+          <button data-level="13" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+            <span class="value">13</span>
+          </button>
+          <button data-level="12" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+            <span class="value">12</span>
+          </button>
+          <button data-level="11" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+            <span class="value">11</span>
+          </button>
+          <button data-level="10" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+            <span class="value">10</span>
+          </button>
+          <button data-level="9" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+            <span class="value">9</span>
+          </button>
+          <button data-level="8" class="functional-btn-md functional-btn-active flex flex-col justify-center items-center gap-2">
+            <span class="value">8</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="risk-dropdown" class="absolute bottom-52 w-full justify-start px-[1.45rem] hidden">
+        <div class="dropdown-wrapper flex flex-col items-center py-3">
+          <button data-risk="low" class="functional-btn-active functional-btn-lg flex flex-col justify-center items-center gap-2">
+            <label class="risk-label">Risk level</label>
+            <img src="assets/png/flame-solid-low.png" />
+            <span id="risk-low-span">Low</span>
+          </button>
+          <button data-risk="medium" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
+            <label class="risk-label">Risk level</label>
+            <img src="assets/png/flame-solid-medium.png" />
+            <span id="risk-medium-span">Medium</span>
+          </button>
+          <button data-risk="high" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
+            <label class="risk-label">Risk level</label>
+            <img src="assets/png/flame-solid-hard.png" />
+            <span id="risk-high-span">High</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="auto-dropdown" class="absolute bottom-52 right-0 px-[1.45rem] hidden">
+        <div class="dropdown-wrapper flex flex-col items-center py-3">
+          <button data-auto="50" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2 auto-btn">
+            <label>Mode</label>
+            <div class="flex flex-col moves">
+              50
+              <span>moves</span>
+            </div>
+            <span class="auto">Auto</span>
+          </button>
+          <button data-auto="25" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2 auto-btn">
+            <label>Mode</label>
+            <div class="flex flex-col moves">
+              25
+              <span>moves</span>
+            </div>
+            <span class="auto">Auto</span>
+          </button>
+          <button data-auto="10" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2 auto-btn">
+            <label>Mode</label>
+            <div class="flex flex-col moves">
+              10
+              <span>moves</span>
+            </div>
+            <span class="auto">Auto</span>
+          </button>
+          <button data-auto="5" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2 auto-btn">
+            <label>Mode</label>
+            <div class="flex flex-col moves">
+              5
+              <span>moves</span>
+            </div>
+            <span class="auto">Auto</span>
+          </button>
+          <button data-auto="0" class="functional-btn-active functional-btn-lg flex flex-col justify-center items-center gap-2 auto-btn">
+            <label>Mode</label>
+            <img src="assets/png/thumbs-up-solid.png" />
+            <span id="auto-btn-span">Manual</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="speed-dropdown" class="absolute bottom-[8.6rem] right-0 px-[1.45rem] hidden">
+        <div class="dropdown-wrapper flex flex-col items-center py-3">
+          <button data-speed="3" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+            <span class="value">3</span>
+          </button>
+          <button data-speed="2" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+            <span class="value">2</span>
+          </button>
+          <button data-speed="1" class="functional-btn-active functional-btn-md flex flex-col justify-center items-center gap-2">
+            <span class="value">1</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="absolute top-8">
+        <button class="back-btn" id="backBtn">
+            <img src="assets/png/ResultButton.png" alt="">
+        </button>
+     </div>
+
+</div>
+</body>
+<script>
+  const homeBtn = document.getElementById('homeBtn')
+  //console.log(homeBtn)
+  homeBtn.addEventListener('click', () => {
+    window.location.href = 'mobile-intro.html'
+  })
+
+  const rulesBtn = document.getElementById('rules-btn')
+  //console.log(homeBtn)
+  rulesBtn.addEventListener('click', () => {
+    window.location.href = 'game-rules.html'
+  })
+
+  const settingsBtn = document.getElementById('settings-btn')
+  //console.log(homeBtn)
+  settingsBtn.addEventListener('click', () => {
+    window.location.href = 'game-settings.html'
+  })
+
+  const backBtn = document.getElementById('backBtn')
+  //console.log(homeBtn)
+  backBtn.addEventListener('click', () => {
+    window.location.href = 'results.html'
+  })
+
+  const canvas = document.querySelector('canvas')
+</script>
+</html>

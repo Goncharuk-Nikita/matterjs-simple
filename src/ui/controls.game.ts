@@ -165,10 +165,6 @@ export class GameControls {
       })
       //
     })
-
-    //autoBtn.addEventListener('click', () => {
-    //  this.dispatcher.emit('auto')
-    //})
   }
 
   private initLevelControls() {

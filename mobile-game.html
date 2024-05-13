@@ -243,6 +243,12 @@
         </div>
       </div>
 
+      <div class="absolute top-8">
+        <button class="back-btn" id="backBtn">
+            <img src="assets/png/ResultButton.png" alt="">
+        </button>
+     </div>
+
 </div>
 </body>
 <script>
@@ -262,6 +268,12 @@
   //console.log(homeBtn)
   settingsBtn.addEventListener('click', () => {
     window.location.href = 'game-settings.html'
+  })
+
+  const backBtn = document.getElementById('backBtn')
+  //console.log(homeBtn)
+  backBtn.addEventListener('click', () => {
+    window.location.href = 'results.html'
   })
 
   const canvas = document.querySelector('canvas')

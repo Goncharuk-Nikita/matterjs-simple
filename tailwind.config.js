@@ -4,9 +4,11 @@ export default {
     './index.html', 
     './tech-demo.html', 
     './mobile-intro.html', 
-    './mobile-game.html', 
+    './mobile-game.html',
+    './desktop-game.html', 
     './game-rules.html',
     './game-settings.html',
+    './results.html',
     './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {},

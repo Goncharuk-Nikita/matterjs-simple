@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="src/results.ts" defer></script>
+</head>
+<body class="w-screen h-screen flex items-center justify-center">
+    <div class="w-[375px] h-[667px] relative bg-gradient">
+
+        <div class="absolute opacity-10">
+            <img src="assets/png/layouts/Screen-Score.png" alt="">
+        </div>
+
+        <div class="absolute top-36 w-full px-8 flex flex-col gap-1">
+            <div class="flex flex-row gap-2">
+                <label class="result-title w-[62px]" id="time-label">Time</label>
+                <label class="result-title w-[70px]" id="bid-label">Bid</label>
+                <label class="result-title w-[70px]" id="win-label">Win</label>
+                <label class="result-title w-[70px]" id="score-label">Score</label>
+            </div>
+            <div class="flex flex-row gap-2">
+                <div class="result-item w-[62px]">21:33:00</div>
+                <div class="result-item w-[80px]">1000.00 FAN</div>
+                <div class="result-item w-[70px]">0.2 x</div>
+                <div class="result-item-win w-[80px]">+1200.00 FAN</div>
+            </div>
+            <div class="flex flex-row gap-2">
+                <div class="result-item w-[62px]">21:33:00</div>
+                <div class="result-item w-[80px]">1000.00 FAN</div>
+                <div class="result-item w-[70px]">0.2 x</div>
+                <div class="result-item-win w-[80px]">+1200.00 FAN</div>
+            </div>
+            <div class="flex flex-row gap-2">
+                <div class="result-item w-[62px]">21:33:00</div>
+                <div class="result-item w-[80px]">1000.00 FAN</div>
+                <div class="result-item w-[70px]">0.2 x</div>
+                <div class="result-item w-[80px]">+1200.00 FAN</div>
+            </div>
+            <div class="flex flex-row gap-2">
+                <div class="result-item w-[62px]">21:33:00</div>
+                <div class="result-item w-[80px]">1000.00 FAN</div>
+                <div class="result-item w-[70px]">0.2 x</div>
+                <div class="result-item w-[80px]">+1200.00 FAN</div>
+            </div>
+            <div class="flex flex-row gap-2">
+                <div class="result-item w-[62px]">21:33:00</div>
+                <div class="result-item w-[80px]">1000.00 FAN</div>
+                <div class="result-item w-[70px]">0.2 x</div>
+                <div class="result-item w-[80px]">+1200.00 FAN</div>
+            </div>
+            <div class="flex flex-row gap-2">
+                <div class="result-item w-[62px]">21:33:00</div>
+                <div class="result-item w-[80px]">1000.00 FAN</div>
+                <div class="result-item w-[70px]">0.2 x</div>
+                <div class="result-item w-[80px]">+1200.00 FAN</div>
+            </div>
+            <div class="flex flex-row gap-2">
+                <div class="result-item w-[62px]">21:33:00</div>
+                <div class="result-item w-[80px]">1000.00 FAN</div>
+                <div class="result-item w-[70px]">0.2 x</div>
+                <div class="result-item-win w-[80px]">+1200.00 FAN</div>
+            </div>
+            <div class="flex flex-row gap-2">
+                <div class="result-item w-[62px]">21:33:00</div>
+                <div class="result-item w-[80px]">1000.00 FAN</div>
+                <div class="result-item w-[70px]">0.2 x</div>
+                <div class="result-item w-[80px]">+1200.00 FAN</div>
+            </div>
+            <div class="flex flex-row gap-2">
+                <div class="result-item w-[62px]">21:33:00</div>
+                <div class="result-item w-[80px]">1000.00 FAN</div>
+                <div class="result-item w-[70px]">0.2 x</div>
+                <div class="result-item w-[80px]">+1200.00 FAN</div>
+            </div>
+            <div class="flex flex-row gap-2">
+                <div class="result-item w-[62px]">21:33:00</div>
+                <div class="result-item w-[80px]">1000.00 FAN</div>
+                <div class="result-item w-[70px]">0.2 x</div>
+                <div class="result-item-win w-[80px]">+1200.00 FAN</div>
+            </div>
+            <div class="flex flex-row gap-2">
+                <div class="result-item w-[62px]">21:33:00</div>
+                <div class="result-item w-[80px]">1000.00 FAN</div>
+                <div class="result-item w-[70px]">0.2 x</div>
+                <div class="result-item-win w-[80px]">+1200.00 FAN</div>
+            </div>
+            <div class="flex flex-row gap-2">
+                <div class="result-item w-[62px]">21:33:00</div>
+                <div class="result-item w-[80px]">1000.00 FAN</div>
+                <div class="result-item w-[70px]">0.2 x</div>
+                <div class="result-item w-[80px]">+1200.00 FAN</div>
+            </div>
+        </div>
+
+      
+      <div class="absolute flex flex-col pt-[84px] px-8 w-full items-center game-settings">
+        <h3 id="settings-heading" class="uppercase">Settings</h3>
+        <div class="devider w-full mt-4"></div>
+    
+      </div>
+
+      <div class="absolute top-8 w-full flex justify-center">
+        <img src="assets/png/LogotypeSmall.png" />
+      </div>
+
+      <div class="absolute top-8 right-8">
+        <button id="homeBtn" class="round-brand-btn round-btn-lg flex items-center justify-center">
+            <img src="assets/png/house-solid.png" />
+        </button>
+      </div>
+
+      <div class="absolute w-full bottom-[76px] px-10">
+        <button class="balance flex flex-row items-center justify-start gap-2">
+          <label id="balance-label">Balance</label>
+          100000 FUN
+        </button>
+      </div>
+
+      <div class="absolute bottom-8 w-full">
+        <div class="flex justify-between px-8">
+          <div>
+            <button id="play-for-money-btn" class="brand-btn-secondary brand-btn-md uppercase">Play for money</button>
+          </div>
+          <div class="flex flex-row gap-2">
+            <button id="rules-btn" class="round-brand-btn round-btn-lg flex items-center justify-center">
+              <img src="assets/png/question-circle-solid.png" />
+            </button>
+
+            <button id="settings-btn" class="round-brand-btn round-btn-lg flex items-center justify-center">
+              <img src="assets/png/gear-solid.png" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="absolute top-8">
+        <button class="back-btn" id="backBtn">
+            <img src="assets/png/BackButton.png" alt="">
+        </button>
+     </div>
+
+
+</div>
+</body>
+<script>
+  const homeBtn = document.getElementById('homeBtn')
+  //console.log(homeBtn)
+  homeBtn.addEventListener('click', () => {
+    window.location.href = 'mobile-intro.html'
+  })
+
+  const rulesBtn = document.getElementById('rules-btn')
+  //console.log(homeBtn)
+  rulesBtn.addEventListener('click', () => {
+    window.location.href = 'mobile-game.html'
+  })
+
+  const settingsBtn = document.getElementById('settings-btn')
+  //console.log(homeBtn)
+  settingsBtn.addEventListener('click', () => {
+    window.location.href = 'game-settings.html'
+  })
+
+  const backBtn = document.getElementById('backBtn')
+  //console.log(homeBtn)
+  backBtn.addEventListener('click', () => {
+    window.location.href = 'mobile-game.html'
+  })
+
+
+</script>
+</html>
