@@ -34,6 +34,12 @@ export class RenderProxy {
     Matter.Render.run(this._render)
   }
 
+  stop() {
+    if (this._runner) {
+      Matter.Runner.stop(this._runner)
+    }
+  }
+
   get render(): Matter.Render {
     return this._render
   }

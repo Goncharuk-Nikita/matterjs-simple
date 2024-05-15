@@ -9,7 +9,7 @@
 
 </head>
 <body class="w-screen h-screen flex items-center justify-center">
-    <div class="absolute w-screen h-screen opacity-10">
+    <div class="fixed w-screen h-screen opacity-10 left-[-56px]">
         <img src="assets/screenshots/Desktop-8.png" />
     </div>
 
@@ -108,8 +108,8 @@
         </div> 
         <div class="w-full flex flex-col">
             <div class="w-full h-[59%] sm:h-[68%]">
-                <div class="w-full h-full flex items-end justify-center md:pb-12">
-                    <div id="canvasBody" class="w-[375px] h-[312px]"></div> 
+                <div class="w-full h-full flex items-end justify-center">
+                    <div id="canvasBody" class="w-[375px] h-[312px] sm:w-[450px] sm:h-[472px]"></div> 
                 </div>
             </div>
             <div class="h-[41%] sm:h-[32%] w-full flex flex-col gap-3">
@@ -136,14 +136,47 @@
                     </button>
                 </div>
                 <div class="w-full flex justify-center items-center px-4 gap-2">
-                    <button id="level-btn" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
-                      lines
+                    <div class="relative">
+                      <button id="level-btn" 
+                      class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">lines
                       <span class="value">8</span>
-                    </button>
+                      </button>
+                      <div id="levels-dropdown" class="absolute bottom-12 w-full justify-start left-[-10px] hidden">
+                        <div class="dropdown-wrapper flex flex-col items-center py-3 px-2">
+                          <button data-level="16" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+                            <span class="value">16</span>
+                          </button>
+                          <button data-level="15" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+                            <span class="value">15</span>
+                          </button>
+                          <button data-level="14" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+                            <span class="value">14</span>
+                          </button>
+                          <button data-level="13" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+                            <span class="value">13</span>
+                          </button>
+                          <button data-level="12" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+                            <span class="value">12</span>
+                          </button>
+                          <button data-level="11" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+                            <span class="value">11</span>
+                          </button>
+                          <button data-level="10" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+                            <span class="value">10</span>
+                          </button>
+                          <button data-level="9" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+                            <span class="value">9</span>
+                          </button>
+                          <button data-level="8" class="functional-btn-md functional-btn-active flex flex-col justify-center items-center gap-2">
+                            <span class="value">8</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                     <button class="functional-btn functional-btn-sm flex flex-col justify-center items-center gap-2">
                       <img src="assets/png/minus-solid.png" />
                     </button>
-                    <div class="current-balance flex flex-col items-center justify-center gap-1">
+                    <div class="current-balance flex flex-col items-center justify-center gap-1 mx-4 text-nowrap">
                       <label>Bid</label>
                       100000 FUN 
                     </div>
@@ -219,37 +252,7 @@
 
     <!-- <div class="w-[375px] h-[667px] absolute">
 
-      <div id="levels-dropdown" class="absolute bottom-36 w-full justify-start px-[1.45rem] hidden">
-        <div class="dropdown-wrapper flex flex-col items-center py-3">
-          <button data-level="16" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
-            <span class="value">16</span>
-          </button>
-          <button data-level="15" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
-            <span class="value">15</span>
-          </button>
-          <button data-level="14" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
-            <span class="value">14</span>
-          </button>
-          <button data-level="13" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
-            <span class="value">13</span>
-          </button>
-          <button data-level="12" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
-            <span class="value">12</span>
-          </button>
-          <button data-level="11" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
-            <span class="value">11</span>
-          </button>
-          <button data-level="10" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
-            <span class="value">10</span>
-          </button>
-          <button data-level="9" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
-            <span class="value">9</span>
-          </button>
-          <button data-level="8" class="functional-btn-md functional-btn-active flex flex-col justify-center items-center gap-2">
-            <span class="value">8</span>
-          </button>
-        </div>
-      </div>
+    
 
       <div id="risk-dropdown" class="absolute bottom-52 w-full justify-start px-[1.45rem] hidden">
         <div class="dropdown-wrapper flex flex-col items-center py-3">

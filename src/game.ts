@@ -40,10 +40,12 @@ let store: Store
 
 let locale: GameLocale
 
+let canvasMode: CanvasMode
+
 function changeLevel() {
   //inputs.setSettings(store.getSettings(controls.level))
   //console.log(controls.level)
-  gameSettings = store.getSettings(CanvasMode.XS, controls.level)
+  gameSettings = store.getSettings(canvasMode, controls.level)
   rebuild()
 }
 
@@ -57,13 +59,30 @@ function setupWorld() {
   engine.gravity.y = gameSettings?.gravityY || 1
 }
 
-function rebuild() {
-  resizeElement(renderProxy.render, 375, 310)
-  rebuildField(controls.level, world)
+interface ISize {
+  width: number
+  height: number
 }
 
-function rebuildField(newLevels: number, world: Matter.World) {
+function rebuild() {
+  const canvasSize: ISize =
+    canvasMode === CanvasMode.XS
+      ? { width: 375, height: 310 }
+      : { width: 450, height: 472 }
+  //console.log(canvasSize)
+
+  resizeElement(renderProxy.render, canvasSize.width, canvasSize.height)
+  rebuildField(controls.level, world, canvasSize)
+}
+
+function rebuildField(
+  newLevels: number,
+  world: Matter.World,
+  canvasSize: ISize,
+) {
   Matter.Composite.clear(world, true, true)
+
+  console.log('spacing: ', gameSettings?.spacing)
 
   field = new Field(world)
   field.init({
@@ -83,8 +102,8 @@ function rebuildField(newLevels: number, world: Matter.World) {
     },
   })
 
-  const dx = (375 - field.width) / 2
-  const dy = (310 - field.height) / 2
+  const dx = (canvasSize.width - field.width) / 2
+  const dy = (canvasSize.height - field.height) / 2
   Matter.Composite.translate(field.container, { x: dx, y: dy })
 
   oppeningPosition = new Position(dx, dy)
@@ -97,6 +116,43 @@ function changeSpeed() {
     gameSettings.timeScale = controls?.speed || 1
   }
   engine.timing.timeScale = gameSettings?.timeScale || 1
+}
+
+function resize() {
+  //
+  const screenWidth = Math.max(
+    window.innerWidth,
+    document.body.clientWidth,
+    document.documentElement.clientWidth,
+  )
+
+  //console.log('screenWidth: ' + screenWidth)
+
+  const newMode = screenWidth < 640 ? CanvasMode.XS : CanvasMode.LG
+  // if (screenWidth < 375) {
+  //   newMode = CanvasMode.XS
+  // } else if (screenWidth >= 375 && screenWidth < 640) {
+  //   //canvasMode = CanvasMode.SM
+  //   newMode = CanvasMode.XS
+  // } else if (screenWidth >= 640 && screenWidth < 768) {
+  //   newMode = CanvasMode.LG
+  //   //canvasMode = CanvasMode.SM
+  // } else if (screenWidth >= 768 && screenWidth < 1024) {
+  //   newMode = CanvasMode.LG
+  //   //canvasMode = CanvasMode.MD
+  // } else if (screenWidth >= 1024 && screenWidth < 1280) {
+  //   newMode = CanvasMode.LG
+  // } else if (screenWidth >= 1280 && screenWidth < 1536) {
+  //   newMode = CanvasMode.LG
+  // } else {
+  //   newMode = CanvasMode.LG
+  // }
+
+  if (newMode !== canvasMode) {
+    canvasMode = newMode
+    console.log('new canvas mode: ' + canvasMode)
+    changeLevel()
+  }
 }
 
 async function run() {
@@ -125,8 +181,8 @@ async function run() {
   locale = new GameLocale()
   locale.setLanguage(store.language)
 
-  window.addEventListener('resize', rebuild)
-  window.addEventListener('load', rebuild)
+  window.addEventListener('resize', resize)
+  window.addEventListener('load', resize)
 
   window.addEventListener('keydown', async (e) => {
     if (e.code === 'Space') {
