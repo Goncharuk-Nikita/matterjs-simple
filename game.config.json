@@ -594,7 +594,7 @@
             "pegRadius": 3.4,
             "pegFriction": 0.0,
             "pegRestitution": 0.5,
-            "ballRadius": 13.5,
+            "ballRadius": 13.0,
             "ballFriction": 0.0,
             "ballFrictionAir": 0.01,
             "ballSlop": 0.0,
