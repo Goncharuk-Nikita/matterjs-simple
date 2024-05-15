@@ -114,26 +114,89 @@
             </div>
             <div class="h-[41%] sm:h-[32%] w-full flex flex-col gap-3">
                 <div class="w-full win flex justify-center">
-                    <!-- <img class="absolute" src="assets/png/win-bg-2.png" />
-                    <img class="absolute" src="assets/png/win-bg.png" /> -->
                     <div class="w-full flex flex-row justify-center">
                         <div class="win fun-bg h-[38px] w-[90%]">100000 FUN</div>
                     </div>
                 </div>
                 <div class="w-full flex justify-center gap-4 px-8">
-                    <button id="risk-btn" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
-                      <label class="risk-label">Risk level</label>
-                      <img src="assets/png/flame-solid-low.png" />
-                      <span>Low</span>
-                    </button>
+                    <div class="relative">
+                      <button id="risk-btn" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
+                        <label class="risk-label">Risk level</label>
+                        <img src="assets/png/flame-solid-low.png" />
+                        <span>Low</span>
+                      </button>
+                        <div id="risk-dropdown" 
+                        class="absolute left-[-10px] bottom-[4.6rem] w-full justify-start hidden">
+                          <div class="dropdown-wrapper flex flex-col items-center py-3 px-2">
+                            <button data-risk="low" class="functional-btn-active functional-btn-lg flex flex-col justify-center items-center gap-2">
+                              <label class="risk-label">Risk level</label>
+                              <img src="assets/png/flame-solid-low.png" />
+                              <span id="risk-low-span">Low</span>
+                            </button>
+                            <button data-risk="medium" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
+                              <label class="risk-label">Risk level</label>
+                              <img src="assets/png/flame-solid-medium.png" />
+                              <span id="risk-medium-span">Medium</span>
+                            </button>
+                            <button data-risk="high" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
+                              <label class="risk-label">Risk level</label>
+                              <img src="assets/png/flame-solid-hard.png" />
+                              <span id="risk-high-span">High</span>
+                            </button>
+                          </div>
+                      </div>  
+                    </div>
                     <button id="play-btn" class="btn brand-btn brand-btn-lg">
                       <span class="brand-btn-gradient uppercase">Play</span>
                     </button>
-                    <button id="auto-btn" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
-                      <label>Mode</label>
-                      <img src="assets/png/thumbs-up-solid.png" />
-                      <span>Manual</span>
-                    </button>
+                    <div class="relative">
+                      <button id="auto-btn" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
+                        <label>Mode</label>
+                        <img src="assets/png/thumbs-up-solid.png" />
+                        <span>Manual</span>
+                      </button>
+                      <div id="auto-dropdown" class="absolute bottom-[4.6rem] left-[-10px] hidden">
+                        <div class="dropdown-wrapper flex flex-col items-center py-3 px-2">
+                          <button data-auto="50" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2 auto-btn">
+                            <label>Mode</label>
+                            <div class="flex flex-col moves">
+                              50
+                              <span>moves</span>
+                            </div>
+                            <span class="auto">Auto</span>
+                          </button>
+                          <button data-auto="25" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2 auto-btn">
+                            <label>Mode</label>
+                            <div class="flex flex-col moves">
+                              25
+                              <span>moves</span>
+                            </div>
+                            <span class="auto">Auto</span>
+                          </button>
+                          <button data-auto="10" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2 auto-btn">
+                            <label>Mode</label>
+                            <div class="flex flex-col moves">
+                              10
+                              <span>moves</span>
+                            </div>
+                            <span class="auto">Auto</span>
+                          </button>
+                          <button data-auto="5" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2 auto-btn">
+                            <label>Mode</label>
+                            <div class="flex flex-col moves">
+                              5
+                              <span>moves</span>
+                            </div>
+                            <span class="auto">Auto</span>
+                          </button>
+                          <button data-auto="0" class="functional-btn-active functional-btn-lg flex flex-col justify-center items-center gap-2 auto-btn">
+                            <label>Mode</label>
+                            <img src="assets/png/thumbs-up-solid.png" />
+                            <span id="auto-btn-span">Manual</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                 </div>
                 <div class="w-full flex justify-center items-center px-4 gap-2">
                     <div class="relative">
@@ -183,10 +246,26 @@
                     <button class="functional-btn functional-btn-sm flex flex-col justify-center items-center gap-2">
                       <img src="assets/png/plus-solid.png" />
                     </button>
-                    <button id="speed-btn" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
-                      speed
-                      <span class="value">1</span>
-                    </button>
+                    <div class="relative">
+                      <button id="speed-btn" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+                        speed
+                        <span class="value">1</span>
+                      </button>
+                      <div id="speed-dropdown" class="absolute bottom-12 left-[-10px] hidden">
+                        <div class="dropdown-wrapper flex flex-col items-center py-3 px-2">
+                          <button data-speed="3" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+                            <span class="value">3</span>
+                          </button>
+                          <button data-speed="2" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+                            <span class="value">2</span>
+                          </button>
+                          <button data-speed="1" class="functional-btn-active functional-btn-md flex flex-col justify-center items-center gap-2">
+                            <span class="value">1</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    
                 </div>
 
                 <div class="w-full px-10">
@@ -249,88 +328,6 @@
             <img src="assets/png/gear-solid.png" />
         </button>
     </div>
-
-    <!-- <div class="w-[375px] h-[667px] absolute">
-
-    
-
-      <div id="risk-dropdown" class="absolute bottom-52 w-full justify-start px-[1.45rem] hidden">
-        <div class="dropdown-wrapper flex flex-col items-center py-3">
-          <button data-risk="low" class="functional-btn-active functional-btn-lg flex flex-col justify-center items-center gap-2">
-            <label class="risk-label">Risk level</label>
-            <img src="assets/png/flame-solid-low.png" />
-            <span id="risk-low-span">Low</span>
-          </button>
-          <button data-risk="medium" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
-            <label class="risk-label">Risk level</label>
-            <img src="assets/png/flame-solid-medium.png" />
-            <span id="risk-medium-span">Medium</span>
-          </button>
-          <button data-risk="high" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
-            <label class="risk-label">Risk level</label>
-            <img src="assets/png/flame-solid-hard.png" />
-            <span id="risk-high-span">High</span>
-          </button>
-        </div>
-      </div>
-
-      <div id="auto-dropdown" class="absolute bottom-52 right-0 px-[1.45rem] hidden">
-        <div class="dropdown-wrapper flex flex-col items-center py-3">
-          <button data-auto="50" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2 auto-btn">
-            <label>Mode</label>
-            <div class="flex flex-col moves">
-              50
-              <span>moves</span>
-            </div>
-            <span class="auto">Auto</span>
-          </button>
-          <button data-auto="25" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2 auto-btn">
-            <label>Mode</label>
-            <div class="flex flex-col moves">
-              25
-              <span>moves</span>
-            </div>
-            <span class="auto">Auto</span>
-          </button>
-          <button data-auto="10" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2 auto-btn">
-            <label>Mode</label>
-            <div class="flex flex-col moves">
-              10
-              <span>moves</span>
-            </div>
-            <span class="auto">Auto</span>
-          </button>
-          <button data-auto="5" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2 auto-btn">
-            <label>Mode</label>
-            <div class="flex flex-col moves">
-              5
-              <span>moves</span>
-            </div>
-            <span class="auto">Auto</span>
-          </button>
-          <button data-auto="0" class="functional-btn-active functional-btn-lg flex flex-col justify-center items-center gap-2 auto-btn">
-            <label>Mode</label>
-            <img src="assets/png/thumbs-up-solid.png" />
-            <span id="auto-btn-span">Manual</span>
-          </button>
-        </div>
-      </div>
-
-      <div id="speed-dropdown" class="absolute bottom-[8.6rem] right-0 px-[1.45rem] hidden">
-        <div class="dropdown-wrapper flex flex-col items-center py-3">
-          <button data-speed="3" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
-            <span class="value">3</span>
-          </button>
-          <button data-speed="2" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
-            <span class="value">2</span>
-          </button>
-          <button data-speed="1" class="functional-btn-active functional-btn-md flex flex-col justify-center items-center gap-2">
-            <span class="value">1</span>
-          </button>
-        </div>
-      </div>
-
-    </div> -->
 </body>
 <script>
   const homeBtn = document.getElementById('homeBtn')
