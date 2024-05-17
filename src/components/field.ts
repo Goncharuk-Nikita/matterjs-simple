@@ -3,6 +3,7 @@ import { Peg } from './peg'
 import { Oppening } from './openning'
 import { Position } from '../utilities/position'
 import { Slot } from './slot'
+import { Sprite } from './component'
 
 export interface SetupOptions {
   levels: number
@@ -21,6 +22,9 @@ export class Field {
   private _container: Matter.Composite
   private _oppening?: Oppening
   private _oppeningPosition: Position
+
+  private _pegSprite?: Sprite
+  private _pegBlinkSprite?: Sprite
 
   static pegs = new Map()
 
@@ -73,7 +77,14 @@ export class Field {
     const xScale = (options.pegRadius * 2) / 12
     const yScale = (options.pegRadius * 2) / 12
 
-    const sprite = {
+    const blinkTexture = `assets/png/peg/blink-peg.png`
+    this._pegBlinkSprite = {
+      texture: blinkTexture,
+      xScale,
+      yScale,
+    }
+
+    this._pegSprite = {
       texture,
       xScale,
       yScale,
@@ -90,7 +101,7 @@ export class Field {
           x: spaceLeft,
           y: spaceBottom,
           radius: options.pegRadius,
-          sprite,
+          sprite: this._pegSprite,
           //fillStyle,
           definition: pegDefinition,
         })
@@ -165,6 +176,14 @@ export class Field {
 
   get width() {
     return this._width
+  }
+
+  getPegSprite() {
+    return this._pegSprite
+  }
+
+  getPegBlinkSprite() {
+    return this._pegBlinkSprite
   }
 
   get height() {

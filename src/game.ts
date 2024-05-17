@@ -205,7 +205,7 @@ async function run() {
       //
       if (isPegCollision(collision)) {
         const peg = getPegById(collision)
-        //pegAnimation(peg)
+        pegAnimation(peg)
         // should be path logic there: !!!
         const level = field.getPegLine(peg.id)
         //console.log(pegLine)
@@ -233,14 +233,26 @@ async function run() {
 }
 await run()
 
-//function pegAnimation(body: Matter.Body) {
-//console.log('pegAnimation')
-//console.log(body)
-//body.render.fillStyle = '#F101C4'
-//setTimeout(() => {
-//  body.render.fillStyle = '#F6B23D'
-//}, 100)
-//}
+function pegAnimation(body: Matter.Body) {
+  //console.log('pegAnimation')
+  //console.log(body)
+
+  const blinkSprite = field.getPegBlinkSprite()
+  const sprite = field.getPegSprite()
+
+  //console.log(sprite)
+  //console.log(blinkSprite)
+
+  if (body.render.sprite) {
+    body.render.sprite.texture = blinkSprite?.texture || 'default'
+  }
+
+  setTimeout(() => {
+    if (body.render.sprite) {
+      body.render.sprite.texture = sprite?.texture || 'default'
+    }
+  }, 100)
+}
 
 function slotAnimation(body: Matter.Body) {
   //console.log('slotAnimation')
