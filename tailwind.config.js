@@ -1,14 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    './index.html', 
-    './tech-demo.html', 
-    './mobile-intro.html', 
-    './mobile-game.html',
-    './desktop-game.html', 
-    './game-rules.html',
-    './game-settings.html',
-    './results.html',
+    './index.html',
+    './html/desktop-game.html',
+    './html/config-game.html',    
     './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {},

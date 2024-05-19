@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <script type="module" src="src/game.ts" defer></script>
-
+    <link rel="stylesheet" href="/style.css">
+    <script type="module" src="/src/game.ts" defer></script>
 </head>
 <body class="w-screen h-screen flex items-center justify-center">
     <div class="fixed w-screen h-screen opacity-10 left-[-56px]">
-        <img src="assets/screenshots/Desktop-8.png" />
+        <img src="/assets/screenshots/Desktop-8.png" />
     </div>
 
     <div class="relative bg-gradient w-full h-full">
-        <img src="assets/png/Group 176.png" class="absolute top-0 right-0" />
-        <img src="assets/png/Group 175.png" class="absolute top-0 left-0" />
+        <img src="/assets/png/Group 176.png" class="absolute top-0 right-0" />
+        <img src="/assets/png/Group 175.png" class="absolute top-0 left-0" />
     </div>
 
     <div class="absolute bottom-0 w-screen md:w-0">
@@ -122,7 +121,7 @@
                     <div class="relative">
                       <button id="risk-btn" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
                         <label class="risk-label">Risk level</label>
-                        <img src="assets/png/flame-solid-low.png" />
+                        <img src="/assets/png/flame-solid-low.png" />
                         <span>Low</span>
                       </button>
                         <div id="risk-dropdown" 
@@ -130,17 +129,17 @@
                           <div class="dropdown-wrapper flex flex-col items-center py-3 px-2">
                             <button data-risk="low" class="functional-btn-active functional-btn-lg flex flex-col justify-center items-center gap-2">
                               <label class="risk-label">Risk level</label>
-                              <img src="assets/png/flame-solid-low.png" />
+                              <img src="/assets/png/flame-solid-low.png" />
                               <span id="risk-low-span">Low</span>
                             </button>
                             <button data-risk="medium" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
                               <label class="risk-label">Risk level</label>
-                              <img src="assets/png/flame-solid-medium.png" />
+                              <img src="/assets/png/flame-solid-medium.png" />
                               <span id="risk-medium-span">Medium</span>
                             </button>
                             <button data-risk="high" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
                               <label class="risk-label">Risk level</label>
-                              <img src="assets/png/flame-solid-hard.png" />
+                              <img src="/assets/png/flame-solid-hard.png" />
                               <span id="risk-high-span">High</span>
                             </button>
                           </div>
@@ -152,7 +151,7 @@
                     <div class="relative">
                       <button id="auto-btn" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
                         <label>Mode</label>
-                        <img src="assets/png/thumbs-up-solid.png" />
+                        <img src="/assets/png/thumbs-up-solid.png" />
                         <span>Manual</span>
                       </button>
                       <div id="auto-dropdown" class="absolute bottom-[4.6rem] left-[-10px] hidden">
@@ -191,7 +190,7 @@
                           </button>
                           <button data-auto="0" class="functional-btn-active functional-btn-lg flex flex-col justify-center items-center gap-2 auto-btn">
                             <label>Mode</label>
-                            <img src="assets/png/thumbs-up-solid.png" />
+                            <img src="/assets/png/thumbs-up-solid.png" />
                             <span id="auto-btn-span">Manual</span>
                           </button>
                         </div>
@@ -237,14 +236,14 @@
                       </div>
                     </div>
                     <button class="functional-btn functional-btn-sm flex flex-col justify-center items-center gap-2">
-                      <img src="assets/png/minus-solid.png" />
+                      <img src="/assets/png/minus-solid.png" />
                     </button>
                     <div class="current-balance flex flex-col items-center justify-center gap-1 mx-4 text-nowrap">
                       <label>Bid</label>
                       100000 FUN 
                     </div>
                     <button class="functional-btn functional-btn-sm flex flex-col justify-center items-center gap-2">
-                      <img src="assets/png/plus-solid.png" />
+                      <img src="/assets/png/plus-solid.png" />
                     </button>
                     <div class="relative">
                       <button id="speed-btn" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
@@ -282,11 +281,11 @@
                         </div>
                         <div class="flex flex-row gap-2">
                             <button id="rules-btn" class="round-brand-btn round-btn-lg flex items-center justify-center">
-                                <img src="assets/png/question-circle-solid.png" />
+                                <img src="/assets/png/question-circle-solid.png" />
                             </button>
 
                             <button id="settings-btn" class="round-brand-btn round-btn-lg flex items-center justify-center">
-                                <img src="assets/png/gear-solid.png" />
+                                <img src="/assets/png/gear-solid.png" />
                             </button>
                         </div>
                     </div>
@@ -298,18 +297,18 @@
 
     <div class="absolute lg:hidden left-0 top-8">
         <button class="back-btn" id="backBtn">
-            <img src="assets/png/ResultButton.png" alt="">
+            <img src="/assets/png/ResultButton.png" alt="">
         </button>
     </div>
     
     <div class="sm:hidden absolute top-8 right-8">
         <button id="homeBtn" class="round-brand-btn round-btn-lg flex items-center justify-center">
-            <img src="assets/png/house-solid.png" />
+            <img src="/assets/png/house-solid.png" />
         </button>
     </div>
 
     <div class="sm:hidden absolute top-8 w-full flex justify-center">
-        <img src="assets/png/LogotypeSmall.png" />
+        <img src="/assets/png/LogotypeSmall.png" />
     </div>
 
     <div class="absolute top-0 right-0 flex-row gap-2 pt-4 pr-4 hidden sm:flex">
@@ -317,15 +316,15 @@
         <button id="play-for-money-btn" class="brand-btn-secondary brand-btn-md uppercase">Play for money</button>
         
         <button id="homeBtn" class="round-brand-btn round-btn-lg flex items-center justify-center">
-            <img src="assets/png/house-solid.png" />
+            <img src="/assets/png/house-solid.png" />
         </button>
         
         <button id="rules-btn" class="round-brand-btn round-btn-lg flex items-center justify-center">
-            <img src="assets/png/question-circle-solid.png" />
+            <img src="/assets/png/question-circle-solid.png" />
         </button>
 
         <button id="settings-btn" class="round-brand-btn round-btn-lg flex items-center justify-center">
-            <img src="assets/png/gear-solid.png" />
+            <img src="/assets/png/gear-solid.png" />
         </button>
     </div>
 </body>

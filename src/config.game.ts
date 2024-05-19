@@ -21,6 +21,7 @@ import {
 import { GameControls } from './ui/controls.game'
 import { Store } from './store/game.store'
 import { GameLocale } from './locale/locale.game'
+import { ConfigControls } from './ui/controls.config'
 
 let engine: Matter.Engine
 let world: Matter.World
@@ -42,10 +43,13 @@ let locale: GameLocale
 
 let canvasMode: CanvasMode
 
+let configControls: ConfigControls
+
 function changeLevel() {
   //inputs.setSettings(store.getSettings(controls.level))
   //console.log(controls.level)
   gameSettings = store.getSettings(canvasMode, controls.level)
+  configControls.setValues(canvasMode, controls.level)
   rebuild()
 }
 
@@ -73,6 +77,8 @@ function rebuild() {
 
   resizeElement(renderProxy.render, canvasSize.width, canvasSize.height)
   rebuildField(controls.level, world, canvasSize)
+
+  //
 }
 
 function rebuildField(
@@ -112,9 +118,6 @@ function rebuildField(
 }
 
 function changeSpeed() {
-  if (gameSettings) {
-    gameSettings.timeScale = controls?.speed || 1
-  }
   engine.timing.timeScale = gameSettings?.timeScale || 1
 }
 
@@ -164,7 +167,11 @@ async function run() {
 
   store = new Store()
   await store.initSettings('/game.config.json')
-  gameSettings = store.getSettings(CanvasMode.XS, controls.level)
+
+  configControls = new ConfigControls(store)
+  configControls.dispatcher.addListener('speed', changeSpeed)
+  configControls.dispatcher.addListener('world', setupWorld)
+  configControls.dispatcher.addListener('field', rebuild)
 
   engine = Engine.create()
   world = engine.world

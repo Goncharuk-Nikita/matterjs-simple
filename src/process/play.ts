@@ -80,7 +80,7 @@ export class Play {
       sprite: {
         xScale,
         yScale,
-        texture: './public/assets/png/ball.png',
+        texture: '/assets/png/ball.png',
       },
       definition,
     })
@@ -117,7 +117,7 @@ export class Play {
     }
 
     setTimeout(() => {
-      Matter.Body.translate(body, { x: shiftX, y: -1 })
+      Matter.Body.translate(body, { x: shiftX, y: 0 })
 
       //if (body) {
       //}
@@ -126,10 +126,10 @@ export class Play {
         x: body.velocity.x * velocity,
         y: body.velocity.y * velocity,
       })
-      Matter.Body.setAngularVelocity(
-        body,
-        body.angularVelocity * angularVelocity,
-      )
+      // Matter.Body.setAngularVelocity(
+      //   body,
+      //   body.angularVelocity * angularVelocity,
+      // )
       Matter.Body.applyForce(body, body.position, { x: forceMagnitude, y: 0 })
     }, 2)
   }

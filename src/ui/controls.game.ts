@@ -148,7 +148,7 @@ export class GameControls {
             this._autoDropdownBtn?.appendChild(autoSpan)
           } else {
             const autoImg = document.createElement('img')
-            autoImg.src = 'assets/png/thumbs-up-solid.png'
+            autoImg.src = '/assets/png/thumbs-up-solid.png'
             this._autoDropdownBtn?.appendChild(autoImg)
 
             const autoSpan = document.createElement('span')
@@ -240,19 +240,19 @@ export class GameControls {
             case 'low':
               this._riskMode = RiskMode.LOW
               if (this._riskBtnImg) {
-                this._riskBtnImg.src = 'assets/png/flame-solid-low.png'
+                this._riskBtnImg.src = '/assets/png/flame-solid-low.png'
               }
               break
             case 'medium':
               this._riskMode = RiskMode.MEDIUM
               if (this._riskBtnImg) {
-                this._riskBtnImg.src = 'assets/png/flame-solid-medium.png'
+                this._riskBtnImg.src = '/assets/png/flame-solid-medium.png'
               }
               break
             case 'high':
               this._riskMode = RiskMode.HIGH
               if (this._riskBtnImg) {
-                this._riskBtnImg.src = 'assets/png/flame-solid-hard.png'
+                this._riskBtnImg.src = '/assets/png/flame-solid-hard.png'
               }
               break
           }

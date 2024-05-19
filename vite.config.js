@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
+import { resolve } from 'path'
 
 export default defineConfig({
   plugins: [tsconfigPaths()],
@@ -7,6 +8,9 @@ export default defineConfig({
     target: 'esnext',
     rollupOptions: {
       external: /\.skel$/,
+      // input : {
+      //   main: resolve(__dirname, 'index.html'),
+      // },
     },
   },
   server: {

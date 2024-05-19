@@ -3,7 +3,7 @@ import { Peg } from './peg'
 import { Oppening } from './openning'
 import { Position } from '../utilities/position'
 import { Slot } from './slot'
-import { Sprite } from './component'
+//import { Sprite } from './component'
 
 export interface SetupOptions {
   levels: number
@@ -23,8 +23,9 @@ export class Field {
   private _oppening?: Oppening
   private _oppeningPosition: Position
 
-  private _pegSprite?: Sprite
-  private _pegBlinkSprite?: Sprite
+  private _pegTexture: string
+  private _pegBlinkTexture: string
+  private _oppeningTexture: string
 
   static pegs = new Map()
 
@@ -32,6 +33,11 @@ export class Field {
     this.world = world
     this._width = 0
     this._height = 0
+
+    this._pegTexture = `/assets/png/peg/peg.png`
+    this._pegBlinkTexture = `/assets/png/peg/blink-peg.png`
+    this._oppeningTexture = '/assets/png/oppening.png'
+
     this._container = Composite.create({ label: 'Field' })
     this._oppeningPosition = new Position(0, 0)
     Composite.add(this.world, [this._container])
@@ -43,15 +49,6 @@ export class Field {
     const lines = 2 + options.levels
 
     //const fillStyle = '#F6B23D'
-
-    // const xScale = (2 * options.pegRadius) / 158
-    // const yScale = (2 * options.pegRadius) / 169
-
-    // const sprite = {
-    //   texture: 'images/circle.png',
-    //   xScale,
-    //   yScale,
-    // }
 
     const pegs: Peg[] = []
     const slots: Slot[] = []
@@ -73,19 +70,11 @@ export class Field {
 
     let currentLine = 0
 
-    const texture = `assets/png/peg/peg.png`
     const xScale = (options.pegRadius * 2) / 12
     const yScale = (options.pegRadius * 2) / 12
 
-    const blinkTexture = `assets/png/peg/blink-peg.png`
-    this._pegBlinkSprite = {
-      texture: blinkTexture,
-      xScale,
-      yScale,
-    }
-
-    this._pegSprite = {
-      texture,
+    const sprite = {
+      texture: this._pegTexture,
       xScale,
       yScale,
     }
@@ -101,7 +90,7 @@ export class Field {
           x: spaceLeft,
           y: spaceBottom,
           radius: options.pegRadius,
-          sprite: this._pegSprite,
+          sprite,
           //fillStyle,
           definition: pegDefinition,
         })
@@ -129,9 +118,9 @@ export class Field {
       //const slotTexture = await Assets.load(`${options.path}/${cost}.png`)
       const slotX = temp_bottom_peg.body.position.x + slotWidth / 2
 
-      console.log(cost)
+      //console.log(cost)
 
-      const texture = `assets/png/slots/${options.levels}/${cost}.png`
+      const texture = `/public/assets/png/slots/${options.levels}/${cost}.png`
       const xScale = 1 //(slotWidth / 200) * 0.99
       const yScale = 1 //xScale
       const sprite = {
@@ -163,7 +152,7 @@ export class Field {
       radius: 20,
       //fillStyle: '#2b2b2b',
       sprite: {
-        texture: 'assets/png/oppening.png',
+        texture: this._oppeningTexture,
         xScale: options.oppeningScale,
         yScale: options.oppeningScale,
       },
@@ -178,12 +167,11 @@ export class Field {
     return this._width
   }
 
-  getPegSprite() {
-    return this._pegSprite
+  getPegTexture() {
+    return this._pegTexture
   }
-
-  getPegBlinkSprite() {
-    return this._pegBlinkSprite
+  getPegBlinkSTexture() {
+    return this._pegBlinkTexture
   }
 
   get height() {

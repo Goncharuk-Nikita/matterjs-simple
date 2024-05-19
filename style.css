@@ -581,3 +581,9 @@ svg { display: none }
     /* transition: all 0.6s ease-in-out; */
   }
 
+  .tab-active {
+    --tab-bg: #C100AD; 
+    --tab-border-color:#C100AD;
+    color: pink;
+  }
+

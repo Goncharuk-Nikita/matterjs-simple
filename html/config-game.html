@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
+    <script type="module" src="/src/config.game.ts" defer></script>
+</head>
+<body class="w-screen h-screen flex items-center justify-center">
+    <div class="fixed w-screen h-screen opacity-10 left-[-56px]">
+        <img src="/assets/screenshots/Desktop-8.png" />
+    </div>
+
+    <div class="relative bg-gradient w-full h-full">
+        <img src="/assets/png/Group 176.png" class="absolute top-0 right-0" />
+        <img src="/assets/png/Group 175.png" class="absolute top-0 left-0" />
+    </div>
+
+    <div class="absolute bottom-0 w-screen md:w-0">
+        <div class="w-full bushing-gradient h-[250px] sm:h-[188px]"></div>
+        <div class="absolute top-[2px] w-full bushing h-[248px] sm:h-[186px]"></div>
+    </div>
+
+    <div class="absolute w-full h-full flex flex-row pl-[15%] pr-[15%] opacity-100">
+        <div class="w-0 md:w-[30%] lg:w-full p-4">
+            <div role="tablist" class="tabs tabs-lifted">
+                <a role="tab" data-tab="0" class="tab">Game</a>
+                <a role="tab" data-tab="1" class="tab tab-active">World</a>
+                <a role="tab" data-tab="2" class="tab">Field</a>
+                <a role="tab" data-tab="3" class="tab">Peg</a>
+                <a role="tab" data-tab="4" class="tab">Ball</a>                
+                <a role="tab" data-tab="5" class="tab">Collision</a>
+                <a role="tab" data-tab="6" class="tab">Graphics</a>
+            </div>
+            <!-- Game config content -->
+            <div class="p-4 bg-[#C100AD] hidden tab-content">
+                <label class="form-control">
+                    <div class="label">
+                      <span class="label-text text-primary-content text-md font-bold">Time scale</span>
+                    </div>
+                    <input 
+                    id="time-scale-input" 
+                    type="number" 
+                    placeholder="Value"
+                    step="0.01"
+                    min="0.0"
+                    max="5.0"
+                    value="1.0" 
+                    class="input input-primary input-bordered w-full max-w-xs" />
+                </label>
+            </div>
+            <!-- World config content -->
+            <div class="p-4 bg-[#C100AD] tab-content block">
+                <label class="form-control">
+                    <div class="label">
+                      <span class="label-text text-primary-content text-md font-bold">Gravity scale</span>
+                    </div>
+                    <input 
+                    id="gravity-scale-input" 
+                    type="number" 
+                    placeholder="Value" 
+                    step="0.001"
+                    min="0.0"
+                    max="1.0"
+                    value="0.001"
+                    class="input input-primary input-bordered w-full max-w-xs" />
+                </label>
+                <label class="form-control">
+                    <div class="label">
+                      <span class="label-text text-primary-content text-md font-bold">Gravity x</span>
+                    </div>
+                    <input 
+                    id="gravity-x-input" 
+                    type="number" 
+                    placeholder="Value" 
+                    step="0.05"
+                    min="-1.0"
+                    max="1.0"
+                    value="0.0"
+                    class="input input-primary input-bordered w-full max-w-xs" 
+                    />
+                </label>
+                <label class="form-control">
+                    <div class="label">
+                      <span class="label-text text-primary-content text-md font-bold">Gravity y</span>
+                    </div>
+                    <input 
+                    id="gravity-y-input" 
+                    type="number" 
+                    placeholder="Value"
+                    step="0.05"
+                    min="-1.0"
+                    max="1.0"
+                    value="1.0" 
+                    class="input input-primary input-bordered w-full max-w-xs" />
+                </label>
+            </div>
+            <!-- Field config content -->
+            <div class="p-4 bg-[#C100AD] hidden tab-content">
+                <label class="form-control">
+                    <div class="label">
+                        <span class="label-text text-primary-content text-md font-bold">Gap</span>
+                    </div>
+                    <input 
+                    id="gap-input" 
+                    type="number" 
+                    placeholder="Value"
+                    step="1"
+                    min="3"
+                    max="80"
+                    value="10" 
+                    class="input input-primary input-bordered w-full max-w-xs" />
+                </label>
+                <label class="form-control">
+                    <div class="label">
+                        <span class="label-text text-primary-content text-md font-bold">Spacing</span>
+                    </div>
+                    <input 
+                    id="spacing-input" 
+                    type="number" 
+                    placeholder="Value"
+                    step="1"
+                    min="3"
+                    max="80"
+                    value="10"  
+                    class="input input-primary input-bordered w-full max-w-xs" />
+                </label>
+            </div>
+             <!-- Peg config content -->
+             <div class="p-4 hidden bg-[#C100AD] tab-content">
+                <label class="form-control">
+                    <div class="label">
+                        <span class="label-text text-primary-content text-md font-bold">Peg radius</span>
+                    </div>
+                    <input 
+                    id="peg-radius-input" 
+                    type="number" 
+                    placeholder="Value" 
+                    step="0.5"
+                    min="2"
+                    max="20"
+                    value="3"
+                    class="input input-primary input-bordered w-full max-w-xs" />
+                </label>
+                <label class="form-control">
+                    <div class="label">
+                        <span class="label-text text-primary-content text-md font-bold">Peg restitution</span>
+                    </div>
+                    <input 
+                    id="peg-restitution-input" 
+                    type="number" 
+                    placeholder="Value" 
+                    step="0.05"
+                    min="0.0"
+                    max="1.0"
+                    value="0.0"
+                    class="input input-primary input-bordered w-full max-w-xs" />
+                </label>
+                <label class="form-control">
+                    <div class="label">
+                        <span class="label-text text-primary-content text-md font-bold">Peg friction</span>
+                    </div>
+                    <input 
+                    id="peg-friction-input" 
+                    type="number" 
+                    placeholder="Value" 
+                    step="0.05"
+                    min="0.0"
+                    max="1.0"
+                    value="0.4"
+                    class="input input-primary input-bordered w-full max-w-xs" />
+                </label>
+             </div>
+            <!-- Ball config content -->
+            <div class="p-4 hidden bg-[#C100AD] tab-content">
+                <label class="form-control">
+                    <div class="label">
+                        <span class="label-text text-primary-content text-md font-bold">Ball radius</span>
+                    </div>
+                    <input 
+                    id="ball-radius-input" 
+                    type="number" 
+                    placeholder="Value" 
+                    step="0.5"
+                    min="3.0"
+                    max="20.0"
+                    value="10.0"
+                    class="input input-primary input-bordered w-full max-w-xs" />
+                </label>
+                <label class="form-control">
+                    <div class="label">
+                        <span class="label-text text-primary-content text-md font-bold">Ball restitution</span>
+                    </div>
+                    <input 
+                    id="ball-restitution-input" 
+                    type="number" 
+                    placeholder="Value" 
+                    step="0.05"
+                    min="0.0"
+                    max="1.0"
+                    value="0.0"
+                    class="input input-primary input-bordered w-full max-w-xs" />
+                </label>
+                <label class="form-control">
+                    <div class="label">
+                        <span class="label-text text-primary-content text-md font-bold">Ball friction</span>
+                    </div>
+                    <input 
+                    id="ball-friction-input" 
+                    type="number" 
+                    placeholder="Value" 
+                    step="0.05"
+                    min="0.0"
+                    max="1.0"
+                    value="0.5"
+                    class="input input-primary input-bordered w-full max-w-xs" />
+                </label>
+                <label class="form-control">
+                    <div class="label">
+                        <span class="label-text text-primary-content text-md font-bold">Ball friction air</span>
+                    </div>
+                    <input 
+                    id="ball-friction-air-input" 
+                    type="number" 
+                    placeholder="Value" 
+                    step="0.05"
+                    min="0.0"
+                    max="1.0"
+                    value="0.1"
+                    class="input input-primary input-bordered w-full max-w-xs" />
+                </label>
+                <label class="form-control">
+                    <div class="label">
+                        <span class="label-text text-primary-content text-md font-bold">Ball slop</span>
+                    </div>
+                    <input 
+                    id="ball-slop-input" 
+                    type="number" 
+                    placeholder="Value" 
+                    step="0.05"
+                    min="0.0"
+                    max="1.0"
+                    value="0.0"
+                    class="input input-primary input-bordered w-full max-w-xs" />
+                </label>
+                <label class="form-control">
+                    <div class="label">
+                        <span class="label-text text-primary-content text-md font-bold">Ball density</span>
+                    </div>
+                    <input 
+                    id="ball-density-input" 
+                    type="number" 
+                    placeholder="Value" 
+                    step="0.0001"
+                    min="0.0"
+                    max="1.0"
+                    value="0.0005"
+                    class="input input-primary input-bordered w-full max-w-xs" />
+                </label>
+            </div>
+            <!-- Collision config content -->
+            <div class="p-4 hidden tab-content bg-[#C100AD]">
+                <label class="form-control">
+                    <div class="label">
+                        <span class="label-text text-primary-content text-md font-bold">Force magnitude</span>
+                    </div>
+                    <input 
+                    id="force-magnitude-input" 
+                    type="number" 
+                    placeholder="Value" 
+                    step="0.0001"
+                    min="0.0"
+                    max="1.0"
+                    value="0.0001"
+                    class="input input-primary input-bordered w-full max-w-xs" />
+                </label>
+                <label class="form-control">
+                    <div class="label">
+                        <span class="label-text text-primary-content text-md font-bold">Velocity</span>
+                    </div>
+                    <input 
+                    id="velocity-input" 
+                    type="number" 
+                    placeholder="Value" 
+                    step="0.001"
+                    min="0.0"
+                    max="1.0"
+                    value="0.03"
+                    class="input input-primary input-bordered w-full max-w-xs" />
+                </label>
+                <label class="form-control">
+                    <div class="label">
+                        <span class="label-text text-primary-content text-md font-bold">Angular velocity</span>
+                    </div>
+                    <input 
+                    id="angular-velocity-input" 
+                    type="number" 
+                    placeholder="Value" 
+                    step="0.001"
+                    min="0.0"
+                    max="1.0"
+                    value="0.01"
+                    class="input input-primary input-bordered w-full max-w-xs" />
+                </label>
+            </div>
+            <!-- Graphics config content -->
+            <div class="p-4 hidden tab-content bg-[#C100AD]">
+                <label class="form-control">
+                    <div class="label">
+                        <span class="label-text text-primary-content text-md font-bold">Opening scale</span>
+                    </div>
+                    <input id="opening-scale-input" type="number" placeholder="Value" class="input input-primary input-bordered w-full max-w-xs" />
+                </label>
+            </div>
+        </div> 
+        <div class="w-full flex flex-col">
+            <div class="w-full h-[59%] sm:h-[68%]">
+                <div class="w-full h-full flex items-end justify-center">
+                    <div id="canvasBody" class="w-[375px] h-[312px] sm:w-[450px] sm:h-[472px]"></div> 
+                </div>
+            </div>
+            <div class="h-[41%] sm:h-[32%] w-full flex flex-col gap-3">
+                <div class="w-full win flex justify-center">
+                    <div class="w-full flex flex-row justify-center">
+                        <div class="win fun-bg h-[38px] w-[90%]">100000 FUN</div>
+                    </div>
+                </div>
+                <div class="w-full flex justify-center gap-4 px-8">
+                    <div class="relative">
+                      <button id="risk-btn" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
+                        <label class="risk-label">Risk level</label>
+                        <img src="/assets/png/flame-solid-low.png" />
+                        <span>Low</span>
+                      </button>
+                        <div id="risk-dropdown" 
+                        class="absolute left-[-10px] bottom-[4.6rem] w-full justify-start hidden">
+                          <div class="dropdown-wrapper flex flex-col items-center py-3 px-2">
+                            <button data-risk="low" class="functional-btn-active functional-btn-lg flex flex-col justify-center items-center gap-2">
+                              <label class="risk-label">Risk level</label>
+                              <img src="/assets/png/flame-solid-low.png" />
+                              <span id="risk-low-span">Low</span>
+                            </button>
+                            <button data-risk="medium" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
+                              <label class="risk-label">Risk level</label>
+                              <img src="/assets/png/flame-solid-medium.png" />
+                              <span id="risk-medium-span">Medium</span>
+                            </button>
+                            <button data-risk="high" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
+                              <label class="risk-label">Risk level</label>
+                              <img src="/assets/png/flame-solid-hard.png" />
+                              <span id="risk-high-span">High</span>
+                            </button>
+                          </div>
+                      </div>  
+                    </div>
+                    <button id="play-btn" class="btn brand-btn brand-btn-lg">
+                      <span class="brand-btn-gradient uppercase">Play</span>
+                    </button>
+                    <div class="relative">
+                      <button id="auto-btn" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2">
+                        <label>Mode</label>
+                        <img src="/assets/png/thumbs-up-solid.png" />
+                        <span>Manual</span>
+                      </button>
+                      <div id="auto-dropdown" class="absolute bottom-[4.6rem] left-[-10px] hidden">
+                        <div class="dropdown-wrapper flex flex-col items-center py-3 px-2">
+                          <button data-auto="50" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2 auto-btn">
+                            <label>Mode</label>
+                            <div class="flex flex-col moves">
+                              50
+                              <span>moves</span>
+                            </div>
+                            <span class="auto">Auto</span>
+                          </button>
+                          <button data-auto="25" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2 auto-btn">
+                            <label>Mode</label>
+                            <div class="flex flex-col moves">
+                              25
+                              <span>moves</span>
+                            </div>
+                            <span class="auto">Auto</span>
+                          </button>
+                          <button data-auto="10" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2 auto-btn">
+                            <label>Mode</label>
+                            <div class="flex flex-col moves">
+                              10
+                              <span>moves</span>
+                            </div>
+                            <span class="auto">Auto</span>
+                          </button>
+                          <button data-auto="5" class="functional-btn functional-btn-lg flex flex-col justify-center items-center gap-2 auto-btn">
+                            <label>Mode</label>
+                            <div class="flex flex-col moves">
+                              5
+                              <span>moves</span>
+                            </div>
+                            <span class="auto">Auto</span>
+                          </button>
+                          <button data-auto="0" class="functional-btn-active functional-btn-lg flex flex-col justify-center items-center gap-2 auto-btn">
+                            <label>Mode</label>
+                            <img src="/assets/png/thumbs-up-solid.png" />
+                            <span id="auto-btn-span">Manual</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="w-full flex justify-center items-center px-4 gap-2">
+                    <div class="relative">
+                      <button id="level-btn" 
+                      class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">lines
+                      <span class="value">8</span>
+                      </button>
+                      <div id="levels-dropdown" class="absolute bottom-12 w-full justify-start left-[-10px] hidden">
+                        <div class="dropdown-wrapper flex flex-col items-center py-3 px-2">
+                          <button data-level="16" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+                            <span class="value">16</span>
+                          </button>
+                          <button data-level="15" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+                            <span class="value">15</span>
+                          </button>
+                          <button data-level="14" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+                            <span class="value">14</span>
+                          </button>
+                          <button data-level="13" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+                            <span class="value">13</span>
+                          </button>
+                          <button data-level="12" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+                            <span class="value">12</span>
+                          </button>
+                          <button data-level="11" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+                            <span class="value">11</span>
+                          </button>
+                          <button data-level="10" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+                            <span class="value">10</span>
+                          </button>
+                          <button data-level="9" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+                            <span class="value">9</span>
+                          </button>
+                          <button data-level="8" class="functional-btn-md functional-btn-active flex flex-col justify-center items-center gap-2">
+                            <span class="value">8</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <button class="functional-btn functional-btn-sm flex flex-col justify-center items-center gap-2">
+                      <img src="/assets/png/minus-solid.png" />
+                    </button>
+                    <div class="current-balance flex flex-col items-center justify-center gap-1 mx-4 text-nowrap">
+                      <label>Bid</label>
+                      100000 FUN 
+                    </div>
+                    <button class="functional-btn functional-btn-sm flex flex-col justify-center items-center gap-2">
+                      <img src="/assets/png/plus-solid.png" />
+                    </button>
+                    <div class="relative">
+                      <button id="speed-btn" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+                        speed
+                        <span class="value">1</span>
+                      </button>
+                      <div id="speed-dropdown" class="absolute bottom-12 left-[-10px] hidden">
+                        <div class="dropdown-wrapper flex flex-col items-center py-3 px-2">
+                          <button data-speed="3" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+                            <span class="value">3</span>
+                          </button>
+                          <button data-speed="2" class="functional-btn functional-btn-md flex flex-col justify-center items-center gap-2">
+                            <span class="value">2</span>
+                          </button>
+                          <button data-speed="1" class="functional-btn-active functional-btn-md flex flex-col justify-center items-center gap-2">
+                            <span class="value">1</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    
+                </div>
+
+                <div class="w-full px-10">
+                    <button class="balance sm:w-full flex flex-row items-center justify-start sm:justify-center gap-2">
+                      <label id="balance-label">Balance</label>
+                      100000 FUN
+                    </button>
+                  </div>
+
+                <div class="w-full sm:hidden">
+                    <div class="flex justify-between px-8">
+                        <div>
+                            <button id="play-for-money-btn" class="brand-btn-secondary brand-btn-md uppercase">Play for money</button>
+                        </div>
+                        <div class="flex flex-row gap-2">
+                            <button id="rules-btn" class="round-brand-btn round-btn-lg flex items-center justify-center">
+                                <img src="/assets/png/question-circle-solid.png" />
+                            </button>
+
+                            <button id="settings-btn" class="round-brand-btn round-btn-lg flex items-center justify-center">
+                                <img src="/assets/png/gear-solid.png" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+        </div> 
+    </div>
+
+    <div class="absolute lg:hidden left-0 top-8">
+        <button class="back-btn" id="backBtn">
+            <img src="/assets/png/ResultButton.png" alt="">
+        </button>
+    </div>
+    
+    <div class="sm:hidden absolute top-8 right-8">
+        <button id="homeBtn" class="round-brand-btn round-btn-lg flex items-center justify-center">
+            <img src="/assets/png/house-solid.png" />
+        </button>
+    </div>
+
+    <div class="sm:hidden absolute top-8 w-full flex justify-center">
+        <img src="/assets/png/LogotypeSmall.png" />
+    </div>
+
+    <div class="absolute top-0 right-0 flex-row gap-2 pt-4 pr-4 hidden sm:flex">
+            
+        <button id="play-for-money-btn" class="brand-btn-secondary brand-btn-md uppercase">Play for money</button>
+        
+        <button id="homeBtn" class="round-brand-btn round-btn-lg flex items-center justify-center">
+            <img src="/assets/png/house-solid.png" />
+        </button>
+        
+        <button id="rules-btn" class="round-brand-btn round-btn-lg flex items-center justify-center">
+            <img src="/assets/png/question-circle-solid.png" />
+        </button>
+
+        <button id="settings-btn" class="round-brand-btn round-btn-lg flex items-center justify-center">
+            <img src="/assets/png/gear-solid.png" />
+        </button>
+    </div>
+</body>
+<script>
+  const homeBtn = document.getElementById('homeBtn')
+  //console.log(homeBtn)
+  homeBtn.addEventListener('click', () => {
+    window.location.href = 'mobile-intro.html'
+  })
+
+  const rulesBtn = document.getElementById('rules-btn')
+  //console.log(homeBtn)
+  rulesBtn.addEventListener('click', () => {
+    window.location.href = 'game-rules.html'
+  })
+
+  const settingsBtn = document.getElementById('settings-btn')
+  //console.log(homeBtn)
+  settingsBtn.addEventListener('click', () => {
+    window.location.href = 'game-settings.html'
+  })
+
+  const backBtn = document.getElementById('backBtn')
+  //console.log(homeBtn)
+  backBtn.addEventListener('click', () => {
+    window.location.href = 'results.html'
+  })
+
+  const canvas = document.querySelector('canvas')
+</script>
+</html>

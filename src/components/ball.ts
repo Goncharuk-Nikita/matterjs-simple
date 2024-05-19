@@ -13,7 +13,6 @@ export class Ball extends Component {
         },
       },
     }
-    console.log(ballOptions)
     super(ballOptions)
     this._body.label = 'ball'
   }
